@@ -1,8 +1,5 @@
 package teamvelociraptor.assignment4;
 import java.util.Date;
-/**
- * Created by Johnny Hanly on 11/9/2017.
- */
 
 public class Message {
     private String username;
