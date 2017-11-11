@@ -42,7 +42,17 @@
                     android:gravity="end"
                     android:layout_height="wrap_content"
                     tools:text="3:57 PM" />
+
             </LinearLayout>
+                <TextView
+                    android:id="@+id/messageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/contactView"
+                    android:layout_marginTop="5dp"
+                    tools:text="HAHAAHA" />
+
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

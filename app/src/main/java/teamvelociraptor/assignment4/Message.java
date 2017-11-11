@@ -9,15 +9,15 @@ public class Message {
     private String name;
 
 
-public Message(){
 
-}
-public Message(String name, String id, String text, long timestamp){
+public Message(String name, String id, String text){
     this.name=name;
     this.id=id;
     this.text=text;
-    this.timestamp= new Date().getTime();
 }
+    public Message(){
+
+    }
 
     public String getText() {
         return text;
