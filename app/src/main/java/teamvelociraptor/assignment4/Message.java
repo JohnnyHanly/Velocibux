@@ -46,4 +46,5 @@ public Message(String name, String id, String text, long timestamp){
     public void setId(String id) {
         this.id = id;
     }
+
 }
