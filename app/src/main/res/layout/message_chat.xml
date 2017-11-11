@@ -9,12 +9,12 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="teamvelociraptor.assignment4.MainActivity">
+    tools:context="teamvelociraptor.assignment4.MessagingActivity">
 
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/sendButton"
-        android:layout_width="wrap_content"
+        android:layout_width="326dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/input"
         android:clickable="true"
