@@ -16,11 +16,11 @@
         android:id="@+id/sendButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/input"
-        android:layout_alignRight="@+id/input"
-        android:layout_alignTop="@+id/input"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
         android:clickable="true"
-        android:focusable="true"
         android:src="@drawable/red_send_button"
         app:fabSize="mini" />
 
@@ -45,8 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:layout_alignTop="@+id/sendButton"
         android:divider="@android:color/transparent"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" >
      </ListView>
 </RelativeLayout>
