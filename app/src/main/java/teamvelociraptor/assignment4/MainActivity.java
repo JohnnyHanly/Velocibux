@@ -38,11 +38,18 @@ public class MainActivity extends AppCompatActivity {
 
         launchMessagingActivity();
     }
+    /*this method launches the Messaging Activty after the user presses a button on the main activity.
+I did not know what our plans are for the startup screen so I decided to create a different activty for
+messaging. This is a temporary way to launch messaging until we know how we are actually
+going to stucture the UI
+*/
     private void launchMessagingActivity(){
+        //button that switches to MessagingActivity
         Button bmessageSwitchButton = (Button) findViewById(R.id.switcher);
        bmessageSwitchButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
+               //creates a popup that confirms button press
                Toast.makeText(MainActivity.this, "Clicked Launch Messaging", Toast.LENGTH_SHORT)
                        .show();
 
