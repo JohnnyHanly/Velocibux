@@ -28,7 +28,6 @@ private FirebaseListAdapter<Message> adapter;
 FloatingActionButton sendMessage;
 private FirebaseAuth firebaseAuth;
 RelativeLayout activity_messaging;
-private LinearLayout paymentButtonLayout;
 private EditText input;
 private boolean fabExpanded;
 private FirebaseUser firebaseUser;
@@ -40,16 +39,10 @@ private FirebaseUser firebaseUser;
        // firebaseUser= firebaseAuth.getCurrentUser();
         activity_messaging=(RelativeLayout)findViewById(R.id.activity_messaging);
         sendMessage=(FloatingActionButton)findViewById(R.id.sendButton);
-        paymentButtonLayout=(LinearLayout)this.findViewById(R.id.paymentButtonLayout);
         input=(EditText)findViewById(R.id.input);
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-          if (fabExpanded==true){
-              closePaymentButton();
-          }else{
-              openPaymentButton();
-          }
 
 
 
@@ -69,7 +62,6 @@ private FirebaseUser firebaseUser;
             }
         });
         diplayMessages();
-        closePaymentButton();
 
     }
 
@@ -103,16 +95,6 @@ readMessageList.setAdapter(adapter);
 
 
 }
-private void openPaymentButton(){
-    paymentButtonLayout.setVisibility(View.VISIBLE);
-    sendMessage.setImageResource(R.drawable.ic_close_black_24dp);
-fabExpanded= true;
-    }
-private void closePaymentButton(){
-    paymentButtonLayout.setVisibility(View.INVISIBLE);
-    sendMessage.setImageResource(R.drawable.red_send_button);
-    fabExpanded=false;
-    }
 
 
 
