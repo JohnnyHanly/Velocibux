@@ -21,11 +21,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.firebase.ui.database.FirebaseListAdapter;
 
 public class MessagingActivity extends AppCompatActivity {
 private FirebaseListAdapter<Message> adapter;
 FloatingActionButton sendMessage;
+FloatingActionButton paymentMessage;
 private FirebaseAuth firebaseAuth;
 RelativeLayout activity_messaging;
 private EditText input;
@@ -39,13 +42,14 @@ private FirebaseUser firebaseUser;
        // firebaseUser= firebaseAuth.getCurrentUser();
         activity_messaging=(RelativeLayout)findViewById(R.id.activity_messaging);
         sendMessage=(FloatingActionButton)findViewById(R.id.sendButton);
+        paymentMessage=(FloatingActionButton)findViewById(R.id.paymentButton);
         input=(EditText)findViewById(R.id.input);
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-
+                Toast.makeText(MessagingActivity.this,"You press the send button",Toast.LENGTH_SHORT).show();
 
 
 
@@ -59,6 +63,14 @@ private FirebaseUser firebaseUser;
                 //Message message= new Message(firebaseUser.getDisplayName(),firebaseUser.getUid(),input.getText().toString())
 
 
+            }
+
+
+        });
+        paymentMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MessagingActivity.this,"You press the payment button",Toast.LENGTH_SHORT).show();
             }
         });
         diplayMessages();
