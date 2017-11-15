@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Assignment 4</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send_to_bank">Send</string>
 </resources>
