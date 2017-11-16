@@ -26,14 +26,11 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseListAdapter;
 
 public class MessagingActivity extends AppCompatActivity {
-private FirebaseListAdapter<Message> messageAdapter;
-private FirebaseListAdapter<Message> convoAdapter;
 FloatingActionButton sendMessage;
 FloatingActionButton paymentMessage;
 private FirebaseAuth firebaseAuth;
 RelativeLayout activity_messaging;
 private EditText input;
-private boolean fabExpanded;
 private FirebaseUser firebaseUser;
     private static DatabaseReference ref= FirebaseDatabase.getInstance().getReference();
     @Override
