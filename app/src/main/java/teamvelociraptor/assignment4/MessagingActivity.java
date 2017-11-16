@@ -26,7 +26,8 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseListAdapter;
 
 public class MessagingActivity extends AppCompatActivity {
-private FirebaseListAdapter<Message> adapter;
+private FirebaseListAdapter<Message> messageAdapter;
+private FirebaseListAdapter<Message> convoAdapter;
 FloatingActionButton sendMessage;
 FloatingActionButton paymentMessage;
 private FirebaseAuth firebaseAuth;
@@ -76,17 +77,41 @@ private FirebaseUser firebaseUser;
         diplayMessages();
 
     }
+private void displayContactList(){
+        Query conversationQuery= FirebaseDatabase.getInstance().getReference();
+
+        FirebaseListOptions<Message> convoOptions= new FirebaseListOptions.Builder<Message>().setLayout(R.layout.conversation_list)
+                .setQuery(conversationQuery,Message.class).build();
+
+
+        FirebaseListAdapter<Message> convoAdapter= new FirebaseListAdapter<Message>(convoOptions) {
+            @Override
+            protected void populateView(View v, Message model, int position) {
+
+          TextView newestText;
+          TextView contactName;
+          TextView timestamp;
+
+
+
+            }
+        };
+
+
+
+
+}
 
 
 private void diplayMessages(){
-    Query query= FirebaseDatabase.getInstance().getReference();
+    Query messageQuery= FirebaseDatabase.getInstance().getReference();
 
 
-    FirebaseListOptions<Message> options= new FirebaseListOptions.Builder<Message>().setLayout(R.layout.message_list)
-            .setQuery(query,Message.class).build();
+    FirebaseListOptions<Message> messageOptions= new FirebaseListOptions.Builder<Message>().setLayout(R.layout.message_list)
+            .setQuery(messageQuery,Message.class).build();
 
 
-FirebaseListAdapter<Message>adapter= new FirebaseListAdapter<Message>(options) {
+FirebaseListAdapter<Message>messageAdapter= new FirebaseListAdapter<Message>(messageOptions) {
     @Override
     protected void populateView(View v, Message model, int position) {
         TextView text;
@@ -103,7 +128,7 @@ FirebaseListAdapter<Message>adapter= new FirebaseListAdapter<Message>(options) {
 };
 
 ListView readMessageList= findViewById(R.id.list_of_messages);
-readMessageList.setAdapter(adapter);
+readMessageList.setAdapter(messageAdapter);
 
 
 }
