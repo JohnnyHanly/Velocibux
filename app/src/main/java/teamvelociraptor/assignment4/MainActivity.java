@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.auth;
+package teamvelociraptor.assignment4;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 /**
  * Demonstrate Firebase Authentication using a Google ID Token.
  */
-public class GoogleSignInActivity extends BaseActivity implements
+public class MainActivity extends BaseActivity implements
         View.OnClickListener {
 
     private static final String TAG = "GoogleActivity";
@@ -41,7 +41,7 @@ public class GoogleSignInActivity extends BaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google);
+        setContentView(R.layout.activity_main);
 
         // Views
         mStatusTextView = findViewById(R.id.status);
@@ -120,7 +120,7 @@ public class GoogleSignInActivity extends BaseActivity implements
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(GoogleSignInActivity.this, "Authentication failed.",
+                            Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }

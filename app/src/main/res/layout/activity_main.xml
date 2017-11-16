@@ -1,54 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_100"
     android:orientation="vertical"
-    tools:context="teamvelociraptor.assignment4.MainActivity">
-     <LinearLayout
+    android:weightSum="4">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/prof_section"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp">
-         <ImageView
-            android:layout_width="90dp"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            style="@style/ThemeOverlay.FirebaseIcon"
+            android:id="@+id/google_icon"
+            android:contentDescription="@string/desc_firebase_lockup"
+            android:src="@mipmap/firebase_lockup_400"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/prof_pic"
-             />
+            android:layout_marginBottom="@dimen/title_bottom_margin"
+            android:text="@string/google_title_text"
+            android:theme="@style/ThemeOverlay.MyTitleText" />
+
+        <TextView
+            android:id="@+id/status"
+            style="@style/ThemeOverlay.MyTextDetail"
+            android:text="@string/signed_out" />
+
+        <TextView
+            android:id="@+id/detail"
+            style="@style/ThemeOverlay.MyTextDetail"
+            tools:text="Firebase User ID: 123456789abc" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/grey_300">
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            tools:visibility="gone" />
+
         <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Name"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:id="@+id/name"
-                android:gravity="center"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:textSize="12dp"
-                android:textStyle="bold"
-                android:id="@+id/email"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                />
+            android:id="@+id/sign_out_and_disconnect"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
             <Button
-                android:layout_width="match_parent"
+                android:id="@+id/sign_out_button"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Logout"
-                android:id="@+id/bn_logout"
-                />
+                android:layout_weight="1"
+                android:text="@string/sign_out"
+                android:theme="@style/ThemeOverlay.MyDarkButton" />
+
+            <Button
+                android:id="@+id/disconnect_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/disconnect"
+                android:theme="@style/ThemeOverlay.MyDarkButton" />
         </LinearLayout>
-     </LinearLayout>
+
+    </RelativeLayout>
+
 </LinearLayout>
