@@ -10,11 +10,12 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseUser;
 import android.content.Intent;
 import com.google.firebase.database.Query;
-
 import android.text.format.DateFormat;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -22,8 +23,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.firebase.ui.database.FirebaseListAdapter;
 
 public class MessagingActivity extends AppCompatActivity {
 FloatingActionButton sendMessage;
@@ -63,7 +62,6 @@ private FirebaseUser firebaseUser;
 
             }
 
-
         });
         paymentMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +72,14 @@ private FirebaseUser firebaseUser;
         diplayMessages();
 
     }
+    
+
+
+
+
+
+
+
 private void displayContactList(){
         Query conversationQuery= FirebaseDatabase.getInstance().getReference();
 
@@ -90,15 +96,10 @@ private void displayContactList(){
           TextView timestamp;
 
 
-
             }
         };
 
-
-
-
 }
-
 
 private void diplayMessages(){
     Query messageQuery= FirebaseDatabase.getInstance().getReference();
@@ -129,11 +130,6 @@ readMessageList.setAdapter(messageAdapter);
 
 
 }
-
-
-
-
-
 
 
 }
