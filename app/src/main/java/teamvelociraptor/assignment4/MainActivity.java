@@ -55,7 +55,7 @@ going to stucture the UI
 
 
                //Launch Messanging Activity
-               Intent intent= new Intent(MainActivity.this, MessagingActivity.class);
+               Intent intent= new Intent(MainActivity.this, NavigationDrawer.class);
                 startActivity(intent);
 
            }

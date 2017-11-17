@@ -134,4 +134,16 @@ readMessageList.setAdapter(messageAdapter);
 
 }
 
+//TODO
+/*
+make the main activty of the program into the NavigationDrawer
 
+connect users to the firebase server so we canner access their usernames/ids/messages.(Account/Login guys job)
+
+populate the main screen of the app with conversations that the user has had
+
+
+
+
+
+ */
