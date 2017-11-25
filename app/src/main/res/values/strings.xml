@@ -74,4 +74,7 @@
 
     <string name="id_fmt">User ID: %s</string>
     <string name="email_fmt">Email: %s</string>
+
+    <string name="server_client_id">774189956744-kq1pcr2s4klq4gk7di0qc3ijfcjnu8cu.apps.googleusercontent.com
+</string>
 </resources>

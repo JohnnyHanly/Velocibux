@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "774189956744-kq1pcr2s4klq4gk7di0qc3ijfcjnu8cu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "teamvelociraptor.assignment4",
+            "certificate_hash": "164d3c809b9105a1855fe9748ea7ee5ae597ca44"
+          }
+        },
+        {
+          "client_id": "774189956744-o9nksv6g7cvm23c37qh628p1v1pptpmk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "teamvelociraptor.assignment4",
+            "certificate_hash": "feac54ab7ad67bfa6ccf4896c3c3a93d7eb112db"
+          }
+        },
+        {
+          "client_id": "774189956744-68kq6ab4o9g0tgka8lffsn7a1upatlrt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "teamvelociraptor.assignment4",
+            "certificate_hash": "2f796e63bf92b9e759aa5a973b65b0f25f651e70"
+          }
+        },
+        {
           "client_id": "774189956744-qgkbn4penhajt350r5dusbiff1pf9inf.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +53,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774189956744-qgkbn4penhajt350r5dusbiff1pf9inf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
