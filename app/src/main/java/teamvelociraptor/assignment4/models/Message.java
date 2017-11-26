@@ -1,4 +1,4 @@
-package teamvelociraptor.assignment4;
+package teamvelociraptor.assignment4.models;
 import java.util.Date;
 
 public class Message {
