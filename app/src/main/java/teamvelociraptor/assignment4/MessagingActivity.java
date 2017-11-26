@@ -1,14 +1,10 @@
 package teamvelociraptor.assignment4;
 import com.firebase.ui.database.FirebaseListOptions;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseListAdapter;
-import com.google.firebase.auth.FirebaseUser;
-import android.content.Intent;
 import com.google.firebase.database.Query;
 
 import android.text.format.DateFormat;
@@ -17,13 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseListAdapter;
+import teamvelociraptor.assignment4.models.Message;
 
 public class MessagingActivity extends AppCompatActivity {
 FloatingActionButton sendMessage;
