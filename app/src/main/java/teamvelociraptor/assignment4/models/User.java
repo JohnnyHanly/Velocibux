@@ -12,6 +12,8 @@ public class User {
     private String username;
     private List<String> friends;
 
+    public User() {}
+
     public User(String uuid, String username) {
         this.uuid = uuid;
         this.username = username;
