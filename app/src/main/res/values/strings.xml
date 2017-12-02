@@ -77,4 +77,5 @@
 
     <string name="server_client_id">774189956744-kq1pcr2s4klq4gk7di0qc3ijfcjnu8cu.apps.googleusercontent.com
 </string>
+    <string name="title_activity_account_balance">AccountBalance</string>
 </resources>
