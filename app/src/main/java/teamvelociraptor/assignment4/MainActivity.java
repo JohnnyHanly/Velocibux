@@ -37,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
         User = Auth.getCurrentUser();
 
         launchMessagingActivity();
+        findViewById(R.id.friends).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Friends activity launched", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, FriendsListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     /*this method launches the Messaging Activty after the user presses a button on the main activity.
 I did not know what our plans are for the startup screen so I decided to create a different activty for
@@ -53,7 +61,7 @@ going to stucture the UI
                Toast.makeText(MainActivity.this, "Clicked Launch Messaging", Toast.LENGTH_SHORT)
                        .show();
 
-
+//test commit
                //Launch Messanging Activity
                Intent intent= new Intent(MainActivity.this, MessagingActivity.class);
                 startActivity(intent);
