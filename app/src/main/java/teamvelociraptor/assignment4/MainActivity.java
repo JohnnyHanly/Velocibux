@@ -61,7 +61,7 @@ going to stucture the UI
                Toast.makeText(MainActivity.this, "Clicked Launch Messaging", Toast.LENGTH_SHORT)
                        .show();
 
-//test commit
+
                //Launch Messanging Activity
                Intent intent= new Intent(MainActivity.this, MessagingActivity.class);
                 startActivity(intent);
