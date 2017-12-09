@@ -13,13 +13,15 @@ public class User {
     private String uuid;
     private String username;
     private List<String> friends;
+    private int accountBalance;
 
     public User() {}
 
-    public User(String uuid, String username) {
+    public User(String uuid, String username, int accountBalance) {
         this.uuid = uuid;
         this.username = username;
         this.friends = new ArrayList<>();
+        this.accountBalance = accountBalance;
     }
 
     public void addFriend(String uuid) {
