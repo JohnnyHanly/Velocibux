@@ -22,7 +22,7 @@
          />
 
     <EditText
-        android:id="@+id/input"
+        android:id="@+id/payment_input"
         android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -34,11 +34,11 @@
         android:id="@+id/sendButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/input"
+        android:layout_alignBottom="@+id/payment_input"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:layout_toEndOf="@+id/input"
-        android:layout_toRightOf="@+id/input"
+        android:layout_toEndOf="@+id/payment_input"
+        android:layout_toRightOf="@+id/payment_input"
         android:clickable="true"
         android:scaleType="center"
         android:src="@drawable/red_send_button"
