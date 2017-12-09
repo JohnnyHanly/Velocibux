@@ -59,7 +59,7 @@ public class FriendsListActivity extends AppCompatActivity {
             protected void populateView(View v, User model, int position) {
                 TextView username = v.findViewById(R.id.username);
                 TextView uuid = v.findViewById(R.id.uuid);
-                username.setText(model.getUsername());
+                username.setText(model.getUuid());
                 uuid.setText(model.getUuid());
             }
         };
