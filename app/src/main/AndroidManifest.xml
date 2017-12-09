@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="teamvelociraptor.assignment4"
     xmlns:tools="http://schemas.android.com/tools"
-    package="teamvelociraptor.assignment4">
-
-    <uses-sdk tools:overrideLibrary="com.firebase.ui, com.firebase.ui.auth" />
-
+>
+    <uses-sdk tools:overrideLibrary="com.firebase.ui, com.firebase.ui.auth"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

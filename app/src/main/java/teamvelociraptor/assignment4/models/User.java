@@ -1,5 +1,7 @@
 package teamvelociraptor.assignment4.models;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +13,15 @@ public class User {
     private String uuid;
     private String username;
     private List<String> friends;
+    private int accountBalance;
 
     public User() {}
 
-    public User(String uuid, String username) {
+    public User(String uuid, String username, int accountBalance) {
         this.uuid = uuid;
         this.username = username;
         this.friends = new ArrayList<>();
+        this.accountBalance = accountBalance;
     }
 
     public void addFriend(String uuid) {
@@ -28,6 +32,8 @@ public class User {
         friends.add(user.uuid);
     }
 
+
+
     public static void makeFriends(User user1, User user2) {
         user1.friends.add(user2.uuid);
         user2.friends.add(user1.uuid);
@@ -36,6 +42,7 @@ public class User {
     public String getUuid() {
         return uuid;
     }
+
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
@@ -57,3 +64,4 @@ public class User {
         this.friends = friends;
     }
 }
+
