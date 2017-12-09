@@ -67,14 +67,5 @@ public class FriendsListActivity extends AppCompatActivity {
         adapter.startListening();
     }
 
-    public void fillTestData() {
-        Map<String, User> users = new HashMap<>();
-        users.put("1", new User("1", "test"));
-        users.put("2", new User("2", "asdf"));
-        users.put("3", new User("3", "fdsa"));
-        User.makeFriends(users.get("1"), users.get("2"));
-        User.makeFriends(users.get("2"), users.get("3"));
-        mUsersRef.setValue(users);
-    }
 
 }
