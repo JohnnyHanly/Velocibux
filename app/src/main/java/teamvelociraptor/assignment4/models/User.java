@@ -13,7 +13,7 @@ public class User {
     private String uuid;
     private String username;
     private List<String> friends;
-    private int accountBalance;
+    private float accountBalance;
 
     public User() {}
 

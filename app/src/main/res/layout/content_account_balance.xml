@@ -8,6 +8,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="teamvelociraptor.assignment4.AccountBalance">
 
+
+
     <TextView
         android:id="@+id/account_balance"
         android:layout_width="wrap_content"
