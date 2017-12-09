@@ -6,7 +6,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.Query;
-
 import android.text.format.DateFormat;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +16,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import teamvelociraptor.assignment4.models.Message;
 
 public class MessagingActivity extends AppCompatActivity {
@@ -32,7 +30,7 @@ private FirebaseUser firebaseUser;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messaging);
-       // firebaseUser= firebaseAuth.getCurrentUser();
+        firebaseUser= firebaseAuth.getCurrentUser();
         activity_messaging=(RelativeLayout)findViewById(R.id.activity_messaging);
         sendMessage=(FloatingActionButton)findViewById(R.id.sendButton);
         paymentMessage=(FloatingActionButton)findViewById(R.id.paymentButton);
@@ -81,7 +79,6 @@ private void displayContactList(){
           TextView timestamp;
 
 
-
             }
         };
 
@@ -117,10 +114,6 @@ readMessageList.setAdapter(messageAdapter);
 
 
 }
-
-
-
-
 
 
 
