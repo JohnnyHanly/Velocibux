@@ -11,7 +11,7 @@
 
 
     <TextView
-        android:id="@+id/account_balance"
+        android:id="@+id/this_is_account_balance"
         android:layout_width="wrap_content"
         android:layout_height="29dp"
         android:layout_marginEnd="8dp"
@@ -19,7 +19,7 @@
         android:layout_marginTop="8dp"
         android:text="Account Balance:"
         android:textSize="17dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView9"
+        app:layout_constraintEnd_toStartOf="@+id/account_balance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quickContactBadge" />
 
@@ -33,7 +33,7 @@
         android:text="Transfer to Bank"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/account_balance"
         android:layout_marginRight="118dp"
         android:layout_marginLeft="117dp" />
 
@@ -50,7 +50,7 @@
         app:srcCompat="@drawable/common_google_signin_btn_text_light_normal" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/account_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
