@@ -1,42 +1,33 @@
 package teamvelociraptor.assignment4.models;
 
+import java.util.List;
 
+/**
+ * Created by ericgroom on 12/8/17.
+ */
 
-public class Conversation {
-    private String senderID;
-    private String senderUsername;
-    private String text;
-    private long timestamp;
+class Conversation {
 
-public Conversation(String senderID, String senderUsername, String text, long timestamp){
-    this.senderID= senderID;
-    this.senderUsername= senderUsername;
-    this.text=text;
-    this.timestamp= timestamp;
-}
-    public Conversation(){}
+    private String id;
+    private List<Message> messages;
 
-    public String setSenderID(){
-        return  this.senderID= senderID;
-    }
-    public String setSenderusername(){
-        return this.senderUsername=senderUsername;
-    }
-    public String setText(){
-        return this.text= text;
+    public Conversation() {
+
     }
 
-    public String getSenderID(){
-        return senderID;
-    }
-    public String getSenderUsername(){
-        return senderUsername;
-    }
-    public String getText(){
-        return text;
-    }
-    public long getTimestamp(){
-        return timestamp;
+    public String getId() {
+        return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
 }

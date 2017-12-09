@@ -51,7 +51,7 @@ public class FriendsListActivity extends AppCompatActivity {
             protected void populateView(View v, User model, int position) {
                 TextView username = v.findViewById(R.id.username);
                 TextView uuid = v.findViewById(R.id.uuid);
-                username.setText(model.getUsername());
+                username.setText(model.getUuid());
                 uuid.setText(model.getUuid());
             }
         };
@@ -59,14 +59,5 @@ public class FriendsListActivity extends AppCompatActivity {
         adapter.startListening();
     }
 
-    public void fillTestData() {
-        Map<String, User> users = new HashMap<>();
-        users.put("1", new User("1", "test"));
-        users.put("2", new User("2", "asdf"));
-        users.put("3", new User("3", "fdsa"));
-        User.makeFriends(users.get("1"), users.get("2"));
-        User.makeFriends(users.get("2"), users.get("3"));
-        mUsersRef.setValue(users);
-    }
 
 }
