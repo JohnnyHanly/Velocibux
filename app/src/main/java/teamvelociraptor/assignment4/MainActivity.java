@@ -13,11 +13,8 @@ import com.firebase.ui.auth.ResultCodes;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import teamvelociraptor.assignment4.models.QRcodes;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, MessagingActivity.class));
                 return true;
             case R.id.activity_qr_code_item:
-                startActivity(new Intent(this, QRcodes.class));
+                startActivity(new Intent(this, QRActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
@@ -25,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import teamvelociraptor.assignment4.models.Message;
-import teamvelociraptor.assignment4.models.QRcodes;
 
 public class MessagingActivity extends AppCompatActivity {
     FloatingActionButton sendMessage;
@@ -146,7 +144,7 @@ public class MessagingActivity extends AppCompatActivity {
             case R.id.activity_messaging_item:
                 startActivity(new Intent(this, MessagingActivity.class));
             case R.id.activity_qr_code_item:
-                startActivity(new Intent(this, QRcodes.class));
+                startActivity(new Intent(this, QRActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
