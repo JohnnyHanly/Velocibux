@@ -14,6 +14,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 import teamvelociraptor.assignment4.MainActivity;
+import teamvelociraptor.assignment4.R;
 
 public class QRcodes extends MainActivity{
     public final static int QRcodeWidth = 500;

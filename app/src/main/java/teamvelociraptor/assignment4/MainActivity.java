@@ -22,6 +22,8 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.List;
 
+import teamvelociraptor.assignment4.models.QRcodes;
+
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth Auth;
@@ -72,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.activity_messaging_item:
                 startActivity(new Intent(this, MessagingActivity.class));
+                return true;
+            case R.id.activity_qr_code_item:
+                startActivity(new Intent(this, QRcodes.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

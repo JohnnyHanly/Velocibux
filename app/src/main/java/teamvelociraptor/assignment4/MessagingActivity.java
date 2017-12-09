@@ -20,8 +20,10 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import teamvelociraptor.assignment4.models.Message;
+import teamvelociraptor.assignment4.models.QRcodes;
 
 public class MessagingActivity extends AppCompatActivity {
 FloatingActionButton sendMessage;
@@ -142,6 +144,9 @@ readMessageList.setAdapter(messageAdapter);
                 startActivity(new Intent(this, MainActivity.class));
             case R.id.activity_messaging:
                 startActivity(new Intent(this, MessagingActivity.class));
+            case R.id.activity_qr_code_item:
+                startActivity(new Intent(this, QRcodes.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
