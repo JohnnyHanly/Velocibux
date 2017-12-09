@@ -37,7 +37,7 @@ public class QRcodes extends MainActivity{
             @Override
             public void onClick(View v) {
                 try {
-                    bitmap = TextToImageEncode(user.getUid().toString());
+                    bitmap = TextToImageEncode(user.getUid());
                     iv.setImageBitmap(bitmap);
                 } catch (WriterException e) {
                     e.printStackTrace();
