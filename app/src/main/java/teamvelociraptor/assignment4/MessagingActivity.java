@@ -7,6 +7,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.Query;
 
+import android.content.Intent;
 import android.text.format.DateFormat;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -136,15 +137,7 @@ readMessageList.setAdapter(messageAdapter);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-
-        switch (item.getItemId()){
-            case R.id.activity_main:
-                startActivity(new Intent(this, MainActivity.class));
-            case R.id.activity_messaging:
-                startActivity(new Intent(this, MessagingActivity.class));
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        return AppUtils.dropDownChangeActivity(item, this);
     }
 
 

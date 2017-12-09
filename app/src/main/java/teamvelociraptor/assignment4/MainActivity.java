@@ -65,17 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-
-        switch (item.getItemId()){
-            case R.id.activity_main_item:
-                startActivity(new Intent(this, MainActivity.class));
-                return true;
-            case R.id.activity_messaging_item:
-                startActivity(new Intent(this, MessagingActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        return AppUtils.dropDownChangeActivity(item, this);
     }
 
     @Override
