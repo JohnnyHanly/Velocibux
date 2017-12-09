@@ -6,6 +6,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.Query;
+
+import android.content.Intent;
 import android.text.format.DateFormat;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
