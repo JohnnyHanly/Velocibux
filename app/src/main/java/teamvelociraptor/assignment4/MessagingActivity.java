@@ -42,18 +42,14 @@ private FirebaseUser firebaseUser;
             public void onClick(View v) {
 
 
-                Toast.makeText(MessagingActivity.this,"You press the send button",Toast.LENGTH_SHORT).show();
-
-
-
-                /*
+                Toast.makeText(MessagingActivity.this,"You pressed the send button",Toast.LENGTH_SHORT).show();
                 EditText input=(EditText)findViewById(R.id.input);
                 FirebaseDatabase.getInstance().getReference().setValue(new Message(FirebaseAuth.getInstance().getCurrentUser()
                         .getDisplayName(),FirebaseAuth.getInstance().getCurrentUser().getUid(),input.getText().toString()));
-                input.setText("");*/
+                input.setText("");
 
 
-                //Message message= new Message(firebaseUser.getDisplayName(),firebaseUser.getUid(),input.getText().toString())
+                Message message= new Message(firebaseUser.getDisplayName(),firebaseUser.getUid(),input.getText().toString());
 
 
             }
@@ -63,7 +59,7 @@ private FirebaseUser firebaseUser;
         paymentMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MessagingActivity.this,"You press the payment button",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MessagingActivity.this,"You pressed the payment button",Toast.LENGTH_SHORT).show();
             }
         });
         diplayMessages();
@@ -94,10 +90,8 @@ private void displayContactList(){
 
 }
 
-
 private void diplayMessages(){
     Query messageQuery= FirebaseDatabase.getInstance().getReference();
-
 
     FirebaseListOptions<Message> messageOptions= new FirebaseListOptions.Builder<Message>().setLayout(R.layout.message_list)
             .setQuery(messageQuery,Message.class).build();
@@ -112,7 +106,6 @@ FirebaseListAdapter<Message>messageAdapter= new FirebaseListAdapter<Message>(mes
         text=(TextView)findViewById(R.id.messageView);
         user=(TextView)findViewById(R.id.contactView);
         timestamp=(TextView)findViewById(R.id.timestampView);
-
         text.setText(model.getText());
         user.setText(model.getName());
         timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
