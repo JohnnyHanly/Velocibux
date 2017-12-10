@@ -11,9 +11,10 @@
     <item
 
         android:title="Friends" />
-
     <item
-
+        android:id="@+id/activity_payment_item"
+        android:title="Payment" />
+    <item
         android:title="Account" />
 
 </menu>

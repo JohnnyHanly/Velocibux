@@ -1,9 +1,10 @@
 package teamvelociraptor.assignment4.models;
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 public class Message {
     private String id;
-    private LocalDateTime timestamp;
+    private Date timestamp;
     private String text;
 
     public Message() {
@@ -17,11 +18,11 @@ public class Message {
         this.id = id;
     }
 
-    public LocalDateTime getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 
