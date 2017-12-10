@@ -53,9 +53,9 @@ public class MessagingActivity extends AppCompatActivity {
 
 
                 EditText input=(EditText)findViewById(R.id.payment_input);
-                FirebaseDatabase.getInstance().getReference().setValue(new Message(FirebaseAuth.getInstance().getCurrentUser()
+               FirebaseDatabase.getInstance().getReference().setValue(new Message(FirebaseAuth.getInstance().getCurrentUser()
                         .getDisplayName(),FirebaseAuth.getInstance().getCurrentUser().getUid(),input.getText().toString()));
-                input.setText("");
+              input.setText("");
 
 
                 Message message= new Message(firebaseUser.getDisplayName(),firebaseUser.getUid(),input.getText().toString());
