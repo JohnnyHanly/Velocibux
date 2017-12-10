@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/activity_main_item"
+        android:title="Transactions" />
+    <item
+        android:id="@+id/activity_messaging_item"
+        android:title="Messages" />
+    <item
+
+        android:title="Friends" />
+
+    <item
+
+        android:title="Account" />
+
+</menu>
