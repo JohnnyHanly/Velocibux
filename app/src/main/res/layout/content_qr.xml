@@ -12,6 +12,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical"
         tools:context="com.exampledemo.parsaniahardik.generate_qr_code.MainActivity">
 
@@ -19,14 +20,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn"
-            android:text="My QR"
+            android:text="@string/qr_button"
             android:layout_marginTop="10dp"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:id="@+id/iv"/>
+            android:id="@+id/iv"
+            android:contentDescription="@string/qr_image"/>
 
     </LinearLayout>
 
