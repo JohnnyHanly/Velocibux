@@ -7,7 +7,7 @@ public class Message {
     private Date timestamp;
     private String text;
 
-    public Message() {
+    public Message(String displayName, String uid, String s) {
     }
 
     public String getId() {
