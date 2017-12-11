@@ -34,7 +34,8 @@ public class MessagingActivity extends AppCompatActivity {
     private EditText input;
     private FirebaseUser firebaseUser;
     private static DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-//meow
+
+    //meow
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,15 +52,13 @@ public class MessagingActivity extends AppCompatActivity {
                 Toast.makeText(MessagingActivity.this, "You press the send button", Toast.LENGTH_SHORT).show();
 
 
+                EditText input = (EditText) findViewById(R.id.payment_input);
+                FirebaseDatabase.getInstance().getReference().setValue(new Message(FirebaseAuth.getInstance().getCurrentUser()
+                        .getDisplayName(), FirebaseAuth.getInstance().getCurrentUser().getUid(), input.getText().toString()));
+                input.setText("");
 
 
-                EditText input=(EditText)findViewById(R.id.payment_input);
-               FirebaseDatabase.getInstance().getReference().setValue(new Message(FirebaseAuth.getInstance().getCurrentUser()
-                        .getDisplayName(),FirebaseAuth.getInstance().getCurrentUser().getUid(),input.getText().toString()));
-              input.setText("");
-
-
-                Message message= new Message(firebaseUser.getDisplayName(),firebaseUser.getUid(),input.getText().toString());
+                Message message = new Message(firebaseUser.getDisplayName(), firebaseUser.getUid(), input.getText().toString());
 
 
             }
@@ -70,7 +69,7 @@ public class MessagingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MessagingActivity.this, "You pressed the payment button", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MessagingActivity.this,PaymentActivity.class));
+                startActivity(new Intent(MessagingActivity.this, PaymentActivity.class));
             }
         });
 
@@ -92,18 +91,12 @@ public class MessagingActivity extends AppCompatActivity {
                 TextView newestText;
                 TextView contactName;
                 TextView timestamp;
-
-
             }
         };
-
-
     }
-
 
     private void diplayMessages() {
         Query messageQuery = FirebaseDatabase.getInstance().getReference();
-
 
         FirebaseListOptions<Message> messageOptions = new FirebaseListOptions.Builder<Message>().setLayout(R.layout.message_list)
                 .setQuery(messageQuery, Message.class).build();
