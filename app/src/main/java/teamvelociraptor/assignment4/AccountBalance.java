@@ -25,6 +25,7 @@ import teamvelociraptor.assignment4.models.*;
 public class AccountBalance extends AppCompatActivity {
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     DatabaseReference mUserRef = mRootRef.child("users").child(user.getUid());
     private ImageView imgProfilePic;
 
@@ -34,9 +35,7 @@ public class AccountBalance extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_balance);
-        TextView accountbalancetext = (TextView) findViewById(R.id.account_balance);
         Button transfertobankbutton = findViewById(R.id.transfer_to_bank);
-//        imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
 
         transfertobankbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +44,7 @@ public class AccountBalance extends AppCompatActivity {
 
                 Toast.makeText(AccountBalance.this, "Transferring Money...", Toast.LENGTH_SHORT).show();
                 addFive();
+                getBalance();
 
 
             }
@@ -89,6 +89,13 @@ public class AccountBalance extends AppCompatActivity {
 
     private void addFive(){
         userObj.setBalance(5.00);
+        mUserRef.setValue(userObj);
+    }
+
+    private void getBalance(){
+        TextView accountbalancetext = (TextView) findViewById(R.id.account_balance);
+        accountbalancetext.setText(Double.toString(userObj.getBalance()));
+
     }
 
     private void transferToBank(){
