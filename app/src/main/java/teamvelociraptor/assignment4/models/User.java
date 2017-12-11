@@ -12,8 +12,9 @@ public class User {
     private String displayName;
     private String email;
     private List<User> friends;
-    static double balance;
-    private Map<String, Transaction> transactions;
+    private double balance;
+    private String imageUrl;
+    private List<Transaction> transactions;
     private Map<String, Conversation> conversations;
 
     public User() {}
@@ -50,11 +51,11 @@ public class User {
         this.friends = friends;
     }
 
-    public Map<String, Transaction> getTransactions() {
+    public List<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(Map<String, Transaction> transactions) {
+    public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
 
@@ -66,11 +67,19 @@ public class User {
         this.conversations = conversations;
     }
 
-    public static double getBalance() {
+    public double getBalance() {
         return balance;
     }
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

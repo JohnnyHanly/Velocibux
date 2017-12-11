@@ -44,7 +44,7 @@ public class AccountBalance extends AppCompatActivity {
 
 
                 Toast.makeText(AccountBalance.this, "Transferring Money...", Toast.LENGTH_SHORT).show();
-                transferToBank();
+                addFive();
 
 
             }
@@ -55,8 +55,6 @@ public class AccountBalance extends AppCompatActivity {
 
     }
 
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -64,6 +62,7 @@ public class AccountBalance extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userObj = dataSnapshot.getValue(User.class);
+
             }
 
             @Override
@@ -88,11 +87,8 @@ public class AccountBalance extends AppCompatActivity {
 
 
 
-    private void createBalance(){
-        User u1 = new User();
-        u1.setDisplayName("Preston");
-        u1.setBalance(0.00);
-        mUserRef.setValue(u1);
+    private void addFive(){
+        userObj.setBalance(5.00);
     }
 
     private void transferToBank(){
