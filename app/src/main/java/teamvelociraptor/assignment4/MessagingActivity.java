@@ -77,24 +77,6 @@ public class MessagingActivity extends AppCompatActivity {
 
     }
 
-    private void displayContactList() {
-        Query conversationQuery = FirebaseDatabase.getInstance().getReference();
-
-        FirebaseListOptions<Message> convoOptions = new FirebaseListOptions.Builder<Message>().setLayout(R.layout.conversation_list)
-                .setQuery(conversationQuery, Message.class).build();
-
-
-        FirebaseListAdapter<Message> convoAdapter = new FirebaseListAdapter<Message>(convoOptions) {
-            @Override
-            protected void populateView(View v, Message model, int position) {
-
-                TextView newestText;
-                TextView contactName;
-                TextView timestamp;
-            }
-        };
-    }
-
     private void diplayMessages() {
         Query messageQuery = FirebaseDatabase.getInstance().getReference();
 
@@ -105,21 +87,23 @@ public class MessagingActivity extends AppCompatActivity {
         FirebaseListAdapter<Message> messageAdapter = new FirebaseListAdapter<Message>(messageOptions) {
             @Override
             protected void populateView(View v, Message model, int position) {
-                TextView text;
-                TextView user;
-                TextView timestamp;
-                text = findViewById(R.id.messageView);
-                user = findViewById(R.id.contactView);
-                timestamp = findViewById(R.id.timestampView);
-
+                TextView text = findViewById(R.id.messageView);
+                TextView username = findViewById(R.id.contactView);
+                TextView timestamp = findViewById(R.id.timestampView);
                 text.setText(model.getText());
-                //user.setText(model.getDisplayName());
-                //timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
+                username.setText(model.getDisplayName());
+                timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
+
             }
         };
 
         ListView readMessageList = findViewById(R.id.list_of_messages);
         readMessageList.setAdapter(messageAdapter);
+
+
+    }
+    public static void send(Message message){
+
 
 
     }
