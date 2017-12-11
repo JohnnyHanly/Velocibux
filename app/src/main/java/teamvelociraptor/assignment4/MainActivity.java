@@ -70,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.activity_messaging_item:
                 startActivity(new Intent(this, MessagingActivity.class));
                 return true;
+            case R.id.activity_friends_item:
+                startActivity(new Intent(this, FriendsListActivity.class));
+                return true;
             case R.id.activity_payment_item:
                 startActivity(new Intent(this,PaymentActivity.class));
             default:
