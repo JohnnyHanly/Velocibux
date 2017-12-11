@@ -15,7 +15,10 @@
         android:id="@+id/activity_payment_item"
         android:title="Payment" />
     <item
-        android:title="Account" />
+        android:id="@+id/activity_account_item"
+        android:title="Account"
+
+        />
 
     <item
         android:id="@+id/activity_qr_code_item"
