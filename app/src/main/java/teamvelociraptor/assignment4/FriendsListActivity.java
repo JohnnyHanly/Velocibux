@@ -59,7 +59,7 @@ public class FriendsListActivity extends AppCompatActivity {
         };
         friendsList.setAdapter(adapter);
         adapter.startListening();
-
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
