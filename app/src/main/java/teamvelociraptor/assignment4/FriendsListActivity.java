@@ -1,5 +1,6 @@
 package teamvelociraptor.assignment4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -80,7 +81,9 @@ public class FriendsListActivity extends AppCompatActivity {
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(FriendsListActivity.this, model.getUuid(), Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(FriendsListActivity.this, MessagingActivity.class);
+                        intent.putExtra("uuid", model.getUuid());
+                        startActivity(intent);
                     }
                 });
             }
