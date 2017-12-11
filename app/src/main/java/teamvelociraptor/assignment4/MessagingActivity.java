@@ -3,6 +3,7 @@ package teamvelociraptor.assignment4;
 import android.content.Intent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
@@ -20,21 +21,33 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import teamvelociraptor.assignment4.models.Conversation;
 import teamvelociraptor.assignment4.models.Message;
+import teamvelociraptor.assignment4.models.User;
 
 public class MessagingActivity extends AppCompatActivity {
-    Message message;
     FloatingActionButton sendMessage;
     FloatingActionButton paymentMessage;
-    private FirebaseAuth firebaseAuth;
+
     RelativeLayout activity_messaging;
     private EditText input;
-    private FirebaseUser firebaseUser;
-    private static DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    private FirebaseUser mUser= FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mUserRef = ref.child("users").child(mUser.getUid());
+    DatabaseReference mConvoRef=mUserRef.child("conversations");
+    DatabaseReference mMessageRef= mUserRef.child("messages");
+    Message messageObj;
+    User userObj;
+    Conversation convoObj;
+
+
 
     //meow
     @Override
@@ -43,31 +56,47 @@ public class MessagingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_messaging);
         activity_messaging = findViewById(R.id.activity_messaging);
         sendMessage = findViewById(R.id.sendButton);
+
+
         paymentMessage = findViewById(R.id.paymentButton);
-        input = findViewById(R.id.payment_input);
+       // getIntent().getIntExtra("uuid",-1);
+        input= (EditText)findViewById(R.id.message_input);
+
     }
     @Override
             protected void onStart() {
         super.onStart();
 
+mMessageRef.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        messageObj= dataSnapshot.getValue(Message.class);
+    }
 
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
 
+    }
+});
+mUserRef.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        userObj=dataSnapshot.getValue(User.class);
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
+    }
+});
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                Toast.makeText(MessagingActivity.this, "You press the send button", Toast.LENGTH_SHORT).show();
-
-
-                EditText input = (EditText) findViewById(R.id.payment_input);
-                FirebaseDatabase.getInstance().getReference().setValue(new Message(FirebaseAuth.getInstance().getCurrentUser()
-                        .getDisplayName(), FirebaseAuth.getInstance().getCurrentUser().getUid(), input.getText().toString()));
+                Toast.makeText(MessagingActivity.this, "You pressed the send button", Toast.LENGTH_SHORT).show();
+                String test="hello dad";
+                Message message= new Message(userObj.getDisplayName(),userObj.getUuid(),input.getText().toString());
+                send(message);
                 input.setText("");
-
-
-                Message message = new Message(firebaseUser.getDisplayName(), firebaseUser.getUid(), input.getText().toString());
-
 
             }
 
@@ -82,9 +111,7 @@ public class MessagingActivity extends AppCompatActivity {
         });
 
         diplayMessages();
-
     }
-
 
     private void diplayMessages() {
         Query messageQuery = FirebaseDatabase.getInstance().getReference();
@@ -111,9 +138,9 @@ public class MessagingActivity extends AppCompatActivity {
 
 
     }
-    public static void send(Message message){
+    public void send(Message message){
 
-
+mUserRef.child("messages").push().setValue(message);
 
     }
 
