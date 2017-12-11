@@ -1,7 +1,7 @@
 package teamvelociraptor.assignment4.models;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ericgroom on 11/26/17.
@@ -9,29 +9,14 @@ import java.util.List;
 
 public class User {
     private String uuid;
-    private String username;
-    private List<String> friends;
+    private String displayName;
+    private String email;
+    private List<User> friends;
+    private double balance;
+    private Map<String, Transaction> transactions;
+    private Map<String, Conversation> conversations;
 
     public User() {}
-
-    public User(String uuid, String username) {
-        this.uuid = uuid;
-        this.username = username;
-        this.friends = new ArrayList<>();
-    }
-
-    public void addFriend(String uuid) {
-        friends.add(uuid);
-    }
-
-    public void addFriend(User user) {
-        friends.add(user.uuid);
-    }
-
-    public static void makeFriends(User user1, User user2) {
-        user1.friends.add(user2.uuid);
-        user2.friends.add(user1.uuid);
-    }
 
     public String getUuid() {
         return uuid;
@@ -41,19 +26,51 @@ public class User {
         this.uuid = uuid;
     }
 
-    public String getUsername() {
-        return username;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public List<String> getFriends() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<User> getFriends() {
         return friends;
     }
 
-    public void setFriends(List<String> friends) {
+    public void setFriends(List<User> friends) {
         this.friends = friends;
+    }
+
+    public Map<String, Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(Map<String, Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public Map<String, Conversation> getConversations() {
+        return conversations;
+    }
+
+    public void setConversations(Map<String, Conversation> conversations) {
+        this.conversations = conversations;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }

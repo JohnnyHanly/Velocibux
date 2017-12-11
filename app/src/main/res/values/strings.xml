@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Assignment 4</string>
-    <string name="title_activity_friends_list">FriendsListActivity</string>
+    <string name="app_name">Login</string>
     <string name="title_activity_qr">QRActivity</string>
 
     <string name="qr_button">My QR</string>

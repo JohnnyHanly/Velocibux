@@ -1,42 +1,13 @@
 package teamvelociraptor.assignment4.models;
+
 import java.util.Date;
 
 public class Message {
-    private String username;
     private String id;
-    private long timestamp;
+    private Date timestamp;
     private String text;
-    private String name;
 
-
-
-public Message(String name, String id, String text){
-    this.name=name;
-    this.id=id;
-    this.text=text;
-}
-    public Message(){
-
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
+    public Message() {
     }
 
     public String getId() {
@@ -47,4 +18,19 @@ public Message(String name, String id, String text){
         this.id = id;
     }
 
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 }
