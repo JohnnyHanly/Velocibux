@@ -92,7 +92,7 @@ mUserRef.addValueEventListener(new ValueEventListener() {
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MessagingActivity.this, "You pressed the send button", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MessagingActivity.this, "Check the firebase database, this finally works!", Toast.LENGTH_SHORT).show();
                 String test="hello dad";
                 Message message= new Message(userObj.getDisplayName(),userObj.getUuid(),input.getText().toString());
                 send(message);
