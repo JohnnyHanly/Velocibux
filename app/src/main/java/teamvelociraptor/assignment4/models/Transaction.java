@@ -1,12 +1,13 @@
 package teamvelociraptor.assignment4.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by ericgroom on 12/8/17.
  */
 
-public class Transaction {
+public class Transaction implements Serializable {
     private double lat;
     private double lon;
     private double amount;
