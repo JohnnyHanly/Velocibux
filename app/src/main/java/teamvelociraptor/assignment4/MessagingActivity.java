@@ -34,7 +34,7 @@ public class MessagingActivity extends AppCompatActivity {
     private EditText input;
     private FirebaseUser firebaseUser;
     private static DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-
+//meow
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,7 @@ public class MessagingActivity extends AppCompatActivity {
         activity_messaging = findViewById(R.id.activity_messaging);
         sendMessage = findViewById(R.id.sendButton);
         paymentMessage = findViewById(R.id.paymentButton);
-        input = findViewById(R.id.input);
+        input = findViewById(R.id.payment_input);
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,14 +52,14 @@ public class MessagingActivity extends AppCompatActivity {
 
 
 
-                /*
-                EditText input=(EditText)findViewById(R.id.input);
-                FirebaseDatabase.getInstance().getReference().setValue(new Message(FirebaseAuth.getInstance().getCurrentUser()
+
+                EditText input=(EditText)findViewById(R.id.payment_input);
+               FirebaseDatabase.getInstance().getReference().setValue(new Message(FirebaseAuth.getInstance().getCurrentUser()
                         .getDisplayName(),FirebaseAuth.getInstance().getCurrentUser().getUid(),input.getText().toString()));
-                input.setText("");*/
+              input.setText("");
 
 
-                //Message message= new Message(firebaseUser.getDisplayName(),firebaseUser.getUid(),input.getText().toString())
+                Message message= new Message(firebaseUser.getDisplayName(),firebaseUser.getUid(),input.getText().toString());
 
 
             }
@@ -69,9 +69,11 @@ public class MessagingActivity extends AppCompatActivity {
         paymentMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MessagingActivity.this, "You press the payment button", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MessagingActivity.this, "You pressed the payment button", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MessagingActivity.this,PaymentActivity.class));
             }
         });
+
         diplayMessages();
 
     }
@@ -118,7 +120,7 @@ public class MessagingActivity extends AppCompatActivity {
                 timestamp = findViewById(R.id.timestampView);
 
                 text.setText(model.getText());
-                //user.setText(model.getName());
+                //user.setText(model.getDisplayName());
                 //timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
             }
         };

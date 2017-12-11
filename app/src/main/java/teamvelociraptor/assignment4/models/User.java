@@ -8,7 +8,7 @@ import java.util.Map;
  */
 
 public class User {
-    private User uuid;
+    private String uuid;
     private String displayName;
     private String email;
     private List<User> friends;
@@ -18,11 +18,11 @@ public class User {
 
     public User() {}
 
-    public User getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(User uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

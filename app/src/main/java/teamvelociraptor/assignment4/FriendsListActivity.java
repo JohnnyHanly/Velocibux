@@ -12,23 +12,15 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import teamvelociraptor.assignment4.models.User;
+
+
 
 public class FriendsListActivity extends AppCompatActivity {
 
@@ -51,6 +43,22 @@ public class FriendsListActivity extends AppCompatActivity {
         // fillTestData();
     }
 
+    public void displayUsers() {
+        FirebaseListOptions<User> options = new FirebaseListOptions.Builder<User>()
+                .setQuery(mUsersRef, User.class)
+                .setLayout(R.layout.friends_list)
+                .build();
+        FirebaseListAdapter<User> adapter = new FirebaseListAdapter<User>(options) {
+            @Override
+            protected void populateView(View v, User model, int position) {
+                TextView username = v.findViewById(R.id.username);
+                TextView uuid = v.findViewById(R.id.uuid);
+                username.setText(model.getUuid());
+                uuid.setText(model.getUuid());
+            }
+        };
+        friendsList.setAdapter(adapter);
+        adapter.startListening();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
