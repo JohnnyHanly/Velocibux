@@ -27,6 +27,7 @@ import com.google.firebase.database.Query;
 import teamvelociraptor.assignment4.models.Message;
 
 public class MessagingActivity extends AppCompatActivity {
+    Message message;
     FloatingActionButton sendMessage;
     FloatingActionButton paymentMessage;
     private FirebaseAuth firebaseAuth;
@@ -44,6 +45,13 @@ public class MessagingActivity extends AppCompatActivity {
         sendMessage = findViewById(R.id.sendButton);
         paymentMessage = findViewById(R.id.paymentButton);
         input = findViewById(R.id.payment_input);
+    }
+    @Override
+            protected void onStart() {
+        super.onStart();
+
+
+
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +84,7 @@ public class MessagingActivity extends AppCompatActivity {
         diplayMessages();
 
     }
+
 
     private void diplayMessages() {
         Query messageQuery = FirebaseDatabase.getInstance().getReference();
