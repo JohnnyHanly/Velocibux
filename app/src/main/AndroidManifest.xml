@@ -40,7 +40,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TempActivity"></activity>
              />
-        <activity android:name=".PaymentActivity" android:theme="@style/PaymentTheme"></activity>
         <activity android:name=".AccountBalance" android:theme="@style/AccountTheme"></activity>
 
 
