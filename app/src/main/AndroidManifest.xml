@@ -28,7 +28,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".TransactionHistoryActivity" />
-        <activity android:name=".TestLocationActivity"></activity>
         <activity
             android:name=".QRActivity"
             android:label="@string/title_activity_qr"

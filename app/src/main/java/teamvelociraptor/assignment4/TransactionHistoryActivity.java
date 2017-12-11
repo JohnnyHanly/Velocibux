@@ -88,14 +88,14 @@ public class TransactionHistoryActivity extends AppCompatActivity {
                 receiver.setText("Receiver: " + model.getReceiver());
                 amount.setText("Amount: " + Double.toString(model.getAmount()));
 
-                v.setOnClickListener(new View.OnClickListener() {
+               /* v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(TransactionHistoryActivity.this, TestLocationActivity.class);
+                        Intent intent = new Intent(TransactionHistoryActivity.this, LocationActivity.class);
                         intent.putExtra("transaction", model);
                         startActivity(intent);
                     }
-                });
+                });*/
             }
         };
         transactionHistory.setAdapter(adapter);
