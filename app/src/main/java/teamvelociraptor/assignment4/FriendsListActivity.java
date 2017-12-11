@@ -6,6 +6,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -67,11 +69,17 @@ public class FriendsListActivity extends AppCompatActivity {
                 .build();
         FirebaseListAdapter<User> adapter = new FirebaseListAdapter<User>(options) {
             @Override
-            protected void populateView(View v, User model, int position) {
+            protected void populateView(View v, final User model, int position) {
                 TextView username = v.findViewById(R.id.username);
                 TextView uuid = v.findViewById(R.id.uuid);
                 username.setText(model.getDisplayName());
                 uuid.setText(model.getUuid());
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(FriendsListActivity.this, model.getUuid(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         };
         friendsList.setAdapter(adapter);
