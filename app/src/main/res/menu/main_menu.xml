@@ -17,4 +17,12 @@
     <item
         android:title="Account" />
 
+    <item
+        android:id="@+id/activity_qr_code_item"
+        android:title="QR"/>
+
+    <item
+        android:id="@+id/activity_temp_item"
+        android:title="temp"/>
+
 </menu>
