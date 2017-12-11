@@ -18,7 +18,7 @@ class AppUtils {
             case R.id.activity_messaging_item:
                 context.startActivity(new Intent(context, MessagingActivity.class));
                 return true;
-            case R.id.activity_friendslist_item:
+            case R.id.activity_friends_item:
                 context.startActivity(new Intent(context, FriendsListActivity.class));
                 return true;
             default:
