@@ -3,6 +3,7 @@ package teamvelociraptor.assignment4;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -86,22 +87,24 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == ResultCodes.OK) {
                 // Successfully signed in
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference userRef = mUsersRef.child(user.getUid());
+                final DatabaseReference userRef = mUsersRef.child(user.getUid());
                 userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (!dataSnapshot.exists()) {
+
                             User userObj = new User();
                             userObj.setDisplayName(user.getDisplayName());
                             userObj.setUuid(user.getUid());
                             userObj.setBalance(0);
                             userObj.setEmail(user.getEmail());
+                            userRef.setValue(userObj);
                         }
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        Log.println(Log.INFO, "VeloDebug", "onCancelled called" );
                     }
                 });
                 // ...
