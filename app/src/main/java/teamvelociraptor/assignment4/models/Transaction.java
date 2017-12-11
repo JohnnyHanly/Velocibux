@@ -1,6 +1,6 @@
 package teamvelociraptor.assignment4.models;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * Created by ericgroom on 12/8/17.
@@ -12,7 +12,7 @@ public class Transaction {
     private double amount;
     private String  receiver;
     private String sender;
-    private LocalDateTime timestamp;
+    private Date timestamp;
     private String id;
 
     public Transaction() {
@@ -59,11 +59,11 @@ public class Transaction {
         this.sender = sender;
     }
 
-    public LocalDateTime getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 

@@ -1,6 +1,7 @@
 package teamvelociraptor.assignment4;
 
 import android.content.Intent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -112,8 +113,8 @@ public class MessagingActivity extends AppCompatActivity {
                 timestamp = findViewById(R.id.timestampView);
 
                 text.setText(model.getText());
-                // user.setText(model.getDisplayName());
-                timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
+                //user.setText(model.getDisplayName());
+                //timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
             }
         };
 
@@ -131,18 +132,8 @@ public class MessagingActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.activity_main_item:
-                startActivity(new Intent(this, MainActivity.class));
-            case R.id.activity_messaging_item:
-                startActivity(new Intent(this, MessagingActivity.class));
-            case R.id.activity_payment_item:
-                startActivity(new Intent(this, PaymentActivity.class));
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    public boolean onOptionsItemSelected(MenuItem item){
+        return AppUtils.dropDownChangeActivity(item, this);
     }
 
 
