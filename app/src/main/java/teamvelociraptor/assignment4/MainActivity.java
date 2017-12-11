@@ -61,20 +61,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.activity_main_item:
-                startActivity(new Intent(this, MainActivity.class));
-                return true;
-            case R.id.activity_messaging_item:
-                startActivity(new Intent(this, MessagingActivity.class));
-                return true;
-            case R.id.activity_payment_item:
-                startActivity(new Intent(this,PaymentActivity.class));
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    public boolean onOptionsItemSelected(MenuItem item){
+        return AppUtils.dropDownChangeActivity(item, this);
     }
 
     @Override
@@ -103,9 +91,11 @@ public class MainActivity extends AppCompatActivity {
                             boolean changed = false;
                             if (userObj.getDisplayName() != user.getDisplayName()) {
                                 userObj.setDisplayName(user.getDisplayName());
+                                changed = true;
                             }
                             if (userObj.getEmail() != user.getEmail()) {
                                 userObj.setEmail(user.getEmail());
+                                changed = true;
                             }
                             if (changed) {
                                 userRef.setValue(userObj);
