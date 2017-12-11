@@ -37,13 +37,14 @@ public class AccountBalance extends AppCompatActivity {
         setContentView(R.layout.activity_account_balance);
         Button transfertobankbutton = findViewById(R.id.transfer_to_bank);
 
+
         transfertobankbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
                 Toast.makeText(AccountBalance.this, "Transferring Money...", Toast.LENGTH_SHORT).show();
-                addFive();
+                transferToBank();
                 getBalance();
 
 
@@ -62,6 +63,7 @@ public class AccountBalance extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userObj = dataSnapshot.getValue(User.class);
+                getBalance();
 
             }
 
@@ -87,10 +89,11 @@ public class AccountBalance extends AppCompatActivity {
 
 
 
-    private void addFive(){
+    private void addToBalance(){
         userObj.setBalance(5.00);
         mUserRef.setValue(userObj);
     }
+
 
     private void getBalance(){
         TextView accountbalancetext = (TextView) findViewById(R.id.account_balance);
@@ -99,9 +102,8 @@ public class AccountBalance extends AppCompatActivity {
     }
 
     private void transferToBank(){
-
-
-
+        userObj.setBalance(0.00);
+        mUserRef.setValue(userObj);
     }
 
 }
