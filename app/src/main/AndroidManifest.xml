@@ -24,6 +24,7 @@
             android:label="@string/title_activity_friends_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PaymentActivity"></activity>
+        <activity android:name=".AccountBalance"></activity>
     </application>
 
 </manifest>
