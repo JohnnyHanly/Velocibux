@@ -103,9 +103,11 @@ public class MainActivity extends AppCompatActivity {
                             boolean changed = false;
                             if (userObj.getDisplayName() != user.getDisplayName()) {
                                 userObj.setDisplayName(user.getDisplayName());
+                                changed = true;
                             }
                             if (userObj.getEmail() != user.getEmail()) {
                                 userObj.setEmail(user.getEmail());
+                                changed = true;
                             }
                             if (changed) {
                                 userRef.setValue(userObj);
