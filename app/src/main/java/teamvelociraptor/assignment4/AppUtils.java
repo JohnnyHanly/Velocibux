@@ -4,13 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.MenuItem;
 
-
-public class AppUtils {
+class AppUtils {
 
     private AppUtils(){
     }
 
-    public static boolean dropDownChangeActivity(MenuItem item, Context context){
+    static boolean dropDownChangeActivity(MenuItem item, Context context){
 
         switch (item.getItemId()){
             case R.id.activity_main_item:
@@ -19,7 +18,7 @@ public class AppUtils {
             case R.id.activity_messaging_item:
                 context.startActivity(new Intent(context, MessagingActivity.class));
                 return true;
-            case R.id.activity_friendlist_item:
+            case R.id.activity_friendslist_item:
                 context.startActivity(new Intent(context, FriendsListActivity.class));
                 return true;
             default:

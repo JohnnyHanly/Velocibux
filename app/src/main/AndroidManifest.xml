@@ -21,6 +21,9 @@
         <activity android:name=".MessagingActivity">
 
         </activity>
+        <activity android:name=".FriendsListActivity">
+
+        </activity>
     </application>
 
 </manifest>

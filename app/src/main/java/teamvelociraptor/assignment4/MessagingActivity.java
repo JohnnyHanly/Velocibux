@@ -118,8 +118,8 @@ public class MessagingActivity extends AppCompatActivity {
                 timestamp = findViewById(R.id.timestampView);
 
                 text.setText(model.getText());
-                user.setText(model.getName());
-                timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
+                //user.setText(model.getName());
+                //timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
             }
         };
 

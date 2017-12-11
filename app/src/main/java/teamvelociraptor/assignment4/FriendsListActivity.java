@@ -49,26 +49,8 @@ public class FriendsListActivity extends AppCompatActivity {
         super.onStart();
         friendsList = findViewById(R.id.friends_list);
         // fillTestData();
-        displayUsers();
     }
 
-    public void displayUsers() {
-        FirebaseListOptions<User> options = new FirebaseListOptions.Builder<User>()
-                .setQuery(mUsersRef, User.class)
-                .setLayout(R.layout.friends_list)
-                .build();
-        FirebaseListAdapter<User> adapter = new FirebaseListAdapter<User>(options) {
-            @Override
-            protected void populateView(View v, User model, int position) {
-                TextView username = v.findViewById(R.id.username);
-                TextView uuid = v.findViewById(R.id.uuid);
-                username.setText(model.getUsername());
-                uuid.setText(model.getUuid());
-            }
-        };
-        friendsList.setAdapter(adapter);
-        adapter.startListening();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

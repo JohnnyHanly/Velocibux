@@ -9,7 +9,7 @@
         android:id="@+id/activity_messaging_item"
         android:title="Messages" />
     <item
-        android:id="@+id/activity_friendlist_item"
+        android:id="@+id/activity_friendslist_item"
         android:title="Friends" />
 
     <item
