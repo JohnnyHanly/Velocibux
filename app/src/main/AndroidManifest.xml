@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="teamvelociraptor.assignment4"
     xmlns:tools="http://schemas.android.com/tools"
->
-    <uses-sdk tools:overrideLibrary="com.firebase.ui, com.firebase.ui.auth"/>
+    package="teamvelociraptor.assignment4">
+
+    <uses-sdk tools:overrideLibrary="com.firebase.ui, com.firebase.ui.auth" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,7 +27,8 @@
             android:name=".FriendsListActivity"
             android:label="@string/title_activity_friends_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PaymentActivity"></activity>
+        <activity android:name=".PaymentActivity" />
+        <activity android:name=".TransactionHistoryActivity" />
         <activity
             android:name=".QRActivity"
             android:label="@string/title_activity_qr"
@@ -35,7 +40,7 @@
         <activity android:name=".TempActivity"></activity>
              />
         <activity android:name=".AccountBalance" android:theme="@style/AccountTheme"></activity>
-
+        <activity android:name=".AddFriendsActivity" android:theme="@style/AppTheme"></activity>
 
     </application>
 

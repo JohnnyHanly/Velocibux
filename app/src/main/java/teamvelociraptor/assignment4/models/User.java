@@ -13,6 +13,7 @@ public class User {
     private String email;
     private List<User> friends;
     private double balance;
+    private String imageUrl;
     private List<Transaction> transactions;
     private Map<String, Conversation> conversations;
 
@@ -72,5 +73,13 @@ public class User {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

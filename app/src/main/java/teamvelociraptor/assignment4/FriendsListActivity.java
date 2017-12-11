@@ -2,15 +2,17 @@ package teamvelociraptor.assignment4;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
@@ -23,14 +25,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-import teamvelociraptor.assignment4.models.User;
+import java.util.Map;
 
 import teamvelociraptor.assignment4.models.User;
 
 
 public class FriendsListActivity extends AppCompatActivity {
+
+    static final int ADD_FRIEND_REQUEST = 2;
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -39,6 +43,7 @@ public class FriendsListActivity extends AppCompatActivity {
 
     User userObj;
     ListView friendsList;
+    private FloatingActionButton addFriendsFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,14 @@ public class FriendsListActivity extends AppCompatActivity {
 
             }
         });
+        addFriendsFab = findViewById(R.id.addFriendsFab);
+        addFriendsFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FriendsListActivity.this, AddFriendsActivity.class);
+                startActivityForResult(intent, ADD_FRIEND_REQUEST);
+            }
+        });
         friendsList = findViewById(R.id.friends_list);
         addFriends();
         displayFriends();
@@ -77,8 +90,12 @@ public class FriendsListActivity extends AppCompatActivity {
             protected void populateView(View v, final User model, int position) {
                 TextView username = v.findViewById(R.id.username);
                 TextView uuid = v.findViewById(R.id.uuid);
+                ImageView profileImage = v.findViewById(R.id.profileImage);
+
                 username.setText(model.getDisplayName());
                 uuid.setText(model.getUuid());
+                new GetUserProfileImage(model, profileImage).execute();
+//                profileImage.setImageBitmap(image.execute(params));
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -103,17 +120,44 @@ public class FriendsListActivity extends AppCompatActivity {
         return AppUtils.dropDownChangeActivity(item, this);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int responseCode, Intent data) {
+        if (requestCode == ADD_FRIEND_REQUEST) {
+            if (responseCode == RESULT_OK) {
+                String uuid = data.getStringExtra("uuid");
+                Log.println(Log.INFO, "addUsers", uuid);
+                mRootRef.child("users").child(uuid).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        User newFriend = dataSnapshot.getValue(User.class);
+                        userObj.getFriends().add(newFriend);
+                        mUserRef.setValue(userObj);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        }
+    }
+
     private void addFriends() {
         User f1 = new User();
         User f2 = new User();
-        f1.setDisplayName("friend 1");
-        f2.setDisplayName("friend 2");
-        f1.setUuid("uuid1");
-        f2.setUuid("uuid2");
+        f1.setDisplayName("velociraptor");
+        f2.setDisplayName("bucks");
+        f1.setUuid("dino");
+        f2.setUuid("money");
+        f1.setImageUrl("http://toys-zoom.worldwideshoppingmall.co.uk/schleich-velociraptor-2012.jpg");
+        f2.setImageUrl("http://www-images.theonering.org/torwp/wp-content/uploads/2009/09/money.jpg");
         List<User> friends = new ArrayList<>();
         friends.add(f1);
         friends.add(f2);
         mFriendsRef.setValue(friends);
     }
+
+
 
 }

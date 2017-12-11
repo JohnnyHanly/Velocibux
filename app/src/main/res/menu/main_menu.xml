@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/activity_main_item"
-        android:title="Transactions" />
+        android:title="Main" />
     <item
         android:id="@+id/activity_messaging_item"
         android:title="Messages" />
@@ -15,16 +15,18 @@
         android:id="@+id/activity_payment_item"
         android:title="Payment" />
     <item
+        android:id="@+id/activity_transaction_history_item"
+        android:title="Transaction History" />
+    <item
         android:id="@+id/activity_account_item"
         android:title="Account"
 
         />
-
-    <item
-        android:id="@+id/activity_qr_code_item"
-        android:title="My QR"/>
+        android:id="@+id/activity_account_item"
+        android:title="Account"/>
     <item
         android:id="@+id/activity_temp_item"
         android:title="temp"/>
+
 
 </menu>
