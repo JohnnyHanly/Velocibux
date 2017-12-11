@@ -1,11 +1,8 @@
 package teamvelociraptor.assignment4;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,7 +13,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
@@ -27,24 +23,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-import com.squareup.okhttp.ResponseBody;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-import teamvelociraptor.assignment4.models.User;
+import java.util.Map;
 
 import teamvelociraptor.assignment4.models.User;
 
 
 public class FriendsListActivity extends AppCompatActivity {
+
+    static final int ADD_FRIEND_REQUEST = 2;
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -53,6 +43,7 @@ public class FriendsListActivity extends AppCompatActivity {
 
     User userObj;
     ListView friendsList;
+    private FloatingActionButton addFriendsFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +65,14 @@ public class FriendsListActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+        addFriendsFab = findViewById(R.id.addFriendsFab);
+        addFriendsFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FriendsListActivity.this, AddFriendsActivity.class);
+                startActivityForResult(intent, ADD_FRIEND_REQUEST);
             }
         });
         friendsList = findViewById(R.id.friends_list);
@@ -119,6 +118,29 @@ public class FriendsListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         return AppUtils.dropDownChangeActivity(item, this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int responseCode, Intent data) {
+        if (requestCode == ADD_FRIEND_REQUEST) {
+            if (responseCode == RESULT_OK) {
+                String uuid = data.getStringExtra("uuid");
+                Log.println(Log.INFO, "addUsers", uuid);
+                mRootRef.child("users").child(uuid).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        User newFriend = dataSnapshot.getValue(User.class);
+                        userObj.getFriends().add(newFriend);
+                        mUserRef.setValue(userObj);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        }
     }
 
     private void addFriends() {
