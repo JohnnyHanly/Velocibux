@@ -35,27 +35,26 @@ public class QRActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         iv = (ImageView) findViewById(R.id.iv);
 
-                if (bitmap != null) return;
+        if (bitmap != null) return;
 
-                Toast.makeText(QRActivity.this, "generating!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(QRActivity.this, "generating!", Toast.LENGTH_SHORT).show();
 
-                new Thread() {
-                    public void run() {
-                        try {
-                            bitmap = TextToImageEncode(user.getUid());
-                            iv.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    iv.setImageBitmap(bitmap);
-                                }
-                            });
-                        } catch (WriterException e) {
-                            e.printStackTrace();
+        new Thread() {
+            public void run() {
+                try {
+                    bitmap = TextToImageEncode(user.getUid());
+                    iv.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            iv.setImageBitmap(bitmap);
                         }
-                    }
-                }.start();
+                    });
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
             }
-
+        }.start();
+    }
 
 
     private Bitmap TextToImageEncode(String Value) throws WriterException {
