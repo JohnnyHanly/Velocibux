@@ -6,7 +6,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import teamvelociraptor.assignment4.models.User;
+
+
 
 public class FriendsListActivity extends AppCompatActivity {
 
