@@ -5,6 +5,10 @@
 
     <uses-sdk tools:overrideLibrary="com.firebase.ui, com.firebase.ui.auth" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MessagingActivity"></activity>
+        <activity android:name=".MessagingActivity" />
         <activity
             android:name=".FriendsListActivity"
             android:label="@string/title_activity_friends_list"
@@ -28,7 +32,11 @@
             android:name=".QRActivity"
             android:label="@string/title_activity_qr"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PaymentActivity"></activity>
+        <activity android:name=".PaymentActivity" />
+        <activity
+            android:name=".QRCameraActivity"
+            android:label="@string/title_activity_qrcamera"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
