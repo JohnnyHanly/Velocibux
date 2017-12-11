@@ -34,11 +34,7 @@ public class QRActivity extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         iv = (ImageView) findViewById(R.id.iv);
-        btn = (Button) findViewById(R.id.btn);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 if (bitmap != null) return;
 
                 Toast.makeText(QRActivity.this, "generating!", Toast.LENGTH_SHORT).show();
@@ -59,8 +55,8 @@ public class QRActivity extends AppCompatActivity {
                     }
                 }.start();
             }
-        });
-    }
+
+
 
     private Bitmap TextToImageEncode(String Value) throws WriterException {
         BitMatrix bitMatrix;
