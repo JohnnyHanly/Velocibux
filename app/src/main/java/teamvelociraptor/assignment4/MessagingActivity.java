@@ -27,6 +27,7 @@ import com.google.firebase.database.Query;
 import teamvelociraptor.assignment4.models.Message;
 
 public class MessagingActivity extends AppCompatActivity {
+    Message message;
     FloatingActionButton sendMessage;
     FloatingActionButton paymentMessage;
     private FirebaseAuth firebaseAuth;
@@ -34,7 +35,8 @@ public class MessagingActivity extends AppCompatActivity {
     private EditText input;
     private FirebaseUser firebaseUser;
     private static DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-//meow
+
+    //meow
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,13 @@ public class MessagingActivity extends AppCompatActivity {
         sendMessage = findViewById(R.id.sendButton);
         paymentMessage = findViewById(R.id.paymentButton);
         input = findViewById(R.id.payment_input);
+    }
+    @Override
+            protected void onStart() {
+        super.onStart();
+
+
+
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,15 +60,13 @@ public class MessagingActivity extends AppCompatActivity {
                 Toast.makeText(MessagingActivity.this, "You press the send button", Toast.LENGTH_SHORT).show();
 
 
+                EditText input = (EditText) findViewById(R.id.payment_input);
+                FirebaseDatabase.getInstance().getReference().setValue(new Message(FirebaseAuth.getInstance().getCurrentUser()
+                        .getDisplayName(), FirebaseAuth.getInstance().getCurrentUser().getUid(), input.getText().toString()));
+                input.setText("");
 
 
-                EditText input=(EditText)findViewById(R.id.payment_input);
-               FirebaseDatabase.getInstance().getReference().setValue(new Message(FirebaseAuth.getInstance().getCurrentUser()
-                        .getDisplayName(),FirebaseAuth.getInstance().getCurrentUser().getUid(),input.getText().toString()));
-              input.setText("");
-
-
-                Message message= new Message(firebaseUser.getDisplayName(),firebaseUser.getUid(),input.getText().toString());
+                Message message = new Message(firebaseUser.getDisplayName(), firebaseUser.getUid(), input.getText().toString());
 
 
             }
@@ -70,7 +77,7 @@ public class MessagingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MessagingActivity.this, "You pressed the payment button", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MessagingActivity.this,PaymentActivity.class));
+                startActivity(new Intent(MessagingActivity.this, PaymentActivity.class));
             }
         });
 
@@ -78,32 +85,9 @@ public class MessagingActivity extends AppCompatActivity {
 
     }
 
-    private void displayContactList() {
-        Query conversationQuery = FirebaseDatabase.getInstance().getReference();
-
-        FirebaseListOptions<Message> convoOptions = new FirebaseListOptions.Builder<Message>().setLayout(R.layout.conversation_list)
-                .setQuery(conversationQuery, Message.class).build();
-
-
-        FirebaseListAdapter<Message> convoAdapter = new FirebaseListAdapter<Message>(convoOptions) {
-            @Override
-            protected void populateView(View v, Message model, int position) {
-
-                TextView newestText;
-                TextView contactName;
-                TextView timestamp;
-
-
-            }
-        };
-
-
-    }
-
 
     private void diplayMessages() {
         Query messageQuery = FirebaseDatabase.getInstance().getReference();
-
 
         FirebaseListOptions<Message> messageOptions = new FirebaseListOptions.Builder<Message>().setLayout(R.layout.message_list)
                 .setQuery(messageQuery, Message.class).build();
@@ -112,21 +96,23 @@ public class MessagingActivity extends AppCompatActivity {
         FirebaseListAdapter<Message> messageAdapter = new FirebaseListAdapter<Message>(messageOptions) {
             @Override
             protected void populateView(View v, Message model, int position) {
-                TextView text;
-                TextView user;
-                TextView timestamp;
-                text = findViewById(R.id.messageView);
-                user = findViewById(R.id.contactView);
-                timestamp = findViewById(R.id.timestampView);
-
+                TextView text = findViewById(R.id.messageView);
+                TextView username = findViewById(R.id.contactView);
+                TextView timestamp = findViewById(R.id.timestampView);
                 text.setText(model.getText());
-                //user.setText(model.getDisplayName());
-                //timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
+                username.setText(model.getDisplayName());
+                timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
+
             }
         };
 
         ListView readMessageList = findViewById(R.id.list_of_messages);
         readMessageList.setAdapter(messageAdapter);
+
+
+    }
+    public static void send(Message message){
+
 
 
     }
@@ -140,7 +126,7 @@ public class MessagingActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        return AppUtils.dropDownChangeActivity(item, this);
+        return AppUtils.dropDownChangeActivity(item,MessagingActivity.this);
     }
 
 

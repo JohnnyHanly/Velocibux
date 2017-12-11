@@ -41,6 +41,7 @@ import java.util.List;
 
 import teamvelociraptor.assignment4.models.User;
 
+import teamvelociraptor.assignment4.models.User;
 
 
 public class FriendsListActivity extends AppCompatActivity {
