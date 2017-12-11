@@ -3,6 +3,7 @@ package teamvelociraptor.assignment4;
 import android.content.Intent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
@@ -27,21 +28,25 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import teamvelociraptor.assignment4.models.Conversation;
 import teamvelociraptor.assignment4.models.Message;
 import teamvelociraptor.assignment4.models.User;
 
 public class MessagingActivity extends AppCompatActivity {
     FloatingActionButton sendMessage;
     FloatingActionButton paymentMessage;
-    //private FirebaseAuth mAuth;
+
     RelativeLayout activity_messaging;
     private EditText input;
     private FirebaseUser mUser= FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mUserRef = ref.child("users").child(mUser.getUid());
+    DatabaseReference mConvoRef=mUserRef.child("conversations");
     DatabaseReference mMessageRef= mUserRef.child("messages");
     Message messageObj;
     User userObj;
+    Conversation convoObj;
+
 
 
     //meow
@@ -55,8 +60,8 @@ public class MessagingActivity extends AppCompatActivity {
 
         paymentMessage = findViewById(R.id.paymentButton);
        // getIntent().getIntExtra("uuid",-1);
-        input= (EditText)findViewById(R.id.payment_input);
-        //mUser= mAuth.getCurrentUser();
+        input= (EditText)findViewById(R.id.message_input);
+
     }
     @Override
             protected void onStart() {
@@ -89,7 +94,7 @@ mUserRef.addValueEventListener(new ValueEventListener() {
             public void onClick(View v) {
                 Toast.makeText(MessagingActivity.this, "You pressed the send button", Toast.LENGTH_SHORT).show();
                 String test="hello dad";
-                Message message= new Message(userObj.getDisplayName(),userObj.getUuid(),test);
+                Message message= new Message(userObj.getDisplayName(),userObj.getUuid(),input.getText().toString());
                 send(message);
                 input.setText("");
 

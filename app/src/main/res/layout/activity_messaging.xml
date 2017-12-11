@@ -22,7 +22,7 @@
          />
 
     <EditText
-        android:id="@+id/payment_input"
+        android:id="@+id/message_input"
         android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
