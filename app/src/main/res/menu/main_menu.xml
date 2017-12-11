@@ -15,6 +15,9 @@
         android:id="@+id/activity_payment_item"
         android:title="Payment" />
     <item
-        android:title="Account" />
+        android:id="@+id/activity_account_item"
+        android:title="Account"
+
+        />
 
 </menu>
