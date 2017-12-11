@@ -80,13 +80,26 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (!dataSnapshot.exists()) {
-
                             User userObj = new User();
                             userObj.setDisplayName(user.getDisplayName());
                             userObj.setUuid(user.getUid());
                             userObj.setBalance(0);
                             userObj.setEmail(user.getEmail());
                             userRef.setValue(userObj);
+                        } else {
+                            User userObj = dataSnapshot.getValue(User.class);
+                            boolean changed = false;
+                            if (userObj.getDisplayName() != user.getDisplayName()) {
+                                userObj.setDisplayName(user.getDisplayName());
+                                changed = true;
+                            }
+                            if (userObj.getEmail() != user.getEmail()) {
+                                userObj.setEmail(user.getEmail());
+                                changed = true;
+                            }
+                            if (changed) {
+                                userRef.setValue(userObj);
+                            }
                         }
                     }
 
