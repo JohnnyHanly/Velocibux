@@ -21,6 +21,9 @@ class AppUtils {
             case R.id.activity_friends_item:
                 context.startActivity(new Intent(context, FriendsListActivity.class));
                 return true;
+            case R.id.activity_account_item:
+                context.startActivity(new Intent(context, AccountBalance.class));
+                return true;
             default:
                 return true;
 
