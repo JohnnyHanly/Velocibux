@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                             userObj.setUuid(user.getUid());
                             userObj.setBalance(0);
                             userObj.setEmail(user.getEmail());
+                            userObj.setImageUrl(user.getPhotoUrl().toString());
                             userRef.setValue(userObj);
                         } else {
                             User userObj = dataSnapshot.getValue(User.class);
@@ -95,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
                             }
                             if (userObj.getEmail() != user.getEmail()) {
                                 userObj.setEmail(user.getEmail());
+                                changed = true;
+                            }
+                            if (userObj.getImageUrl() != user.getPhotoUrl().toString()) {
+                                userObj.setImageUrl(user.getPhotoUrl().toString());
                                 changed = true;
                             }
                             if (changed) {
