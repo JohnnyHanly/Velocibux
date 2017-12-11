@@ -116,12 +116,12 @@ public class QRCameraActivity extends AppCompatActivity implements ZXingScannerV
 
     @Override
     public void handleResult(Result rawResult) {
-        final String result = rawResult.getText();
+        final String uid = rawResult.getText();
         Log.d("QRCodeScanner", rawResult.getText());
         Log.d("QRCodeScanner", rawResult.getBarcodeFormat().toString());
 
         Intent returnIntent = new Intent();
-        returnIntent.putExtra("result", result);
+        returnIntent.putExtra("result", uid);
         setResult(QRCameraActivity.RESULT_OK, returnIntent);
         finish();
     }

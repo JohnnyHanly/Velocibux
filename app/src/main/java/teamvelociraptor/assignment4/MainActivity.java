@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.activity_qr_code_item:
                 startActivity(new Intent(this, QRActivity.class));
                 return true;
+            case R.id.activity_temp_item:
+                startActivity(new Intent(this, TempActivity.class));
             default:
                 return super.onOptionsItemSelected(item);
         }
