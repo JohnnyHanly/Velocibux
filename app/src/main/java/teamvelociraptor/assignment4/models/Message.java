@@ -6,12 +6,16 @@ public class Message {
     private String id;
     private Date timestamp;
     private String text;
+    private String displayName;
 
     public Message(String displayName, String uid, String s) {
     }
 
     public String getId() {
         return id;
+    }
+    public String getDisplayName(){
+        return displayName;
     }
 
     public void setId(String id) {
