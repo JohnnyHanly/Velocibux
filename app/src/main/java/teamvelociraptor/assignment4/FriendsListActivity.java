@@ -69,7 +69,7 @@ public class FriendsListActivity extends AppCompatActivity {
             protected void populateView(View v, User model, int position) {
                 TextView username = v.findViewById(R.id.username);
                 TextView uuid = v.findViewById(R.id.uuid);
-                username.setText(model.getUsername());
+                username.setText(model.getDisplayName());
                 uuid.setText(model.getUuid());
             }
         };
@@ -80,8 +80,8 @@ public class FriendsListActivity extends AppCompatActivity {
     private void addFriends() {
         User f1 = new User();
         User f2 = new User();
-        f1.setUsername("friend 1");
-        f2.setUsername("friend 2");
+        f1.setDisplayName("friend 1");
+        f2.setDisplayName("friend 2");
         f1.setUuid("uuid1");
         f2.setUuid("uuid2");
         List<User> friends = new ArrayList<>();

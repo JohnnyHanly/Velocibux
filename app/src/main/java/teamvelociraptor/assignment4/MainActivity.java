@@ -12,14 +12,23 @@ import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.ResultCodes;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import teamvelociraptor.assignment4.models.User;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 123; // Needed for auth
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mUsersRef = mRootRef.child("users");
 
 
     @Override
@@ -74,7 +83,25 @@ public class MainActivity extends AppCompatActivity {
 
             if (resultCode == ResultCodes.OK) {
                 // Successfully signed in
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference userRef = mUsersRef.child(user.getUid());
+                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (!dataSnapshot.exists()) {
+                            User userObj = new User();
+                            userObj.setDisplayName(user.getDisplayName());
+                            userObj.setUuid(user.getUid());
+                            userObj.setBalance(0);
+                            userObj.setEmail(user.getEmail());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
                 // ...
             } else {
                 // Sign in failed, check response for error code
