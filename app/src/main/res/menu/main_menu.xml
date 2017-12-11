@@ -15,6 +15,9 @@
         android:id="@+id/activity_payment_item"
         android:title="Payment" />
     <item
+        android:id="@+id/activity_transaction_history_item"
+        android:title="Transaction History" />
+    <item
         android:id="@+id/activity_account_item"
         android:title="Account"
 

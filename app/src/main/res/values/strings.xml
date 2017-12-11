@@ -6,4 +6,7 @@
     <string name="qr_button">My QR</string>
     <string name="qr_image">QR Image</string>
     <string name="title_activity_qrcamera">QRCameraActivity</string>
+    <string name="sender">Sender: </string>
+    <string name="receiver">Receiver: </string>
+    <string name="amount">Amount: </string>
 </resources>

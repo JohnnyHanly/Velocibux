@@ -24,6 +24,8 @@ class AppUtils {
             case R.id.activity_account_item:
                 context.startActivity(new Intent(context, AccountBalance.class));
                 return true;
+            case R.id.activity_transaction_history_item:
+                context.startActivity(new Intent(context, TransactionHistoryActivity.class));
             default:
                 return true;
 
