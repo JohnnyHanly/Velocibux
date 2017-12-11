@@ -23,9 +23,25 @@ public class AddFriendsActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent = new Intent();
-        intent.putExtra("uuid", "qskOpwQr1hfSDoMwd9evdIDkVpx2");
-        this.setResult(RESULT_OK, intent);
-        finish();
+        Intent i = new Intent(AddFriendsActivity.this, QRCameraActivity.class);
+        startActivityForResult(i, 1);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == QRCameraActivity.RESULT_OK){
+                String result=data.getStringExtra("result");
+                Intent intent = new Intent();
+                intent.putExtra("uuid", result);
+                this.setResult(RESULT_OK, intent);
+                finish();
+            }
+            if (resultCode == QRCameraActivity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
     }
 }
