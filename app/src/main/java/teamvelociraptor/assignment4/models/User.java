@@ -13,7 +13,7 @@ public class User {
     private String email;
     private List<User> friends;
     private double balance;
-    private Map<String, Transaction> transactions;
+    private List<Transaction> transactions;
     private Map<String, Conversation> conversations;
 
     public User() {}
@@ -50,11 +50,11 @@ public class User {
         this.friends = friends;
     }
 
-    public Map<String, Transaction> getTransactions() {
+    public List<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(Map<String, Transaction> transactions) {
+    public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
 

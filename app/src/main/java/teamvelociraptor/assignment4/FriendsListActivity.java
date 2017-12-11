@@ -1,5 +1,6 @@
 package teamvelociraptor.assignment4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +27,7 @@ import java.util.List;
 
 import teamvelociraptor.assignment4.models.User;
 
+import teamvelociraptor.assignment4.models.User;
 
 
 public class FriendsListActivity extends AppCompatActivity {
@@ -70,11 +74,19 @@ public class FriendsListActivity extends AppCompatActivity {
                 .build();
         FirebaseListAdapter<User> adapter = new FirebaseListAdapter<User>(options) {
             @Override
-            protected void populateView(View v, User model, int position) {
+            protected void populateView(View v, final User model, int position) {
                 TextView username = v.findViewById(R.id.username);
                 TextView uuid = v.findViewById(R.id.uuid);
                 username.setText(model.getDisplayName());
                 uuid.setText(model.getUuid());
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(FriendsListActivity.this, MessagingActivity.class);
+                        intent.putExtra("uuid", model.getUuid());
+                        startActivity(intent);
+                    }
+                });
             }
         };
         friendsList.setAdapter(adapter);
