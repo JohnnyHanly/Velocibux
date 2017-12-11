@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
 import java.util.Map;
 
 import teamvelociraptor.assignment4.models.Transaction;
@@ -25,7 +26,8 @@ public class TransactionHistoryActivity extends AppCompatActivity {
     DatabaseReference mTransactionsRef = mUserRef.child("transactions");
 
     User userObj;
-    Map<String, Transaction> transactions;
+    List<Transaction> transactions;
+    Transaction transaction;
     ListView transactionHistory;
 
     @Override
@@ -34,7 +36,7 @@ public class TransactionHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_transaction_history);
     }
 
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
 
         mUserRef.addValueEventListener(new ValueEventListener() {
@@ -52,15 +54,16 @@ public class TransactionHistoryActivity extends AppCompatActivity {
         });
 
         transactionHistory = findViewById(R.id.transactionDisplayLayout);
-        displayTransactionHistory();
         addTransaction();
-    }
-
-    protected void displayTransactionHistory(){
+        displayTransactionHistory();
 
     }
 
-    protected void addTransaction(){
-        transactions = userObj.getTransactions();
+    protected void displayTransactionHistory() {
+
+    }
+
+    protected void addTransaction() {
+
     }
 }
