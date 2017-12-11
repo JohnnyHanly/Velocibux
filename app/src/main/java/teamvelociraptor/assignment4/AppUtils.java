@@ -24,6 +24,9 @@ class AppUtils {
             case R.id.activity_qr_code_item:
                 context.startActivity(new Intent(context, QRActivity.class));
                 return true;
+            case R.id.activity_account_item:
+                context.startActivity(new Intent(context, AccountBalance.class));
+                return true;
             default:
                 return true;
 
