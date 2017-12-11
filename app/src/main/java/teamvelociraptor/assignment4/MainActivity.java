@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, MessagingActivity.class));
                 return true;
             case R.id.activity_payment_item:
-                startActivity(new Intent(this,PaymentActivity.class));
+                startActivity(new Intent(this, PaymentActivity.class));
             default:
                 return super.onOptionsItemSelected(item);
         }

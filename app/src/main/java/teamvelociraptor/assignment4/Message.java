@@ -1,4 +1,5 @@
 package teamvelociraptor.assignment4;
+
 import java.util.Date;
 
 public class Message {
@@ -9,13 +10,13 @@ public class Message {
     private String name;
 
 
+    public Message(String name, String id, String text) {
+        this.name = name;
+        this.id = id;
+        this.text = text;
+    }
 
-public Message(String name, String id, String text){
-    this.name=name;
-    this.id=id;
-    this.text=text;
-}
-    public Message(){
+    public Message() {
 
     }
 
