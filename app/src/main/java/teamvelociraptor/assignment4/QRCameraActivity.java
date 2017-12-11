@@ -3,18 +3,18 @@ package teamvelociraptor.assignment4;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
 import static android.Manifest.permission.CAMERA;
 
 public class QRCameraActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
@@ -42,7 +42,7 @@ public class QRCameraActivity extends AppCompatActivity implements ZXingScannerV
     }
 
     private boolean checkPermission() {
-        return ( ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA ) == PackageManager.PERMISSION_GRANTED);
+        return (ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA) == PackageManager.PERMISSION_GRANTED);
     }
 
     private void requestPermission() {
@@ -55,10 +55,10 @@ public class QRCameraActivity extends AppCompatActivity implements ZXingScannerV
                 if (grantResults.length > 0) {
 
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccepted){
-                        Toast.makeText(getApplicationContext(), "Permission Granted, Now you can access camera", Toast.LENGTH_LONG).show();
-                    }else {
-                        Toast.makeText(getApplicationContext(), "Permission Denied, You cannot access and camera", Toast.LENGTH_LONG).show();
+                    if (cameraAccepted) {
+                        Toast.makeText(getApplicationContext(), "Permission Granted", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Permission Denied", Toast.LENGTH_LONG).show();
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             if (shouldShowRequestPermissionRationale(CAMERA)) {
                                 showMessageOKCancel("You need to allow access to both the permissions",
@@ -96,7 +96,7 @@ public class QRCameraActivity extends AppCompatActivity implements ZXingScannerV
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion >= android.os.Build.VERSION_CODES.M) {
             if (checkPermission()) {
-                if(mScannerView == null) {
+                if (mScannerView == null) {
                     mScannerView = new ZXingScannerView(this);
                     setContentView(mScannerView);
                 }
@@ -116,14 +116,13 @@ public class QRCameraActivity extends AppCompatActivity implements ZXingScannerV
 
     @Override
     public void handleResult(Result rawResult) {
-
         final String result = rawResult.getText();
         Log.d("QRCodeScanner", rawResult.getText());
         Log.d("QRCodeScanner", rawResult.getBarcodeFormat().toString());
 
         Intent returnIntent = new Intent();
-        returnIntent.putExtra("result",result);
-        setResult(QRCameraActivity.RESULT_OK,returnIntent);
+        returnIntent.putExtra("result", result);
+        setResult(QRCameraActivity.RESULT_OK, returnIntent);
         finish();
     }
 
