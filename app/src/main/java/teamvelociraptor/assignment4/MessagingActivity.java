@@ -1,7 +1,6 @@
 package teamvelociraptor.assignment4;
 
 import android.content.Intent;
-import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.support.design.widget.FloatingActionButton;
@@ -35,21 +34,17 @@ import teamvelociraptor.assignment4.models.User;
 public class MessagingActivity extends AppCompatActivity {
     FloatingActionButton sendMessage;
     FloatingActionButton paymentMessage;
-
     RelativeLayout activity_messaging;
     private EditText input;
-    private FirebaseUser mUser= FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mUserRef = ref.child("users").child(mUser.getUid());
-    DatabaseReference mConvoRef=mUserRef.child("conversations");
-    DatabaseReference mMessageRef= mUserRef.child("messages");
+    DatabaseReference mConvoRef = mUserRef.child("conversations");
+    DatabaseReference mMessageRef = mUserRef.child("messages");
     Message messageObj;
     User userObj;
     Conversation convoObj;
 
-
-
-    //meow
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,49 +52,57 @@ public class MessagingActivity extends AppCompatActivity {
         activity_messaging = findViewById(R.id.activity_messaging);
         sendMessage = findViewById(R.id.sendButton);
 
-
         paymentMessage = findViewById(R.id.paymentButton);
-       // getIntent().getIntExtra("uuid",-1);
-        input= (EditText)findViewById(R.id.message_input);
+        input = (EditText) findViewById(R.id.message_input);
 
     }
+
     @Override
-            protected void onStart() {
+    protected void onStart() {
         super.onStart();
 
-mMessageRef.addValueEventListener(new ValueEventListener() {
-    @Override
-    public void onDataChange(DataSnapshot dataSnapshot) {
-        messageObj= dataSnapshot.getValue(Message.class);
-    }
+        mMessageRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                messageObj = dataSnapshot.getValue(Message.class);
+            }
 
-    @Override
-    public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-    }
-});
-mUserRef.addValueEventListener(new ValueEventListener() {
-    @Override
-    public void onDataChange(DataSnapshot dataSnapshot) {
-        userObj=dataSnapshot.getValue(User.class);
-    }
+            }
+        });
+        mUserRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userObj = dataSnapshot.getValue(User.class);
+            }
 
-    @Override
-    public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-    }
-});
+            }
+        });
+        mConvoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                convoObj = dataSnapshot.getValue(Conversation.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MessagingActivity.this, "Check the firebase database, this finally works!", Toast.LENGTH_SHORT).show();
-                String test="hello dad";
-                Message message= new Message(userObj.getDisplayName(),userObj.getUuid(),input.getText().toString());
-                send(message);
+                Message message = new Message(userObj.getDisplayName(), userObj.getUuid(), input.getText().toString());
+               mUserRef.child("messages").push().setValue(message);
                 input.setText("");
-
+               // diplayMessages();
             }
-
 
         });
         paymentMessage.setOnClickListener(new View.OnClickListener() {
@@ -109,32 +112,37 @@ mUserRef.addValueEventListener(new ValueEventListener() {
                 startActivity(new Intent(MessagingActivity.this, PaymentActivity.class));
             }
         });
-
-        diplayMessages();
+       diplayMessages();
     }
 
+
+
+
     private void diplayMessages() {
-        String contactUuid= new String();
+        String contactUuid = new String();
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if(bundle != null) {
+        if (bundle != null) {
             contactUuid = bundle.getString("uuid");
+            setTitle(contactUuid);
+
         }
-        setTitle(contactUuid);
-        Query messageQuery = FirebaseDatabase.getInstance().getReference();
 
-        FirebaseListOptions<Message> messageOptions = new FirebaseListOptions.Builder<Message>().setLayout(R.layout.message_list)
-                .setQuery(messageQuery, Message.class).build();
+        FirebaseListOptions<Message> messageOptions = new FirebaseListOptions.Builder<Message>()
+                .setLayout(R.layout.message_list)
+                .setQuery(mMessageRef, Message.class).build();
 
+        ListView readMessageList = (ListView) findViewById(R.id.list_of_messages);
 
         FirebaseListAdapter<Message> messageAdapter = new FirebaseListAdapter<Message>(messageOptions) {
             @Override
             protected void populateView(View v, Message model, int position) {
-                TextView text = findViewById(R.id.messageView);
-                TextView username = findViewById(R.id.contactView);
-                TextView timestamp = findViewById(R.id.timestampView);
+                TextView text =(TextView) v.findViewById(R.id.messageView);
+                TextView username =(TextView) v.findViewById(R.id.contactView);
+                TextView timestamp = (TextView) v.findViewById(R.id.timestampView);
+
                 text.setText(model.getText());
                 username.setText(model.getDisplayName());
                 timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
@@ -142,16 +150,12 @@ mUserRef.addValueEventListener(new ValueEventListener() {
             }
         };
 
-        ListView readMessageList = findViewById(R.id.list_of_messages);
         readMessageList.setAdapter(messageAdapter);
-
-
-    }
-    public void send(Message message){
-
-mUserRef.child("messages").push().setValue(message);
+       // messageAdapter.startListening();
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -161,8 +165,8 @@ mUserRef.child("messages").push().setValue(message);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        return AppUtils.dropDownChangeActivity(item,MessagingActivity.this);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return AppUtils.dropDownChangeActivity(item, MessagingActivity.this);
     }
 
 
