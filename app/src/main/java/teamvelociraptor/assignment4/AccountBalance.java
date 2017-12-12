@@ -1,5 +1,6 @@
 package teamvelociraptor.assignment4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -36,6 +37,7 @@ public class AccountBalance extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_balance);
         Button transfertobankbutton = findViewById(R.id.transfer_to_bank);
+        Button QR_Code = findViewById(R.id.QR_Code);
 
 
         transfertobankbutton.setOnClickListener(new View.OnClickListener() {
@@ -48,13 +50,24 @@ public class AccountBalance extends AppCompatActivity {
                 getBalance();
 
 
+
             }
 
 
         });
 
+        QR_Code.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                generateQR();
+            }
+        });
+
 
     }
+
 
     @Override
     protected void onStart() {
@@ -63,7 +76,9 @@ public class AccountBalance extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userObj = dataSnapshot.getValue(User.class);
+
                 getBalance();
+                displayProfPic();
 
             }
 
@@ -73,6 +88,19 @@ public class AccountBalance extends AppCompatActivity {
             }
         });
     }
+
+    private void displayProfPic() {
+        ImageView profileImage = findViewById(R.id.profileImage);
+        new GetUserProfileImage(userObj, profileImage).execute();
+
+
+    }
+
+    private void generateQR(){
+        Intent intent = new Intent(this, QRActivity.class);
+        startActivity(intent);
+    }
+
 
 
     @Override

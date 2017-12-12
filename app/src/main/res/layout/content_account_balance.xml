@@ -9,19 +9,19 @@
     tools:context="teamvelociraptor.assignment4.AccountBalance">
 
 
-
     <TextView
         android:id="@+id/this_is_account_balance"
         android:layout_width="wrap_content"
-        android:layout_height="29dp"
+        android:layout_height="27dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Account Balance:"
         android:textSize="17dp"
-        app:layout_constraintEnd_toStartOf="@+id/account_balance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quickContactBadge" />
+        app:layout_constraintTop_toBottomOf="@+id/transfer_to_bank" />
 
     <Button
         android:id="@+id/transfer_to_bank"
@@ -32,22 +32,12 @@
         android:layout_marginTop="8dp"
         android:text="Transfer to Bank"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_balance"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage"
         android:layout_marginRight="118dp"
         android:layout_marginLeft="117dp" />
 
-    <QuickContactBadge
-        android:id="@+id/quickContactBadge"
-        android:layout_width="66dp"
-        android:layout_height="84dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/common_google_signin_btn_text_light_normal" />
 
     <TextView
         android:id="@+id/account_balance"
@@ -57,7 +47,33 @@
         android:layout_marginTop="8dp"
         android:text="Amount"
         android:textSize="17dp"
-        app:layout_constraintStart_toEndOf="@+id/quickContactBadge"
-        app:layout_constraintTop_toBottomOf="@+id/quickContactBadge"
+        app:layout_constraintStart_toEndOf="@+id/this_is_account_balance"
+        app:layout_constraintTop_toBottomOf="@+id/transfer_to_bank"
         android:layout_marginLeft="8dp" />
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/common_google_signin_btn_icon_light" />
+
+    <Button
+        android:id="@+id/QR_Code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="QR Code"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/this_is_account_balance" />
 </android.support.constraint.ConstraintLayout>
