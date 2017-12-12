@@ -114,6 +114,15 @@ mUserRef.addValueEventListener(new ValueEventListener() {
     }
 
     private void diplayMessages() {
+        String contactUuid= new String();
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if(bundle != null) {
+            contactUuid = bundle.getString("uuid");
+        }
+        setTitle(contactUuid);
         Query messageQuery = FirebaseDatabase.getInstance().getReference();
 
         FirebaseListOptions<Message> messageOptions = new FirebaseListOptions.Builder<Message>().setLayout(R.layout.message_list)
