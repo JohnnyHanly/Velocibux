@@ -26,7 +26,7 @@
         android:layout_height="87dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="161dp"
+        android:layout_marginTop="90dp"
         android:hint="Enter the amount to send" />
 
 
@@ -34,9 +34,9 @@
         android:id="@+id/paymentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="162dp"
+        android:layout_marginTop="207dp"
         android:clickable="true"
         android:scaleType="center"
         android:src="@drawable/ic_payment_button"
