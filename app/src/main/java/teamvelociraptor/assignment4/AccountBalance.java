@@ -63,7 +63,9 @@ public class AccountBalance extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userObj = dataSnapshot.getValue(User.class);
+
                 getBalance();
+                displayProfPic();
 
             }
 
@@ -72,6 +74,13 @@ public class AccountBalance extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void displayProfPic() {
+        ImageView profileImage = findViewById(R.id.profileImage);
+        new GetUserProfileImage(userObj, profileImage).execute();
+
+
     }
 
 
