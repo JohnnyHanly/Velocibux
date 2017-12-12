@@ -40,6 +40,9 @@ class AppUtils {
                 return true;
             case R.id.activity_transaction_history_item:
                 context.startActivity(new Intent(context, TransactionHistoryActivity.class));
+                return true;
+            case R.id.activity_location_item:
+                context.startActivity(new Intent(context, MapsActivity.class));
             default:
                 return true;
 
