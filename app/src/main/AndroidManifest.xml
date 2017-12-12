@@ -5,21 +5,13 @@
 
     <uses-sdk tools:overrideLibrary="com.firebase.ui, com.firebase.ui.auth" />
 
-    <meta-data
-        android:name="com.google.android.maps.v2.API_KEY"
-        android:value="AIzaSyCaFe_rmtx7nACdX74NoZDCaffWRAelB6A" />
-
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Velocibux"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -30,24 +22,44 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MessagingActivity" />
+        <activity
+            android:name=".MessagingActivity"
+            android:theme="@style/MessagingTheme" />
         <activity
             android:name=".FriendsListActivity"
             android:label="@string/title_activity_friends_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PaymentActivity" />
+        <activity android:name=".TransactionHistoryActivity" />
+        <activity
+            android:name=".QRActivity"
+            android:label="@string/title_activity_qr"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".QRCameraActivity"
+            android:label="@string/title_activity_qrcamera"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TempActivity" />
+        />
+        <activity
+            android:name=".AccountBalance"
+            android:theme="@style/AccountTheme" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
              Note that the API key is linked to the encryption key used to sign the APK.
              You need a different API key for each encryption key, including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>
