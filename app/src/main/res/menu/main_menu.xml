@@ -19,6 +19,13 @@
         android:title="Transaction History" />
     <item
         android:id="@+id/activity_account_item"
-        android:title="Account" />
+        android:title="Account"/>
+    <item
+        android:id="@+id/activity_location_item"
+        android:title="Location" />
+    <item
+        android:id="@+id/activity_temp_item"
+        android:title="temp"/>
+
 
 </menu>
