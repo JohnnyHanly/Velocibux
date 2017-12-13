@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 });
                 // ...
                 startActivity(new Intent(this, FriendsListActivity.class));
+                this.finish();
             } else {
                 // Sign in failed, check response for error code
                 // ... TODO
