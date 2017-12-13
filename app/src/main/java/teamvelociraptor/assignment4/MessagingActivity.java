@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
@@ -62,6 +63,7 @@ public class MessagingActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        super.onStart();
         super.onStart();
         recipientID = getIntent().getStringExtra("uuid");
         mMessageRef = mConvoRef.child(recipientID).child("messages");
@@ -125,7 +127,9 @@ public class MessagingActivity extends AppCompatActivity {
         paymentMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MessagingActivity.this, PaymentActivity.class));
+                Intent intent = new Intent(MessagingActivity.this, PaymentActivity.class);
+                intent.putExtra("uuid",recipientID);
+                startActivity(intent);
             }
         });
         diplayMessages();
@@ -161,14 +165,16 @@ public class MessagingActivity extends AppCompatActivity {
     }
 
     public void send(Message message) {
-        messageList.add(message);
+        if (message.getText().length() > 0) {
+            messageList.add(message);
+            DatabaseReference ref1 = mUserRef.child("conversations").child(recipientObj.getUuid()).child("messages");
+            DatabaseReference ref2 = mRecipientRef.child("conversations").child(userObj.getUuid()).child("messages");
+            ref1.setValue(messageList);
+            ref2.setValue(messageList);
+        }else{
 
-        DatabaseReference ref1 = mUserRef.child("conversations").child(recipientObj.getUuid()).child("messages");
-        DatabaseReference ref2 = mRecipientRef.child("conversations").child(userObj.getUuid()).child("messages");
-        ref1.setValue(messageList);
-        ref2.setValue(messageList);
 
-
+        }
     }
 
 
