@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import teamvelociraptor.assignment4.models.Friend;
 import teamvelociraptor.assignment4.models.User;
 
@@ -123,8 +125,10 @@ public class FriendsListActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             User otherUser = dataSnapshot.getValue(User.class);
                             Friend newFriend = new Friend(otherUser);
+                            if (userObj.getFriends() == null) userObj.setFriends(new ArrayList<Friend>());
                             userObj.getFriends().add(newFriend);
                             mUserRef.setValue(userObj);
+                            if (otherUser.getFriends() == null) otherUser.setFriends(new ArrayList<Friend>());
                             otherUser.getFriends().add(new Friend(userObj));
                             friendRef.setValue(otherUser);
                         }
