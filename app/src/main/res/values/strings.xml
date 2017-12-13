@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Login</string>
-    <string name="title_activity_friends_list"></string>
+    <string name="title_activity_friends_list">Friends</string>
     <string name="title_activity_qr">My QR</string>
 
     <string name="qr_image">QR Image</string>
