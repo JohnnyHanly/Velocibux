@@ -29,7 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import teamvelociraptor.assignment4.models.Conversation;
 import teamvelociraptor.assignment4.models.Message;
 import teamvelociraptor.assignment4.models.User;
 
@@ -47,7 +46,6 @@ public class MessagingActivity extends AppCompatActivity {
     DatabaseReference mUserRef = ref.child("users").child(mUser.getUid());
     DatabaseReference mConvoRef = mUserRef.child("conversations");
     DatabaseReference mRecipientRef;
-    Message messageObj;
     List<Message> messageList;
     User userObj;
     User recipientObj;
@@ -66,9 +64,10 @@ public class MessagingActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-      recipientID= getIntent().getStringExtra("uuid");
-      mMessageRef= mConvoRef.child(recipientID).child("messages");
-      mRecipientRef=ref.child("users").child(recipientID);
+        super.onStart();
+        recipientID = getIntent().getStringExtra("uuid");
+        mMessageRef = mConvoRef.child(recipientID).child("messages");
+        mRecipientRef = ref.child("users").child(recipientID);
 
         ref.child("users").child(recipientID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -97,18 +96,20 @@ public class MessagingActivity extends AppCompatActivity {
         mMessageRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    GenericTypeIndicator<List<Message>>t= new GenericTypeIndicator<List<Message>>(){};
+                if (dataSnapshot.exists()) {
+                    GenericTypeIndicator<List<Message>> t = new GenericTypeIndicator<List<Message>>() {
+                    };
                     messageList = dataSnapshot.getValue(t);
-                    if (messageList==null){
-                        messageList= new ArrayList<>();
+                    if (messageList == null) {
+                        messageList = new ArrayList<>();
                     }
                 } else {
 
-                    messageList= new ArrayList<>();
+                    messageList = new ArrayList<>();
                 }
 
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -126,7 +127,9 @@ public class MessagingActivity extends AppCompatActivity {
         paymentMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MessagingActivity.this, DepositToBank.class));
+                Intent intent = new Intent(MessagingActivity.this, PaymentActivity.class);
+                intent.putExtra("uuid",recipientID);
+                startActivity(intent);
             }
         });
         diplayMessages();
@@ -134,7 +137,6 @@ public class MessagingActivity extends AppCompatActivity {
 
 
     private void diplayMessages() {
-
 
 
         FirebaseListOptions<Message> messageOptions = new FirebaseListOptions.Builder<Message>()
@@ -152,7 +154,7 @@ public class MessagingActivity extends AppCompatActivity {
 
                 text.setText(model.getText());
                 username.setText(model.getDisplayName());
-                timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
+                timestamp.setText(DateFormat.format("MM/dd  HH:mm", model.getTimestamp()));
 
             }
         };
@@ -162,15 +164,17 @@ public class MessagingActivity extends AppCompatActivity {
 
     }
 
-    public void send(Message message){
-        messageList.add(message);
+    public void send(Message message) {
+        if (message.getText().length() > 0) {
+            messageList.add(message);
+            DatabaseReference ref1 = mUserRef.child("conversations").child(recipientObj.getUuid()).child("messages");
+            DatabaseReference ref2 = mRecipientRef.child("conversations").child(userObj.getUuid()).child("messages");
+            ref1.setValue(messageList);
+            ref2.setValue(messageList);
+        }else{
 
-        DatabaseReference ref1= mUserRef.child("conversations").child(recipientObj.getUuid()).child("messages");
-        DatabaseReference ref2= mRecipientRef.child("conversations").child(userObj.getUuid()).child("messages");
-        ref1.setValue(messageList);
-        ref2.setValue(messageList);
 
-
+        }
     }
 
 
