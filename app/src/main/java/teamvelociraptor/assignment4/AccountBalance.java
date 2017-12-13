@@ -37,6 +37,7 @@ public class AccountBalance extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_balance);
         Button transfertobankbutton = findViewById(R.id.transfer_to_bank);
+
         Button QR_Code = findViewById(R.id.QR_Code);
 
 
@@ -44,10 +45,8 @@ public class AccountBalance extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-                Toast.makeText(AccountBalance.this, "Transferring Money...", Toast.LENGTH_SHORT).show();
-                transferToBank();
-                getBalance();
+            Intent depositToBank = new Intent(AccountBalance.this, DepositToBank.class);
+            startActivity(depositToBank);
 
 
 
@@ -55,6 +54,7 @@ public class AccountBalance extends AppCompatActivity {
 
 
         });
+
 
         QR_Code.setOnClickListener(new View.OnClickListener() {
 

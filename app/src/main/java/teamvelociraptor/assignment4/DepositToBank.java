@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class PaymentActivity extends AppCompatActivity {
+public class DepositToBank extends AppCompatActivity {
     FloatingActionButton sendMoney;
     RelativeLayout activity_payment;
     private EditText input;
@@ -28,7 +28,7 @@ public class PaymentActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //transfer money to other user.
-                Toast.makeText(PaymentActivity.this, "You pressed the payment button", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DepositToBank.this, "You pressed the payment button", Toast.LENGTH_SHORT).show();
 
 
                 EditText input = findViewById(R.id.payment_input);
@@ -43,6 +43,6 @@ public class PaymentActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        return AppUtils.dropDownChangeActivity(item, PaymentActivity.this);
+        return AppUtils.dropDownChangeActivity(item, DepositToBank.this);
     }
 }
