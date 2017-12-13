@@ -54,8 +54,8 @@ public class AccountBalance extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent depositToAccount = new Intent(AccountBalance.this, DepositToAccount.class);
-                startActivity(depositToAccount);
+//                Intent depositToAccount = new Intent(AccountBalance.this, DepositToAccount.class);
+//                startActivity(depositToAccount);
             }
         });
 
