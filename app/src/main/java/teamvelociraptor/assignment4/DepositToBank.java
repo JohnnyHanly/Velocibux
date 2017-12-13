@@ -48,12 +48,17 @@ public class DepositToBank extends AppCompatActivity {
                 inputAmount = inputAmount * 100;
                 inputAmount = Math.round(inputAmount);
                 inputAmount = inputAmount / 100;
-                DecimalFormat format = new DecimalFormat("0.00");
-                String formattedAmount = format.format(inputAmount);
-                Toast.makeText(DepositToBank.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
+                if(inputAmount <= userObj.getBalance()) {
+                    DecimalFormat format = new DecimalFormat("0.00");
+                    String formattedAmount = format.format(inputAmount);
+                    Toast.makeText(DepositToBank.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
 
-                userObj.setBalance(userObj.getBalance() - inputAmount);
-                mUserRef.setValue(userObj);
+                    userObj.setBalance(userObj.getBalance() - inputAmount);
+                    mUserRef.setValue(userObj);
+                }
+                else{
+                    Toast.makeText(DepositToBank.this, "Amount exceeds balance.", Toast.LENGTH_SHORT).show();
+                }
 
                 Intent accountBalance = new Intent(DepositToBank.this, AccountBalance.class);
                 startActivity(accountBalance);
