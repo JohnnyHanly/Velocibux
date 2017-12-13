@@ -44,6 +44,7 @@
         <activity
             android:name=".AccountBalance"
             android:theme="@style/AccountTheme" />
+        <activity android:name=".AddFriendsActivity"></activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
