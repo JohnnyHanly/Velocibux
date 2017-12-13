@@ -63,10 +63,8 @@
             android:name=".DepositToAccount"
 
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".SendToFriend"
 
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".SendMoneyToFriend"/>
     </application>
 
 </manifest>

@@ -127,7 +127,7 @@ public class MessagingActivity extends AppCompatActivity {
         paymentMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MessagingActivity.this, DepositToBank.class);
+                Intent intent = new Intent(MessagingActivity.this, SendMoneyToFriend.class);
                 intent.putExtra("uuid",recipientID);
                 startActivity(intent);
             }
