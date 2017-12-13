@@ -29,9 +29,6 @@ class AppUtils {
             case R.id.activity_main_item:
                 context.startActivity(new Intent(context, MainActivity.class ));
                 return true;
-            case R.id.activity_messaging_item:
-                context.startActivity(new Intent(context, MessagingActivity.class));
-                return true;
             case R.id.activity_friends_item:
                 context.startActivity(new Intent(context, FriendsListActivity.class));
                 return true;
@@ -44,8 +41,6 @@ class AppUtils {
             case R.id.activity_transaction_history_item:
                 context.startActivity(new Intent(context, TransactionHistoryActivity.class));
                 return true;
-            case R.id.activity_location_item:
-                context.startActivity(new Intent(context, MapsActivity.class));
             default:
                 return true;
 
