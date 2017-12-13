@@ -38,12 +38,13 @@
         <activity
             android:name=".QRCameraActivity"
             android:label="@string/title_activity_qrcamera"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TempActivity" />
+            android:theme="@style/AppTheme.NoActionBar" /><![CDATA[
         />
+        ]]>
         <activity
             android:name=".AccountBalance"
             android:theme="@style/AccountTheme" />
+        <activity android:name=".AddFriendsActivity"></activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
