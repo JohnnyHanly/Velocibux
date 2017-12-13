@@ -30,8 +30,7 @@ public class QRActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         iv = (ImageView) findViewById(R.id.iv);
