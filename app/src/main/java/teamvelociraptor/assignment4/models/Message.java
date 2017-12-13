@@ -18,7 +18,7 @@ public class Message {
 
     }
 
-    public String getId() {
+    public String getUid() {
         return uid;
     }
     public String getDisplayName(){

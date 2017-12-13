@@ -115,7 +115,7 @@ public class FriendsListActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        return AppUtils.dropDownChangeActivity(item, this);
+        return AppUtils.dropDownChangeActivity(item, FriendsListActivity.this);
     }
 
     @Override
