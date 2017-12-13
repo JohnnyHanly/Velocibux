@@ -119,7 +119,6 @@ public class MessagingActivity extends AppCompatActivity {
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MessagingActivity.this, "Check the firebase database, this finally works!", Toast.LENGTH_SHORT).show();
                 Message message = new Message(userObj.getDisplayName(), userObj.getUuid(), input.getText().toString());
                 send(message);
                 input.setText("");
@@ -130,7 +129,6 @@ public class MessagingActivity extends AppCompatActivity {
         paymentMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MessagingActivity.this, "You pressed the payment button", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MessagingActivity.this, PaymentActivity.class));
             }
         });
