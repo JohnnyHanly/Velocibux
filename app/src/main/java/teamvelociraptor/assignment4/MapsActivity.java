@@ -57,9 +57,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker to where the Transaction occurred and move the camera
         LatLng transactionLocation = new LatLng(t.getLat(), t.getLon());
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(transactionLocation));
         mMap.addMarker(new MarkerOptions().position(transactionLocation).title(timeInfo)
                 .snippet(senderInfo).snippet(receiverInfo).snippet(amountInfo)); //makes the title of that marker contain the amount
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(transactionLocation));
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
