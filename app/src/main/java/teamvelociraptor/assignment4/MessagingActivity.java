@@ -101,9 +101,12 @@ public class MessagingActivity extends AppCompatActivity {
         mConvoRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                convoObj = dataSnapshot.getValue(Conversation.class);
-                if (convoObj != null) {
-                    Conversation  conversation= new Conversation(userObj.getUuid(), new ArrayList<Message>());
+                if (dataSnapshot.exists()){
+                    convoObj = dataSnapshot.getValue(Conversation.class);
+                } else {
+
+                    convoObj= new Conversation(userObj.getUuid(), new ArrayList<Message>());
+                    mConvoRef.setValue(convoObj);
                 }
                 messageList = new ArrayList<>(convoObj.getMessages());
             }
@@ -117,11 +120,7 @@ public class MessagingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(MessagingActivity.this, "Check the firebase database, this finally works!", Toast.LENGTH_SHORT).show();
                 Message message = new Message(userObj.getDisplayName(), userObj.getUuid(), input.getText().toString());
-
-
-
-
-               send(message);
+                send(message);
                 input.setText("");
                 // diplayMessages();
             }
