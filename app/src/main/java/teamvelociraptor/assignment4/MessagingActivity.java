@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
@@ -126,7 +127,9 @@ public class MessagingActivity extends AppCompatActivity {
         paymentMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MessagingActivity.this, PaymentActivity.class));
+                Intent intent = new Intent(MessagingActivity.this, PaymentActivity.class);
+                intent.putExtra("uuid",recipientID);
+                startActivity(intent);
             }
         });
         diplayMessages();
