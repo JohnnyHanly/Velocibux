@@ -23,9 +23,6 @@
     <item
         android:id="@+id/activity_location_item"
         android:title="Location" />
-    <item
-        android:id="@+id/activity_temp_item"
-        android:title="temp"/>
 
 
 </menu>
