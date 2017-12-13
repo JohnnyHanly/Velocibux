@@ -39,6 +39,7 @@ public class TransactionHistoryActivity extends AppCompatActivity {
     }
     protected void onStart() {
         super.onStart();
+        setTitle("Transaction History");
         mUserRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

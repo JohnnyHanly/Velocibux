@@ -38,9 +38,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="FriendsListTheme" parent="AppTheme">
-        <item name="colorPrimary">@color/darkblue</item>
+        <item name="colorPrimary">@color/lightblue</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="QRTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="MapTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/salmon</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
     </style>
     <!-- Dark Buttons -->
     <style name="ThemeOverlay.MyDarkButton" parent="ThemeOverlay.AppCompat.Dark">

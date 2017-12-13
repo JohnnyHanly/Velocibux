@@ -38,7 +38,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:clickable="true"
-        android:elevation="0dp"
         android:scaleType="center"
         android:src="@drawable/red_send_button"
         app:backgroundTint="@android:color/transparent"

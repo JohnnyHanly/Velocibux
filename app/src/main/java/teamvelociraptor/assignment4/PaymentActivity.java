@@ -7,21 +7,24 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+
 public class PaymentActivity extends AppCompatActivity {
     FloatingActionButton sendMoney;
-    RelativeLayout activity_payment;
+
     private EditText input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-
+        setTitle("Payment");
         sendMoney = findViewById(R.id.paymentButton);
+
         sendMoney.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -34,6 +37,7 @@ public class PaymentActivity extends AppCompatActivity {
                 EditText input = findViewById(R.id.payment_input);
             }
         });
+
 
     }
     public boolean onCreateOptionsMenu(Menu menu) {

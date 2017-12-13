@@ -33,6 +33,7 @@ public class AccountBalance extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Account");
         setContentView(R.layout.activity_account_balance);
         Button transfertobankbutton = findViewById(R.id.transfer_to_bank);
         Button QR_Code = findViewById(R.id.QR_Code);
@@ -46,8 +47,6 @@ public class AccountBalance extends AppCompatActivity {
                 Toast.makeText(AccountBalance.this, "Transferring Money...", Toast.LENGTH_SHORT).show();
                 transferToBank();
                 getBalance();
-
-
 
             }
 
