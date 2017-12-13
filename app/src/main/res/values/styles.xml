@@ -12,31 +12,36 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="toolbartTheme" parent="Theme.AppCompat.NoActionBar" >
+
+    <style name="toolbartTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:background">@color/green</item>
     </style>
 
-<style name="PaymentTheme" parent="AppTheme">
-    <item name="colorPrimary">@color/green</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
+    <style name="PaymentTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
-</style>
+    </style>
+
     <style name="AccountTheme" parent="AppTheme">
         <item name="colorPrimary">@color/red</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="MessagingTheme" parent="AppTheme">
         <item name="colorPrimary">@color/orange</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="TransactionHistoryTheme" parent="AppTheme">
         <item name="colorPrimary">@color/purple</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="FriendsListTheme" parent="AppTheme">
         <item name="colorPrimary">@color/lightblue</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

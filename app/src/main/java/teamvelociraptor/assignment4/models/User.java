@@ -72,6 +72,9 @@ public class User {
     }
 
     public void setBalance(double balance) {
+        balance = balance * 100;
+        balance = Math.round(balance);
+        balance = balance / 100;
         this.balance = balance;
     }
 

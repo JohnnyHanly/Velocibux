@@ -29,7 +29,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:11.4.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    
+
 
 
     implementation 'com.android.support:design:26.1.0'
