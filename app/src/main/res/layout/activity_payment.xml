@@ -22,6 +22,7 @@
 
     <EditText
         android:id="@+id/payment_input"
+        android:inputType="numberDecimal"
         android:layout_width="400dp"
         android:layout_height="87dp"
         android:layout_alignParentTop="true"
