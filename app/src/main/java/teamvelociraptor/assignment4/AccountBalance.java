@@ -8,7 +8,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,24 +35,30 @@ public class AccountBalance extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_balance);
-        Button transfertobankbutton = findViewById(R.id.transfer_to_bank);
+        Button transferToBankButton = findViewById(R.id.deposit_to_bank);
+        Button transferToAccountButton = findViewById(R.id.deposit_to_account);
         Button QR_Code = findViewById(R.id.QR_Code);
 
 
-        transfertobankbutton.setOnClickListener(new View.OnClickListener() {
+        transferToBankButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                Toast.makeText(AccountBalance.this, "Transferring Money...", Toast.LENGTH_SHORT).show();
-                transferToBank();
-                getBalance();
-
-
+                Intent depositToBank = new Intent(AccountBalance.this,DepositToBank.class);
+                startActivity(depositToBank);
 
             }
 
 
+        });
+
+        transferToAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent depositToAccount = new Intent(AccountBalance.this, DepositToAccount.class);
+                startActivity(depositToAccount);
+            }
         });
 
         QR_Code.setOnClickListener(new View.OnClickListener() {
@@ -117,13 +122,19 @@ public class AccountBalance extends AppCompatActivity {
 
 
 
-    private void addToBalance(){
-        userObj.setBalance(5.00);
+    public void addToBalance(double inputAmount){
+        userObj.setBalance(inputAmount);
         mUserRef.setValue(userObj);
+    }
+
+    public void subtractFromBalance(){
+
+
     }
 
 
     private void getBalance(){
+
         TextView accountbalancetext = (TextView) findViewById(R.id.account_balance);
         accountbalancetext.setText(Double.toString(userObj.getBalance()));
 

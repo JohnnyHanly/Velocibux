@@ -3,7 +3,6 @@ package teamvelociraptor.assignment4;
 import android.content.Intent;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
@@ -25,7 +24,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import teamvelociraptor.assignment4.models.Conversation;
@@ -106,7 +104,7 @@ mUserRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MessagingActivity.this, "You pressed the payment button", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MessagingActivity.this, PaymentActivity.class));
+                startActivity(new Intent(MessagingActivity.this, DepositToBank.class));
             }
         });
 
