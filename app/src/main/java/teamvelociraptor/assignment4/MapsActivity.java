@@ -1,5 +1,6 @@
 package teamvelociraptor.assignment4;
 
+import teamvelociraptor.assignment4.models.*;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,11 +21,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private Transaction t;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
         t = (Transaction) getIntent().getSerializableExtra("transaction");
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -45,10 +50,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng transLoc = new LatLng(t.getLat(), t.getLon());
-        mMap.addMarker(new MarkerOptions().position(transLoc).title(Double.toString(t.getAmount())));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(transLoc));
+
+        // Add a marker to where the Transaction occurred and move the camera
+        LatLng transactionLocation = new LatLng(t.getLat(), t.getLon());
+        mMap.addMarker(new MarkerOptions().position(transactionLocation).title("Transaction Amount: " + Double.toString(t.getAmount()))); //makes the title of that marker contain the amount
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(transactionLocation));
     }
 
     public boolean onCreateOptionsMenu(Menu menu){

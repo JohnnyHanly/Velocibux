@@ -6,14 +6,17 @@ import java.util.List;
  * Created by ericgroom on 12/8/17.
  */
 
-class Conversation {
+public class Conversation {
 
     private String id;
     private List<Message> messages;
 
-    public Conversation() {
+    public Conversation(String id,List<Message>messages) {
+        this.id=id;
+        this.messages=messages;
 
     }
+    public Conversation(){}
 
     public String getId() {
         return id;

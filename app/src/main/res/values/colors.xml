@@ -10,4 +10,6 @@
     <color name="red">#ff0000</color>
     <color name="orange">#ff6600</color>
     <color name="black">#000000</color>
+    <color name="purple">#bf00ff</color>
+    <color name="darkblue">#0002F5</color>
 </resources>

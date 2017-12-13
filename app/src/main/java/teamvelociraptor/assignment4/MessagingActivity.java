@@ -1,8 +1,8 @@
 package teamvelociraptor.assignment4;
 
 import android.content.Intent;
-import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
@@ -20,57 +20,89 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import teamvelociraptor.assignment4.models.Conversation;
 import teamvelociraptor.assignment4.models.Message;
+import teamvelociraptor.assignment4.models.User;
 
 public class MessagingActivity extends AppCompatActivity {
-    Message message;
     FloatingActionButton sendMessage;
     FloatingActionButton paymentMessage;
-    private FirebaseAuth firebaseAuth;
     RelativeLayout activity_messaging;
     private EditText input;
-    private FirebaseUser firebaseUser;
-    private static DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    private FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mUserRef = ref.child("users").child(mUser.getUid());
+    DatabaseReference mConvoRef = mUserRef.child("conversations");
+    DatabaseReference mMessageRef = mUserRef.child("messages");
+    Message messageObj;
+    User userObj;
+    Conversation convoObj;
 
-    //meow
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messaging);
         activity_messaging = findViewById(R.id.activity_messaging);
         sendMessage = findViewById(R.id.sendButton);
+
         paymentMessage = findViewById(R.id.paymentButton);
-        input = findViewById(R.id.payment_input);
+        input = (EditText) findViewById(R.id.message_input);
+
     }
+
     @Override
-            protected void onStart() {
+    protected void onStart() {
         super.onStart();
 
+        mMessageRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                messageObj = dataSnapshot.getValue(Message.class);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+        mUserRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userObj = dataSnapshot.getValue(User.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mConvoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                convoObj = dataSnapshot.getValue(Conversation.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                Toast.makeText(MessagingActivity.this, "You press the send button", Toast.LENGTH_SHORT).show();
-
-
-                EditText input = (EditText) findViewById(R.id.payment_input);
-                FirebaseDatabase.getInstance().getReference().setValue(new Message(FirebaseAuth.getInstance().getCurrentUser()
-                        .getDisplayName(), FirebaseAuth.getInstance().getCurrentUser().getUid(), input.getText().toString()));
+                Toast.makeText(MessagingActivity.this, "Check the firebase database, this finally works!", Toast.LENGTH_SHORT).show();
+                Message message = new Message(userObj.getDisplayName(), userObj.getUuid(), input.getText().toString());
+               mUserRef.child("messages").push().setValue(message);
                 input.setText("");
-
-
-                Message message = new Message(firebaseUser.getDisplayName(), firebaseUser.getUid(), input.getText().toString());
-
-
+               // diplayMessages();
             }
-
 
         });
         paymentMessage.setOnClickListener(new View.OnClickListener() {
@@ -80,25 +112,37 @@ public class MessagingActivity extends AppCompatActivity {
                 startActivity(new Intent(MessagingActivity.this, PaymentActivity.class));
             }
         });
-
-        diplayMessages();
-
+       diplayMessages();
     }
 
 
+
+
     private void diplayMessages() {
-        Query messageQuery = FirebaseDatabase.getInstance().getReference();
+        String contactUuid = new String();
 
-        FirebaseListOptions<Message> messageOptions = new FirebaseListOptions.Builder<Message>().setLayout(R.layout.message_list)
-                .setQuery(messageQuery, Message.class).build();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
+        if (bundle != null) {
+            contactUuid = bundle.getString("uuid");
+            setTitle(contactUuid);
+
+        }
+
+        FirebaseListOptions<Message> messageOptions = new FirebaseListOptions.Builder<Message>()
+                .setLayout(R.layout.message_list)
+                .setQuery(mMessageRef, Message.class).build();
+
+        ListView readMessageList = (ListView) findViewById(R.id.list_of_messages);
 
         FirebaseListAdapter<Message> messageAdapter = new FirebaseListAdapter<Message>(messageOptions) {
             @Override
             protected void populateView(View v, Message model, int position) {
-                TextView text = findViewById(R.id.messageView);
-                TextView username = findViewById(R.id.contactView);
-                TextView timestamp = findViewById(R.id.timestampView);
+                TextView text =(TextView) v.findViewById(R.id.messageView);
+                TextView username =(TextView) v.findViewById(R.id.contactView);
+                TextView timestamp = (TextView) v.findViewById(R.id.timestampView);
+
                 text.setText(model.getText());
                 username.setText(model.getDisplayName());
                 timestamp.setText(DateFormat.format("dd (HH:mm:ss)", model.getTimestamp()));
@@ -106,16 +150,12 @@ public class MessagingActivity extends AppCompatActivity {
             }
         };
 
-        ListView readMessageList = findViewById(R.id.list_of_messages);
         readMessageList.setAdapter(messageAdapter);
-
-
-    }
-    public static void send(Message message){
-
-
+       // messageAdapter.startListening();
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -125,8 +165,8 @@ public class MessagingActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        return AppUtils.dropDownChangeActivity(item,MessagingActivity.this);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return AppUtils.dropDownChangeActivity(item, MessagingActivity.this);
     }
 
 

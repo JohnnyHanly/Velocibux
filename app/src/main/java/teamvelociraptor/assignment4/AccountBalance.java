@@ -1,5 +1,6 @@
 package teamvelociraptor.assignment4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -25,6 +26,7 @@ import teamvelociraptor.assignment4.models.*;
 public class AccountBalance extends AppCompatActivity {
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     DatabaseReference mUserRef = mRootRef.child("users").child(user.getUid());
     private ImageView imgProfilePic;
 
@@ -34,9 +36,9 @@ public class AccountBalance extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_balance);
-        TextView accountbalancetext = (TextView) findViewById(R.id.account_balance);
         Button transfertobankbutton = findViewById(R.id.transfer_to_bank);
-//        imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
+        Button QR_Code = findViewById(R.id.QR_Code);
+
 
         transfertobankbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +47,8 @@ public class AccountBalance extends AppCompatActivity {
 
                 Toast.makeText(AccountBalance.this, "Transferring Money...", Toast.LENGTH_SHORT).show();
                 transferToBank();
+                getBalance();
+
 
 
             }
@@ -52,9 +56,17 @@ public class AccountBalance extends AppCompatActivity {
 
         });
 
+        QR_Code.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                generateQR();
+            }
+        });
+
 
     }
-
 
 
     @Override
@@ -64,6 +76,10 @@ public class AccountBalance extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userObj = dataSnapshot.getValue(User.class);
+
+                getBalance();
+                displayProfPic();
+
             }
 
             @Override
@@ -72,6 +88,19 @@ public class AccountBalance extends AppCompatActivity {
             }
         });
     }
+
+    private void displayProfPic() {
+        ImageView profileImage = findViewById(R.id.profileImage);
+        new GetUserProfileImage(userObj, profileImage).execute();
+
+
+    }
+
+    private void generateQR(){
+        Intent intent = new Intent(this, QRActivity.class);
+        startActivity(intent);
+    }
+
 
 
     @Override
@@ -88,17 +117,21 @@ public class AccountBalance extends AppCompatActivity {
 
 
 
-    private void createBalance(){
-        User u1 = new User();
-        u1.setDisplayName("Preston");
-        u1.setBalance(0.00);
-        mUserRef.setValue(u1);
+    private void addToBalance(){
+        userObj.setBalance(5.00);
+        mUserRef.setValue(userObj);
+    }
+
+
+    private void getBalance(){
+        TextView accountbalancetext = (TextView) findViewById(R.id.account_balance);
+        accountbalancetext.setText(Double.toString(userObj.getBalance()));
+
     }
 
     private void transferToBank(){
-
-
-
+        userObj.setBalance(0.00);
+        mUserRef.setValue(userObj);
     }
 
 }

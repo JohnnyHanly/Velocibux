@@ -2,7 +2,6 @@ package teamvelociraptor.assignment4;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
 
 public class PaymentActivity extends AppCompatActivity {
     FloatingActionButton sendMoney;
