@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deposit_to_account" />
+        app:layout_constraintTop_toBottomOf="@+id/transfer_to_account" />
 
 
     <TextView
@@ -77,19 +77,7 @@
         app:layout_constraintVertical_bias="0.093" />
 
     <Button
-        android:id="@+id/deposit_to_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="deposit to account"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
-
-    <Button
-        android:id="@+id/deposit_to_account"
+        android:id="@+id/transfer_to_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
