@@ -25,7 +25,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        t = (Transaction) getIntent().getSerializableExtra("Transaction");
+        t = (Transaction) getIntent().getSerializableExtra("transaction");
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -47,11 +47,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        double amount = t.getAmount();
 
         // Add a marker to where the Transaction occurred and move the camera
         LatLng transactionLocation = new LatLng(t.getLat(), t.getLon());
-        mMap.addMarker(new MarkerOptions().position(transactionLocation).title("Transaction Amount: " + Double.toString(amount))); //makes the title of that marker contain the amount
+        mMap.addMarker(new MarkerOptions().position(transactionLocation).title("Transaction Amount: " + Double.toString(t.getAmount()))); //makes the title of that marker contain the amount
         mMap.moveCamera(CameraUpdateFactory.newLatLng(transactionLocation));
     }
 
