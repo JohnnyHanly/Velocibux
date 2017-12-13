@@ -57,16 +57,17 @@
 
     <ListView
         android:id="@+id/list_of_messages"
-        android:layout_width="286dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/sendButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
         android:divider="@android:color/transparent"
-        android:dividerHeight="16dp">
+        android:dividerHeight="16dp"
+        android:transcriptMode="alwaysScroll">
 
 
     </ListView>
