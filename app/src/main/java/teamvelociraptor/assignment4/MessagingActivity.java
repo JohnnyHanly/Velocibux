@@ -76,6 +76,7 @@ public class MessagingActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 recipientObj = dataSnapshot.getValue(User.class);
+                setTitle(recipientObj.getDisplayName());
             }
 
             @Override
