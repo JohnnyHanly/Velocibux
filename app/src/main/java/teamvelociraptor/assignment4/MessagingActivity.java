@@ -63,6 +63,7 @@ public class MessagingActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        super.onStart();
         recipientID = getIntent().getStringExtra("uuid");
         mMessageRef = mConvoRef.child(recipientID).child("messages");
         mRecipientRef = ref.child("users").child(recipientID);
@@ -161,14 +162,16 @@ public class MessagingActivity extends AppCompatActivity {
     }
 
     public void send(Message message) {
-        messageList.add(message);
+        if (message.getText().length() > 0) {
+            messageList.add(message);
+            DatabaseReference ref1 = mUserRef.child("conversations").child(recipientObj.getUuid()).child("messages");
+            DatabaseReference ref2 = mRecipientRef.child("conversations").child(userObj.getUuid()).child("messages");
+            ref1.setValue(messageList);
+            ref2.setValue(messageList);
+        }else{
 
-        DatabaseReference ref1 = mUserRef.child("conversations").child(recipientObj.getUuid()).child("messages");
-        DatabaseReference ref2 = mRecipientRef.child("conversations").child(userObj.getUuid()).child("messages");
-        ref1.setValue(messageList);
-        ref2.setValue(messageList);
 
-
+        }
     }
 
 
