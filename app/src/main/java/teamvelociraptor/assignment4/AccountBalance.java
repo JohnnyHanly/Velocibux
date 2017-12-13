@@ -36,8 +36,8 @@ public class AccountBalance extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_balance);
-        Button transfertobankbutton = findViewById(R.id.transfer_to_bank);
-
+        Button transfertobankbutton = findViewById(R.id.deposit_to_bank);
+        Button transfertoaccountbutton = findViewById(R.id.deposit_to_account);
         Button QR_Code = findViewById(R.id.QR_Code);
 
 
@@ -48,11 +48,18 @@ public class AccountBalance extends AppCompatActivity {
             Intent depositToBank = new Intent(AccountBalance.this, DepositToBank.class);
             startActivity(depositToBank);
 
-
-
             }
 
 
+        });
+
+        transfertoaccountbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent depositToAccount = new Intent(AccountBalance.this, DepositToAccount.class);
+                startActivity(depositToAccount);
+            }
         });
 
 

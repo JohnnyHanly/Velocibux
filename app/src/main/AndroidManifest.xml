@@ -61,11 +61,11 @@
 
         <activity
             android:name=".DepositToAccount"
-            android:label="@string/title_activity_deposit_to_account"
+
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SendMoneyToFriend"
-            android:label="@string/title_activity_send_money_to_friend"
+            android:name=".SendToFriend"
+
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
