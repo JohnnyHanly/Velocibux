@@ -9,9 +9,6 @@
         android:id="@+id/activity_friends_item"
         android:title="Friends" />
     <item
-        android:id="@+id/activity_payment_item"
-        android:title="Payment" />
-    <item
         android:id="@+id/activity_transaction_history_item"
         android:title="Transaction History" />
     <item
