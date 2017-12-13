@@ -21,11 +21,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import teamvelociraptor.assignment4.models.Friend;
+import teamvelociraptor.assignment4.models.Message;
 import teamvelociraptor.assignment4.models.User;
 
 
@@ -82,11 +85,30 @@ public class FriendsListActivity extends AppCompatActivity {
             @Override
             protected void populateView(View v, final User model, int position) {
                 TextView username = v.findViewById(R.id.username);
-                TextView uuid = v.findViewById(R.id.uuid);
+                final TextView message = v.findViewById(R.id.message);
                 ImageView profileImage = v.findViewById(R.id.profileImage);
 
                 username.setText(model.getDisplayName());
-                uuid.setText(model.getUuid());
+                DatabaseReference messagesRef = mUserRef.child("conversations").child(model.getUuid()).child("messages");
+                messagesRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            GenericTypeIndicator<List<Message>> t = new GenericTypeIndicator<List<Message>>() {};
+                            List<Message> messages= dataSnapshot.getValue(t);
+                            message.setText(messages.get(messages.size() - 1).getText());
+                        } else {
+                            message.setText("");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
                 new GetUserProfileImage(model, profileImage).execute();
 //                profileImage.setImageBitmap(image.execute(params));
                 v.setOnClickListener(new View.OnClickListener() {

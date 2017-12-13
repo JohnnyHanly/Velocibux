@@ -24,7 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -121,7 +120,6 @@ public class MessagingActivity extends AppCompatActivity {
                 Message message = new Message(userObj.getDisplayName(), userObj.getUuid(), input.getText().toString());
                 send(message);
                 input.setText("");
-                // diplayMessages();
             }
 
         });

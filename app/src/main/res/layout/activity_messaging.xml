@@ -23,6 +23,7 @@
 
     <EditText
         android:id="@+id/message_input"
+
         android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -38,9 +39,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:clickable="true"
+        android:elevation="0dp"
         android:scaleType="center"
         android:src="@drawable/red_send_button"
-        app:backgroundTint="@android:color/holo_red_light"
+        app:backgroundTint="@android:color/transparent"
+        app:elevation="0dp"
+        app:borderWidth="0dp"
         app:fabSize="mini" />
 
     <android.support.design.widget.FloatingActionButton
@@ -51,13 +55,16 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:scaleType="center"
-        android:src="@drawable/ic_attach_money_black_24dp"
-        app:backgroundTint="@android:color/holo_green_light"
+        android:elevation="0dp"
+        android:src="@drawable/ic_send_money_green"
+        app:borderWidth="0dp"
+        app:backgroundTint="@android:color/transparent"
+        app:elevation="0dp"
         app:fabSize="mini" />
 
     <ListView
         android:id="@+id/list_of_messages"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/sendButton"
         android:layout_alignParentLeft="true"
@@ -65,13 +72,11 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="16dp"
+        android:divider="@color/grey_300"
+        android:dividerHeight="1dp"
+        android:footerDividersEnabled="true"
         android:transcriptMode="alwaysScroll">
 
-
     </ListView>
-
-
 
 </RelativeLayout>
