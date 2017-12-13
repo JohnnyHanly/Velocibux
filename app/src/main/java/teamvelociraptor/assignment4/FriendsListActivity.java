@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
@@ -33,8 +34,6 @@ import teamvelociraptor.assignment4.models.User;
 
 
 public class FriendsListActivity extends AppCompatActivity {
-
-    static final int ADD_FRIEND_REQUEST = 2;
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -70,7 +69,7 @@ public class FriendsListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FriendsListActivity.this, QRCameraActivity.class);
-                startActivityForResult(intent, ADD_FRIEND_REQUEST);
+                startActivityForResult(intent, 1);
             }
         });
         friendsList = findViewById(R.id.friends_list);
@@ -123,6 +122,7 @@ public class FriendsListActivity extends AppCompatActivity {
         if (requestCode == 1) {
                 if (resultCode == QRCameraActivity.RESULT_OK) {
                     String uuid = data.getStringExtra("result");
+                    Toast.makeText(FriendsListActivity.this, uuid, Toast.LENGTH_LONG);
                     mRootRef.child("users").child(uuid).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -138,26 +138,9 @@ public class FriendsListActivity extends AppCompatActivity {
                     });
                 }
                 if (resultCode == QRCameraActivity.RESULT_CANCELED) {
-                    //Write your code if there's no result
+                    Toast.makeText(FriendsListActivity.this, "QR Code Scanner Error", Toast.LENGTH_LONG);
                 }
             }
     }
-
-    private void addFriends() {
-        User f1 = new User();
-        User f2 = new User();
-        f1.setDisplayName("velociraptor");
-        f2.setDisplayName("bucks");
-        f1.setUuid("dino");
-        f2.setUuid("money");
-        f1.setImageUrl("http://toys-zoom.worldwideshoppingmall.co.uk/schleich-velociraptor-2012.jpg");
-        f2.setImageUrl("http://www-images.theonering.org/torwp/wp-content/uploads/2009/09/money.jpg");
-        List<User> friends = new ArrayList<>();
-        friends.add(f1);
-        friends.add(f2);
-        mFriendsRef.setValue(friends);
-    }
-
-
 
 }
