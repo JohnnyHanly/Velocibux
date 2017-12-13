@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,11 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import teamvelociraptor.assignment4.models.Friend;
 import teamvelociraptor.assignment4.models.User;
 
 
@@ -123,17 +117,21 @@ public class FriendsListActivity extends AppCompatActivity {
                 if (resultCode == QRCameraActivity.RESULT_OK) {
                     String uuid = data.getStringExtra("result");
                     Toast.makeText(FriendsListActivity.this, uuid, Toast.LENGTH_LONG);
-                    mRootRef.child("users").child(uuid).addListenerForSingleValueEvent(new ValueEventListener() {
+                    final DatabaseReference friendRef = mRootRef.child("users").child(uuid);
+                    friendRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            User newFriend = dataSnapshot.getValue(User.class);
+                            User otherUser = dataSnapshot.getValue(User.class);
+                            Friend newFriend = new Friend(otherUser);
                             userObj.getFriends().add(newFriend);
                             mUserRef.setValue(userObj);
+                            otherUser.getFriends().add(new Friend(userObj));
+                            friendRef.setValue(otherUser);
                         }
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-
+                            Toast.makeText(FriendsListActivity.this, "Error adding user", Toast.LENGTH_LONG);
                         }
                     });
                 }
