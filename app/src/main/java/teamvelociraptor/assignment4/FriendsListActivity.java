@@ -71,12 +71,12 @@ public class FriendsListActivity extends AppCompatActivity {
         addFriendsFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FriendsListActivity.this, AddFriendsActivity.class);
+                Intent intent = new Intent(FriendsListActivity.this, QRCameraActivity.class);
                 startActivityForResult(intent, ADD_FRIEND_REQUEST);
             }
         });
         friendsList = findViewById(R.id.friends_list);
-        addFriends();
+        // addFriends();
         displayFriends();
     }
 
@@ -121,26 +121,28 @@ public class FriendsListActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int responseCode, Intent data) {
-        if (requestCode == ADD_FRIEND_REQUEST) {
-            if (responseCode == RESULT_OK) {
-                String uuid = data.getStringExtra("uuid");
-                Log.println(Log.INFO, "addUsers", uuid);
-                mRootRef.child("users").child(uuid).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        User newFriend = dataSnapshot.getValue(User.class);
-                        userObj.getFriends().add(newFriend);
-                        mUserRef.setValue(userObj);
-                    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+                if (resultCode == QRCameraActivity.RESULT_OK) {
+                    String uuid = data.getStringExtra("result");
+                    mRootRef.child("users").child(uuid).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            User newFriend = dataSnapshot.getValue(User.class);
+                            userObj.getFriends().add(newFriend);
+                            mUserRef.setValue(userObj);
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
+                }
+                if (resultCode == QRCameraActivity.RESULT_CANCELED) {
+                    //Write your code if there's no result
+                }
             }
-        }
     }
 
     private void addFriends() {
