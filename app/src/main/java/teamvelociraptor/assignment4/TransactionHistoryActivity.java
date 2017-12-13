@@ -1,12 +1,8 @@
 package teamvelociraptor.assignment4;
 
-import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,11 +19,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 import teamvelociraptor.assignment4.models.Transaction;
 import teamvelociraptor.assignment4.models.User;
@@ -48,19 +39,15 @@ public class TransactionHistoryActivity extends AppCompatActivity {
     }
     protected void onStart() {
         super.onStart();
-
         mUserRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userObj = dataSnapshot.getValue(User.class);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-
-
         });
 
         transactionHistory = findViewById(R.id.transaction_history);
