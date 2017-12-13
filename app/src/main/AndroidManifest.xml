@@ -18,27 +18,15 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MessagingActivity"
-            android:theme="@style/MessagingTheme" />
-        <activity
-            android:name=".FriendsListActivity"
-            android:label="@string/title_activity_friends_list"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PaymentActivity" />
-        <activity android:name=".TransactionHistoryActivity" />
-        <activity
-            android:name=".QRActivity"
-            android:label="@string/title_activity_qr"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".QRCameraActivity"
-            android:label="@string/title_activity_qrcamera"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MessagingActivity" android:theme="@style/MessagingTheme" />
+        <activity android:name=".FriendsListActivity" android:label="@string/title_activity_friends_list" android:theme="@style/FriendsListTheme" />
+        <activity android:name=".PaymentActivity"  android:theme="@style/PaymentTheme"/>
+        <activity android:name=".TransactionHistoryActivity" android:theme="@style/TransactionHistoryTheme"/>
+        <activity android:name=".QRActivity" android:label="@string/title_activity_qr" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".QRCameraActivity" android:label="@string/title_activity_qrcamera" android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AccountBalance"
             android:theme="@style/AccountTheme" />

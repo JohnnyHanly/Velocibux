@@ -104,7 +104,6 @@ public class MessagingActivity extends AppCompatActivity {
                     messageList = dataSnapshot.getValue(t);
                     if (messageList==null){
                         messageList= new ArrayList<>();
-
                     }
                 } else {
 
@@ -140,6 +139,7 @@ public class MessagingActivity extends AppCompatActivity {
 
 
     private void diplayMessages() {
+
 
 
         FirebaseListOptions<Message> messageOptions = new FirebaseListOptions.Builder<Message>()
