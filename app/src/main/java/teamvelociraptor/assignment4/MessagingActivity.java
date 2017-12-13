@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
@@ -41,15 +42,17 @@ public class MessagingActivity extends AppCompatActivity {
     private EditText input;
     private FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mMessageRef;
+
+    String recipientID;
+
     DatabaseReference mUserRef = ref.child("users").child(mUser.getUid());
     DatabaseReference mConvoRef = mUserRef.child("conversations");
-    DatabaseReference mMessageRef = mUserRef.child("messages");
     DatabaseReference mRecipientRef;
     Message messageObj;
     List<Message> messageList;
     User userObj;
     User recipientObj;
-    Conversation convoObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,17 +68,11 @@ public class MessagingActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        String contactUuid = new String();
+      recipientID= getIntent().getStringExtra("uuid");
+      mMessageRef= mConvoRef.child(recipientID).child("messages");
+      mRecipientRef=ref.child("users").child(recipientID);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-
-        if (bundle != null) {
-            contactUuid = bundle.getString("uuid");
-            setTitle(contactUuid);
-        }
-
-        ref.child("users").child(contactUuid).addValueEventListener(new ValueEventListener() {
+        ref.child("users").child(recipientID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 recipientObj = dataSnapshot.getValue(User.class);
@@ -98,17 +95,21 @@ public class MessagingActivity extends AppCompatActivity {
 
             }
         });
-        mConvoRef.addValueEventListener(new ValueEventListener() {
+        mMessageRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    convoObj = dataSnapshot.getValue(Conversation.class);
+                    GenericTypeIndicator<List<Message>>t= new GenericTypeIndicator<List<Message>>(){};
+                    messageList = dataSnapshot.getValue(t);
+                    if (messageList==null){
+                        messageList= new ArrayList<>();
+
+                    }
                 } else {
 
-                    convoObj= new Conversation(userObj.getUuid(), new ArrayList<Message>());
-                    mConvoRef.setValue(convoObj);
+                    messageList= new ArrayList<>();
                 }
-                messageList = new ArrayList<>(convoObj.getMessages());
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -161,7 +162,7 @@ public class MessagingActivity extends AppCompatActivity {
         };
 
         readMessageList.setAdapter(messageAdapter);
-        // messageAdapter.startListening();
+        messageAdapter.startListening();
 
     }
 
@@ -172,8 +173,6 @@ public class MessagingActivity extends AppCompatActivity {
         DatabaseReference ref2= mRecipientRef.child("conversations").child(userObj.getUuid()).child("messages");
         ref1.setValue(messageList);
         ref2.setValue(messageList);
-
-
 
 
     }
