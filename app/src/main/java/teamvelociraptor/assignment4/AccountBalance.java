@@ -26,9 +26,7 @@ import teamvelociraptor.assignment4.models.*;
 public class AccountBalance extends AppCompatActivity {
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
     DatabaseReference mUserRef = mRootRef.child("users").child(user.getUid());
-    private ImageView imgProfilePic;
 
     User userObj;
 
