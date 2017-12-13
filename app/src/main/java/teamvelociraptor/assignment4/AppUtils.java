@@ -12,9 +12,6 @@ class AppUtils {
     static boolean dropDownChangeActivity(MenuItem item, Context context){
 
         switch (item.getItemId()){
-            case R.id.activity_main_item:
-                context.startActivity(new Intent(context, MainActivity.class ));
-                return true;
             case R.id.activity_friends_item:
                 context.startActivity(new Intent(context, FriendsListActivity.class));
                 return true;
