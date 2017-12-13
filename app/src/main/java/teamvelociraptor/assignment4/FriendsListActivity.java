@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
@@ -25,16 +24,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+import teamvelociraptor.assignment4.models.Friend;
 import teamvelociraptor.assignment4.models.User;
 
 
 public class FriendsListActivity extends AppCompatActivity {
-
-    static final int ADD_FRIEND_REQUEST = 2;
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -69,12 +64,12 @@ public class FriendsListActivity extends AppCompatActivity {
         addFriendsFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FriendsListActivity.this, AddFriendsActivity.class);
-                startActivityForResult(intent, ADD_FRIEND_REQUEST);
+                Intent intent = new Intent(FriendsListActivity.this, QRCameraActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
         friendsList = findViewById(R.id.friends_list);
-        addFriends();
+        // addFriends();
         displayFriends();
     }
 
@@ -115,47 +110,39 @@ public class FriendsListActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        return AppUtils.dropDownChangeActivity(item, this);
+        return AppUtils.dropDownChangeActivity(item, FriendsListActivity.this);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int responseCode, Intent data) {
-        if (requestCode == ADD_FRIEND_REQUEST) {
-            if (responseCode == RESULT_OK) {
-                String uuid = data.getStringExtra("uuid");
-                Log.println(Log.INFO, "addUsers", uuid);
-                mRootRef.child("users").child(uuid).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        User newFriend = dataSnapshot.getValue(User.class);
-                        userObj.getFriends().add(newFriend);
-                        mUserRef.setValue(userObj);
-                    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+                if (resultCode == QRCameraActivity.RESULT_OK) {
+                    String uuid = data.getStringExtra("result");
+                    Toast.makeText(FriendsListActivity.this, uuid, Toast.LENGTH_LONG);
+                    final DatabaseReference friendRef = mRootRef.child("users").child(uuid);
+                    friendRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            User otherUser = dataSnapshot.getValue(User.class);
+                            Friend newFriend = new Friend(otherUser);
+                            if (userObj.getFriends() == null) userObj.setFriends(new ArrayList<Friend>());
+                            userObj.getFriends().add(newFriend);
+                            mUserRef.setValue(userObj);
+                            if (otherUser.getFriends() == null) otherUser.setFriends(new ArrayList<Friend>());
+                            otherUser.getFriends().add(new Friend(userObj));
+                            friendRef.setValue(otherUser);
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Toast.makeText(FriendsListActivity.this, "Error adding user", Toast.LENGTH_LONG);
+                        }
+                    });
+                }
+                if (resultCode == QRCameraActivity.RESULT_CANCELED) {
+                    Toast.makeText(FriendsListActivity.this, "QR Code Scanner Error", Toast.LENGTH_LONG);
+                }
             }
-        }
     }
-
-    private void addFriends() {
-        User f1 = new User();
-        User f2 = new User();
-        f1.setDisplayName("velociraptor");
-        f2.setDisplayName("bucks");
-        f1.setUuid("dino");
-        f2.setUuid("money");
-        f1.setImageUrl("http://toys-zoom.worldwideshoppingmall.co.uk/schleich-velociraptor-2012.jpg");
-        f2.setImageUrl("http://www-images.theonering.org/torwp/wp-content/uploads/2009/09/money.jpg");
-        List<User> friends = new ArrayList<>();
-        friends.add(f1);
-        friends.add(f2);
-        mFriendsRef.setValue(friends);
-    }
-
-
 
 }

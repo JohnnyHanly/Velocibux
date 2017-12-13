@@ -18,7 +18,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,24 +26,22 @@
             android:theme="@style/MessagingTheme" />
         <activity
             android:name=".FriendsListActivity"
-            android:label="@string/title_activity_friends_list"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PaymentActivity" />
-        <activity android:name=".TransactionHistoryActivity" />
-        <activity
-            android:name=".QRActivity"
-            android:label="@string/title_activity_qr"
+
+            android:theme="@style/FriendsListTheme" />
+        <activity android:name=".DepositToBank" android:theme="@style/PaymentTheme"/>
+        <activity android:name=".TransactionHistoryActivity" android:theme="@style/TransactionHistoryTheme"/>
+        <activity android:name=".AccountBalance" android:theme="@style/AccountTheme"></activity>
+
+           <activity android:name=".QRActivity" android:label="@string/title_activity_qr"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".QRCameraActivity"
             android:label="@string/title_activity_qrcamera"
-            android:theme="@style/AppTheme.NoActionBar" /><![CDATA[
-        />
-        ]]>
-        <activity
-            android:name=".AccountBalance"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
             android:theme="@style/AccountTheme" />
-        <activity android:name=".AddFriendsActivity"></activity>
+
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -61,6 +58,15 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
+
+        <activity
+            android:name=".DepositToAccount"
+            android:label="@string/title_activity_deposit_to_account"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SendMoneyToFriend"
+            android:label="@string/title_activity_send_money_to_friend"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
