@@ -12,13 +12,14 @@ public class Message {
         this.displayName=displayName;
         this.uid=uid;
         this.text=text;
+        this.timestamp= new Date();
     }
 
     public Message(){
 
     }
 
-    public String getId() {
+    public String getUid() {
         return uid;
     }
     public String getDisplayName(){

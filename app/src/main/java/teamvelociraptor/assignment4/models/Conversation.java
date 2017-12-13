@@ -9,13 +9,14 @@ import java.util.List;
 public class Conversation {
 
     private String id;
-    private List<Message> messages;
+    private List<Message> messageList;
 
-    public Conversation(String id,List<Message>messages) {
+    public Conversation(String id,List<Message>messageList) {
         this.id=id;
-        this.messages=messages;
+        this.messageList=messageList;
 
     }
+    public Conversation(){}
 
     public String getId() {
         return id;
@@ -26,10 +27,13 @@ public class Conversation {
     }
 
     public List<Message> getMessages() {
-        return messages;
+        return messageList;
+    }
+    public void addMessages(Message message){
+        this.messageList.add(message);
     }
 
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
+    public void setMessages(List<Message> messageList) {
+        this.messageList = messageList;
     }
 }

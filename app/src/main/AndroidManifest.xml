@@ -10,7 +10,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_logo"
         android:label="Velocibux"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -18,42 +18,35 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MessagingActivity"
-            android:theme="@style/MessagingTheme" />
-        <activity
-            android:name=".FriendsListActivity"
-
-            android:theme="@style/FriendsListTheme" />
-        <activity android:name=".DepositToBank" android:theme="@style/PaymentTheme"/>
+        <activity android:name=".MessagingActivity" android:theme="@style/MessagingTheme" />
+        <activity android:name=".FriendsListActivity" android:label="@string/title_activity_friends_list" android:theme="@style/FriendsListTheme" />
+        <activity android:name=".PaymentActivity"  android:theme="@style/PaymentTheme"/>
         <activity android:name=".TransactionHistoryActivity" android:theme="@style/TransactionHistoryTheme"/>
-        <activity android:name=".AccountBalance" android:theme="@style/AccountTheme"></activity>
-           <activity android:name=".AddFriendsActivity" android:theme="@style/AppTheme"></activity>
-           <activity android:name=".QRActivity" android:label="@string/title_activity_qr"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".QRActivity" android:label="@string/title_activity_qr" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".QRCameraActivity" android:label="@string/title_activity_qrcamera" android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".QRCameraActivity"
-            android:label="@string/title_activity_qrcamera"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".TempActivity"/>
+            android:name=".AccountBalance"
+            android:theme="@style/AccountTheme" />
 
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".DepositToAccount"
-            android:label="@string/title_activity_deposit_to_account"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".SendMoneyToFriend"
-            android:label="@string/title_activity_send_money_to_friend"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>

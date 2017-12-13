@@ -6,19 +6,12 @@
         android:id="@+id/activity_main_item"
         android:title="Main" />
     <item
-        android:id="@+id/activity_messaging_item"
-        android:title="Messages" />
-    <item
         android:id="@+id/activity_friends_item"
         android:title="Friends" />
-    <item
-        android:id="@+id/activity_payment_item"
-        android:title="Payment" />
     <item
         android:id="@+id/activity_transaction_history_item"
         android:title="Transaction History" />
     <item
         android:id="@+id/activity_account_item"
-        android:title="Account" />
-
+        android:title="Account"/>
 </menu>

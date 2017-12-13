@@ -11,7 +11,7 @@ public class User {
     private String uuid;
     private String displayName;
     private String email;
-    private List<User> friends;
+    private List<Friend> friends;
     private double balance;
     private String imageUrl;
     private List<Transaction> transactions;
@@ -43,11 +43,11 @@ public class User {
         this.email = email;
     }
 
-    public List<User> getFriends() {
+    public List<Friend> getFriends() {
         return friends;
     }
 
-    public void setFriends(List<User> friends) {
+    public void setFriends(List<Friend> friends) {
         this.friends = friends;
     }
 

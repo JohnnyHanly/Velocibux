@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Login</string>
-    <string name="title_activity_friends_list"></string>
+    <string name="title_activity_friends_list">Friends</string>
     <string name="title_activity_qr">My QR</string>
 
     <string name="qr_image">QR Image</string>
@@ -9,7 +9,4 @@
     <string name="receiver">Receiver: </string>
     <string name="amount">Amount: </string>
     <string name="title_activity_maps">Map</string>
-    <string name="title_activity_deposit_to_account">DepositToAccount</string>
-    <string name="title_activity_deposit_to_bank">DepositToBank</string>
-    <string name="title_activity_send_money_to_friend">SendMoneyToFriend</string>
 </resources>
