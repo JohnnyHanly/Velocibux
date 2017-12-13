@@ -15,10 +15,8 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/sendButton"
-        android:layout_toStartOf="@+id/sendButton" />
-    />
+        android:layout_alignParentBottom="true" />
+
 
     <EditText
         android:id="@+id/payment_input"
@@ -33,14 +31,17 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/paymentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="98dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="207dp"
+        android:layout_marginTop="216dp"
         android:clickable="true"
         android:scaleType="center"
         android:src="@drawable/ic_payment_button"
+        app:backgroundTint="@android:color/transparent"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
         app:fabSize="normal" />
 
 
