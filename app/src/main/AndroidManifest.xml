@@ -5,7 +5,8 @@
 
     <uses-sdk tools:overrideLibrary="com.firebase.ui, com.firebase.ui.auth" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.Manifest.permission.ACCESS_FINE_LOCATION" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
