@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_messaging"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="teamvelociraptor.assignment4.MessagingActivity">
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/sendButton"
+        android:layout_toStartOf="@+id/sendButton"/>
+         />
+
+    <EditText
+        android:id="@+id/message_input"
+
+        android:layout_width="272dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter your message" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/message_input"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:scaleType="center"
+        android:src="@drawable/red_send_button"
+        app:backgroundTint="@android:color/transparent"
+        app:elevation="0dp"
+        app:borderWidth="0dp"
+        app:fabSize="mini" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/paymentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:scaleType="center"
+        android:elevation="0dp"
+        android:src="@drawable/ic_send_money_green"
+        app:borderWidth="0dp"
+        app:backgroundTint="@android:color/transparent"
+        app:elevation="0dp"
+        app:fabSize="mini" />
+
+    <ListView
+        android:id="@+id/list_of_messages"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/sendButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:divider="@color/grey_300"
+        android:dividerHeight="1dp"
+        android:footerDividersEnabled="true"
+        android:transcriptMode="alwaysScroll">
+
+
+    </ListView>
+
+</RelativeLayout>
