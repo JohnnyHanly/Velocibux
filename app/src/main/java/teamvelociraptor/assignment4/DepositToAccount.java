@@ -19,10 +19,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import teamvelociraptor.assignment4.models.Transaction;
 import teamvelociraptor.assignment4.models.User;
 
 public class DepositToAccount extends AppCompatActivity {
@@ -32,6 +37,8 @@ public class DepositToAccount extends AppCompatActivity {
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference mUserRef = mRootRef.child("users").child(user.getUid());
+    DatabaseReference mTransactionRef = mUserRef.child("transactions");
+    List<Transaction> transactionList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,27 +48,6 @@ public class DepositToAccount extends AppCompatActivity {
         send= findViewById(R.id.paybutton);
         sendMoney = findViewById(R.id.paymentButton);
         setTitle("Deposit to Account");
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                EditText amount = findViewById(R.id.payment_input);
-                double inputAmount = Double.parseDouble(amount.getText().toString());
-                inputAmount = inputAmount * 100;
-                inputAmount = Math.round(inputAmount);
-                inputAmount = inputAmount / 100;
-                DecimalFormat format = new DecimalFormat("0.00");
-                String formattedAmount = format.format(inputAmount);
-                Toast.makeText(DepositToAccount.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
-
-                userObj.setBalance(userObj.getBalance() + inputAmount);
-                mUserRef.setValue(userObj);
-
-                Intent accountBalance = new Intent(DepositToAccount.this, AccountBalance.class);
-                startActivity(accountBalance);
-
-            }
-        });
     }
 
 
@@ -80,6 +66,66 @@ public class DepositToAccount extends AppCompatActivity {
 
             }
         });
+        mTransactionRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    GenericTypeIndicator<List<Transaction>> t = new GenericTypeIndicator<List<Transaction>>(){};
+                    transactionList = dataSnapshot.getValue(t);
+                    if (transactionList == null){
+                        transactionList = new ArrayList<>();
+                    }
+                }
+                else{
+                    transactionList = new ArrayList<>();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Transaction transaction = new Transaction();
+                EditText amount = findViewById(R.id.payment_input);
+                double inputAmount = Double.parseDouble(amount.getText().toString());
+                inputAmount = inputAmount * 100;
+                inputAmount = Math.round(inputAmount);
+                inputAmount = inputAmount / 100;
+                if(inputAmount <= userObj.getBalance()) {
+                    transaction.setAmount(inputAmount);
+                    transaction.setSender(userObj.getDisplayName());
+                    transaction.setReceiver(userObj.getDisplayName());
+                    transaction.setTimestamp(new Date());
+                    transaction.setLat(37.7232346);
+                    transaction.setLon(-122.4771284);
+                    transaction.setId("Deposit to account");
+                    DecimalFormat format = new DecimalFormat("0.00");
+                    String formattedAmount = format.format(inputAmount);
+                    Toast.makeText(DepositToAccount.this, "You've deposited : $" + formattedAmount, Toast.LENGTH_SHORT).show();
+
+                    userObj.setBalance(userObj.getBalance() + inputAmount);
+                    mUserRef.setValue(userObj);
+
+                    sendTransaction(transaction);
+
+                }
+                else{
+                    Toast.makeText(DepositToAccount.this, "Amount exceeds balance.", Toast.LENGTH_SHORT).show();
+                }
+
+                Intent accountBalance = new Intent(DepositToAccount.this, AccountBalance.class);
+                startActivity(accountBalance);
+
+            }
+        });
+    }
+    private void sendTransaction(Transaction transaction) {
+        transactionList.add(transaction);
+        DatabaseReference reference1 = mUserRef.child("transactions");
+        reference1.setValue(transactionList);
     }
 
 

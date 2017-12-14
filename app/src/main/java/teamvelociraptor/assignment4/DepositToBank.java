@@ -157,7 +157,6 @@ public class DepositToBank extends AppCompatActivity {
                     transactionList = new ArrayList<>();
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -179,7 +178,7 @@ public class DepositToBank extends AppCompatActivity {
                     transaction.setTimestamp(new Date());
                     transaction.setLat(37.7232346);
                     transaction.setLon(-122.4771284);
-                    transaction.setId("Deposit to account");
+                    transaction.setId("Deposit to bank");
                     DecimalFormat format = new DecimalFormat("0.00");
                     String formattedAmount = format.format(inputAmount);
                     Toast.makeText(DepositToBank.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
@@ -206,7 +205,6 @@ public class DepositToBank extends AppCompatActivity {
         transactionList.add(transaction);
         DatabaseReference reference1 = mUserRef.child("transactions");
         reference1.setValue(transactionList);
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
