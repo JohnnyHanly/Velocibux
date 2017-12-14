@@ -66,16 +66,22 @@ public class SendMoneyToFriend extends AppCompatActivity {
                 inputAmount = inputAmount * 100;
                 inputAmount = Math.round(inputAmount);
                 inputAmount = inputAmount / 100;
-                DecimalFormat format = new DecimalFormat("0.00");
-                String formattedAmount = format.format(inputAmount);
-                Toast.makeText(SendMoneyToFriend.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
 
-                userObj.setBalance(userObj.getBalance() - inputAmount);
-                mUserRef.setValue(userObj);
+                if(inputAmount <= userObj.getBalance()) {
+                    DecimalFormat format = new DecimalFormat("0.00");
+                    String formattedAmount = format.format(inputAmount);
+                    Toast.makeText(SendMoneyToFriend.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
 
-                recipientObj.setBalance((recipientObj.getBalance()) + inputAmount);
-                mRecipientRef.setValue(recipientObj);
+                    userObj.setBalance(userObj.getBalance() - inputAmount);
+                    mUserRef.setValue(userObj);
 
+                    recipientObj.setBalance((recipientObj.getBalance()) + inputAmount);
+                    mRecipientRef.setValue(recipientObj);
+
+                }
+                else{
+                    Toast.makeText(SendMoneyToFriend.this, "Amount exceeds balance.", Toast.LENGTH_SHORT).show();
+                }
 
 
                 Intent accountBalance = new Intent(SendMoneyToFriend.this, AccountBalance.class);
@@ -91,7 +97,6 @@ public class SendMoneyToFriend extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        super.onStart();
         super.onStart();
         recipientID = getIntent().getStringExtra("uuid");
         mRecipientRef = ref.child("users").child(recipientID);
