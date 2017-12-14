@@ -1,33 +1,35 @@
 package teamvelociraptor.assignment4;
+
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.android.gms.common.api.GoogleApiClient;
+
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.IdpResponse;
+import com.firebase.ui.auth.ResultCodes;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Collections;
+import java.util.List;
+
+import teamvelociraptor.assignment4.models.User;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseAuth Auth;
-    private FirebaseUser User;
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private static DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
-    private FirebaseAuth.AuthStateListener AuthListener;
-    private GoogleApiClient GoogleApiClient;
-
+    private static final int RC_SIGN_IN = 123; // Needed for auth
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mUsersRef = mRootRef.child("users");
 
 
     @Override
@@ -35,58 +37,92 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Auth = FirebaseAuth.getInstance();
-        User = Auth.getCurrentUser();
+        // Choose authentication providers
+        List<AuthUI.IdpConfig> providers = Collections.singletonList(
+                new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()
+        );
 
-        launchMessagingActivity();
+// Create and launch sign-in intent
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setAvailableProviders(providers)
+                        .build(),
+                RC_SIGN_IN);
+
+
     }
 
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_menu, menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
 
-    public boolean onOptionsItemSelected(MenuItem menuItem){
-        switch(menuItem.getItemId()){
-            case R.id.activity_messaging: {
-                startActivity(new Intent(this, MessagingActivity.class));
-                return true;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        return AppUtils.dropDownChangeActivity(item, this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            IdpResponse response = IdpResponse.fromResultIntent(data);
+
+            if (resultCode == ResultCodes.OK) {
+                // Successfully signed in
+                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                final DatabaseReference userRef = mUsersRef.child(user.getUid());
+                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (!dataSnapshot.exists()) {
+                            User userObj = new User();
+                            userObj.setDisplayName(user.getDisplayName());
+                            userObj.setUuid(user.getUid());
+                            userObj.setBalance(0);
+                            userObj.setEmail(user.getEmail());
+                            userObj.setImageUrl(user.getPhotoUrl().toString());
+                            userRef.setValue(userObj);
+                        } else {
+                            User userObj = dataSnapshot.getValue(User.class);
+                            boolean changed = false;
+                            if (userObj.getDisplayName() != user.getDisplayName()) {
+                                userObj.setDisplayName(user.getDisplayName());
+                                changed = true;
+                            }
+                            if (userObj.getEmail() != user.getEmail()) {
+                                userObj.setEmail(user.getEmail());
+                                changed = true;
+                            }
+                            if (userObj.getImageUrl() != user.getPhotoUrl().toString()) {
+                                userObj.setImageUrl(user.getPhotoUrl().toString());
+                                changed = true;
+                            }
+                            if (changed) {
+                                userRef.setValue(userObj);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.println(Log.INFO, "VeloDebug", "onCancelled called" );
+                    }
+                });
+                // ...
+                startActivity(new Intent(this, FriendsListActivity.class));
+                this.finish();
+            } else {
+                // Sign in failed, check response for error code
+                // ... TODO
+                Toast.makeText(this, "Sign in failed", Toast.LENGTH_LONG);
             }
-            case R.id.switcher: {
-                startActivity(new Intent(this, MainActivity.class));
-                return true;
-            }
-            default:
-                return super.onOptionsItemSelected(menuItem);
         }
     }
-    /*this method launches the Messaging Activty after the user presses a button on the main activity.
-I did not know what our plans are for the startup screen so I decided to create a different activty for
-messaging. This is a temporary way to launch messaging until we know how we are actually
-going to stucture the UI
-*/
-    private void launchMessagingActivity(){
-        //button that switches to MessagingActivity
-        Button bmessageSwitchButton = (Button) findViewById(R.id.switcher);
-       bmessageSwitchButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               //creates a popup that confirms button press
-               Toast.makeText(MainActivity.this, "Clicked Launch Messaging", Toast.LENGTH_SHORT)
-                       .show();
-
-
-               //Launch Messanging Activity
-               Intent intent= new Intent(MainActivity.this, MessagingActivity.class);
-                startActivity(intent);
-
-           }
-       });
-
-    }
-
-
 
 
 }

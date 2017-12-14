@@ -22,7 +22,8 @@
          />
 
     <EditText
-        android:id="@+id/input"
+        android:id="@+id/message_input"
+
         android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -34,14 +35,15 @@
         android:id="@+id/sendButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/input"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_toEndOf="@+id/input"
-        android:layout_toRightOf="@+id/input"
+        android:layout_alignBottom="@+id/message_input"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:clickable="true"
         android:scaleType="center"
         android:src="@drawable/red_send_button"
+        app:backgroundTint="@android:color/transparent"
+        app:elevation="0dp"
+        app:borderWidth="0dp"
         app:fabSize="mini" />
 
     <android.support.design.widget.FloatingActionButton
@@ -52,26 +54,29 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:scaleType="center"
-        android:src="@drawable/ic_attach_money_black_24dp"
-        app:backgroundTint="@android:color/holo_green_light"
+        android:elevation="0dp"
+        android:src="@drawable/ic_send_money_green"
+        app:borderWidth="0dp"
+        app:backgroundTint="@android:color/transparent"
+        app:elevation="0dp"
         app:fabSize="mini" />
 
     <ListView
         android:id="@+id/list_of_messages"
-        android:layout_width="286dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/sendButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="16dp">
+        android:divider="@color/grey_300"
+        android:dividerHeight="1dp"
+        android:footerDividersEnabled="true"
+        android:transcriptMode="alwaysScroll">
 
 
     </ListView>
-
-
 
 </RelativeLayout>
