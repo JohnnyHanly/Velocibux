@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "774189956744-rqqa2s3orl0e0b5sctd2ojihjileuuur.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "teamvelociraptor.assignment4",
+            "certificate_hash": "c3ed5731f54c46e3e69f05e5623f49c7a16a7f93"
+          }
+        },
+        {
+          "client_id": "774189956744-v1f86n4koc0fba329fvmhvo1uhgodh5r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "teamvelociraptor.assignment4",
+            "certificate_hash": "e2524cd019ee392e010d3b776feb9faf77d663b1"
+          }
+        },
+        {
           "client_id": "774189956744-kq1pcr2s4klq4gk7di0qc3ijfcjnu8cu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
