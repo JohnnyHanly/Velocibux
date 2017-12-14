@@ -36,7 +36,7 @@ public class AccountBalance extends AppCompatActivity {
         Button transferToAccountButton = findViewById(R.id.transfer_to_account);
         Button QR_Code = findViewById(R.id.QR_Code);
 
-
+        setTitle("Account");
         transferToBankButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -40,6 +40,7 @@ public class DepositToAccount extends AppCompatActivity {
 
         send= findViewById(R.id.paybutton);
         sendMoney = findViewById(R.id.paymentButton);
+        setTitle("Deposit to Account");
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

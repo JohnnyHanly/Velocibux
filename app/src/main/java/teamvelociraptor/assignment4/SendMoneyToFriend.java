@@ -53,7 +53,7 @@ public class SendMoneyToFriend extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-
+      setTitle("Send Money");
         send = findViewById(R.id.paybutton);
         send.setOnClickListener(new View.OnClickListener() {
             @Override

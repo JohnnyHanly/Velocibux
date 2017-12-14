@@ -37,7 +37,7 @@ public class DepositToBank extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-
+         setTitle("Deposit to Bank");
         send=findViewById(R.id.paybutton);
         sendMoney = findViewById(R.id.paymentButton);
         send.setOnClickListener(new View.OnClickListener() {
