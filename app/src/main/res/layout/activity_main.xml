@@ -7,6 +7,5 @@
     android:layout_height="match_parent"
     tools:context="teamvelociraptor.assignment4.MainActivity">
 
-
 </android.support.constraint.ConstraintLayout>
 

@@ -62,10 +62,13 @@ public class TransactionHistoryActivity extends AppCompatActivity {
         FirebaseListAdapter<Transaction> adapter = new FirebaseListAdapter<Transaction>(options) {
             @Override
             protected void populateView(View v, final Transaction model, int position) {
+                TextView timeStamp = v.findViewById(R.id.transaction_timestamp);
                 TextView sender = v.findViewById(R.id.transaction_sender);
                 TextView receiver = v.findViewById(R.id.transaction_receiver);
                 TextView amount = v.findViewById(R.id.transaction_amount);
-
+                if(model.getTimestamp() != null){
+                    timeStamp.setText(model.getTimestamp().toString());
+                }
                 sender.setText("Sender: " + model.getSender());
                 receiver.setText("Receiver: " + model.getReceiver());
                 amount.setText("Amount: " + Double.toString(model.getAmount()));
