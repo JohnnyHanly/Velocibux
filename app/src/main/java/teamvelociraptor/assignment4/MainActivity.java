@@ -4,6 +4,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +39,27 @@ public class MainActivity extends AppCompatActivity {
         User = Auth.getCurrentUser();
 
         launchMessagingActivity();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem menuItem){
+        switch(menuItem.getItemId()){
+            case R.id.activity_messaging: {
+                startActivity(new Intent(this, MessagingActivity.class));
+                return true;
+            }
+            case R.id.switcher: {
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
     }
     /*this method launches the Messaging Activty after the user presses a button on the main activity.
 I did not know what our plans are for the startup screen so I decided to create a different activty for
