@@ -31,14 +31,13 @@
 
     <Button
         android:id="@+id/paybutton"
-        android:layout_width="222dp"
-        android:layout_height="65dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="261dp"
+        android:layout_height="92dp"
+        android:layout_below="@+id/payment_input"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="190dp"
         android:backgroundTint="@color/green"
-        android:text="Send Money"
-        />
+        android:gravity="center"
+        android:text="Send Money" />
 
 
 </RelativeLayout>

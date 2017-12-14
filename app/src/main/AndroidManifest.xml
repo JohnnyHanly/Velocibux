@@ -21,26 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MessagingActivity"
-            android:theme="@style/MessagingTheme" />
-        <activity
-            android:name=".FriendsListActivity"
-
-            android:theme="@style/FriendsListTheme" />
+        <activity android:name=".MessagingActivity" android:theme="@style/MessagingTheme" />
+        <activity android:name=".FriendsListActivity" android:theme="@style/FriendsListTheme" />
         <activity android:name=".DepositToBank" android:theme="@style/PaymentTheme"/>
         <activity android:name=".TransactionHistoryActivity" android:theme="@style/TransactionHistoryTheme"/>
         <activity android:name=".AccountBalance" android:theme="@style/AccountTheme"></activity>
-
-           <activity android:name=".QRActivity" android:label="@string/title_activity_qr"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".QRCameraActivity"
-            android:label="@string/title_activity_qrcamera"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".QRActivity" android:label="@string/title_activity_qr" android:theme="@style/QRTheme" />
+        <activity android:name=".QRCameraActivity" android:label="@string/title_activity_qrcamera" android:theme="@style/AppTheme.NoActionBar" />
 
 
-            android:theme="@style/AccountTheme" />
 
 
         <!--
@@ -62,7 +51,7 @@
         <activity
             android:name=".DepositToAccount"
 
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/PaymentTheme" />
 
         <activity android:name=".SendMoneyToFriend"/>
     </application>
