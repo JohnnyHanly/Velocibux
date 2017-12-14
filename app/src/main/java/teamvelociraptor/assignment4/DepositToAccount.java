@@ -27,6 +27,7 @@ import teamvelociraptor.assignment4.models.User;
 
 public class DepositToAccount extends AppCompatActivity {
     FloatingActionButton sendMoney;
+    Button send;
     User userObj;
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -37,9 +38,10 @@ public class DepositToAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-
+        send= findViewById(R.id.paybutton);
         sendMoney = findViewById(R.id.paymentButton);
-        sendMoney.setOnClickListener(new View.OnClickListener() {
+        setTitle("Deposit to Account");
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

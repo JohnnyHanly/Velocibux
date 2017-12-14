@@ -28,7 +28,7 @@ import teamvelociraptor.assignment4.models.Message;
 import teamvelociraptor.assignment4.models.User;
 
 public class SendMoneyToFriend extends AppCompatActivity {
-    FloatingActionButton sendMoney;
+    Button send;
 
     String recipientID;
 
@@ -48,16 +48,14 @@ public class SendMoneyToFriend extends AppCompatActivity {
 
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-
-        sendMoney = findViewById(R.id.paymentButton);
-        sendMoney.setOnClickListener(new View.OnClickListener() {
+      setTitle("Send Money");
+        send = findViewById(R.id.paybutton);
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

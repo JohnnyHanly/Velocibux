@@ -46,6 +46,7 @@ import static android.Manifest.permission.CAMERA;
 public class DepositToBank extends AppCompatActivity {
     FloatingActionButton sendMoney;
     private static final int REQUEST_CODE_FINE_GPS = 1;
+    Button send;
     User userObj;
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -68,8 +69,10 @@ public class DepositToBank extends AppCompatActivity {
 //        }
 
 
+         setTitle("Deposit to Bank");
+        send=findViewById(R.id.paybutton);
         sendMoney = findViewById(R.id.paymentButton);
-        sendMoney.setOnClickListener(new View.OnClickListener() {
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Transaction transaction = new Transaction();
