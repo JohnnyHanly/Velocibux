@@ -53,7 +53,7 @@
 
             android:theme="@style/PaymentTheme" />
 
-        <activity android:name=".SendMoneyToFriend"/>
+        <activity android:name=".SendMoneyToFriend" android:theme="@style/PaymentTheme"/>
     </application>
 
 </manifest>
