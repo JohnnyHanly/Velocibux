@@ -29,20 +29,16 @@
         android:hint="Enter the amount to send" />
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/paymentButton"
-        android:layout_width="100dp"
-        android:layout_height="98dp"
-        android:layout_alignParentTop="true"
+    <Button
+        android:id="@+id/paybutton"
+        android:layout_width="222dp"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="216dp"
-        android:clickable="true"
-        android:scaleType="center"
-        android:src="@drawable/ic_payment_button"
-        app:backgroundTint="@android:color/transparent"
-        app:borderWidth="0dp"
-        app:elevation="0dp"
-        app:fabSize="normal" />
+        android:layout_marginBottom="190dp"
+        android:backgroundTint="@color/green"
+        android:text="Send Money"
+        />
 
 
 </RelativeLayout>
