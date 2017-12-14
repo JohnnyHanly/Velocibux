@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
+
 import teamvelociraptor.assignment4.models.Transaction;
 import teamvelociraptor.assignment4.models.User;
 
@@ -66,12 +68,14 @@ public class TransactionHistoryActivity extends AppCompatActivity {
                 TextView sender = v.findViewById(R.id.transaction_sender);
                 TextView receiver = v.findViewById(R.id.transaction_receiver);
                 TextView amount = v.findViewById(R.id.transaction_amount);
-                if(model.getTimestamp() != null){
-                    timeStamp.setText(model.getTimestamp().toString());
-                }
+                TextView transactionId = v.findViewById(R.id.transaction_id);
+                DecimalFormat format = new DecimalFormat("0.00");
+
+                timeStamp.setText(model.getTimestamp().toString());
                 sender.setText("Sender: " + model.getSender());
                 receiver.setText("Receiver: " + model.getReceiver());
-                amount.setText("Amount: " + Double.toString(model.getAmount()));
+                amount.setText("Amount: " + format.format(model.getAmount()));
+                transactionId.setText("Transaction Type: " + model.getId());
 
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -53,70 +53,28 @@ public class DepositToBank extends AppCompatActivity {
     DatabaseReference mUserRef = mRootRef.child("users").child(user.getUid());
     DatabaseReference mTransactionRef = mUserRef.child("transactions");
     List<Transaction> transactionList;
+    LocationManager lm;
+    Location location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-//        int currentapiVersion = Build.VERSION.SDK_INT;
-//        if (currentapiVersion >= Build.VERSION_CODES.M){
-//            if (checkPermission()){
-//                Toast.makeText(getApplicationContext(), "Permission already granted", Toast.LENGTH_SHORT);
-//            }
-//            else{
-//                requestPermission();
-//            }
-//        }
-
-
-         setTitle("Deposit to Bank");
-        send=findViewById(R.id.paybutton);
-        sendMoney = findViewById(R.id.paymentButton);
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Transaction transaction = new Transaction();
-
-//                LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//
-//                @SuppressLint("MissingPermission") Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                EditText amount = findViewById(R.id.payment_input);
-                double inputAmount = Double.parseDouble(amount.getText().toString());
-                inputAmount = inputAmount * 100;
-                inputAmount = Math.round(inputAmount);
-                inputAmount = inputAmount / 100;
-                if(inputAmount <= userObj.getBalance()) {
-                    transaction.setAmount(inputAmount);
-                    transaction.setSender(userObj.getDisplayName());
-                    transaction.setReceiver("Deposit");
-                    transaction.setTimestamp(new Date());
-                    transaction.setLat(37.7232346);
-                    transaction.setLon(-122.4771284);
-                    DecimalFormat format = new DecimalFormat("0.00");
-                    String formattedAmount = format.format(inputAmount);
-                    Toast.makeText(DepositToBank.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
-
-                    userObj.setBalance(userObj.getBalance() - inputAmount);
-                    mUserRef.setValue(userObj);
-
-                    sendTransaction(transaction);
-
-                }
-                else{
-                    Toast.makeText(DepositToBank.this, "Amount exceeds balance.", Toast.LENGTH_SHORT).show();
-                }
-
-                Intent accountBalance = new Intent(DepositToBank.this, AccountBalance.class);
-                startActivity(accountBalance);
-
+        int currentapiVersion = Build.VERSION.SDK_INT;
+        if (currentapiVersion >= Build.VERSION_CODES.M){
+            if (checkPermission()){
+                Toast.makeText(getApplicationContext(), "Permission already granted", Toast.LENGTH_SHORT);
             }
-        });
-    }
-
-    private void sendTransaction(Transaction transaction) {
-        transactionList.add(transaction);
-        DatabaseReference reference1 = mUserRef.child("transactions");
-        reference1.setValue(transactionList);
+            else{
+                requestPermission();
+            }
+        }
+//       lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//
+//       location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+       setTitle("Deposit to Bank");
+       send=findViewById(R.id.paybutton);
+       sendMoney = findViewById(R.id.paymentButton);
 
     }
 
@@ -194,9 +152,9 @@ public class DepositToBank extends AppCompatActivity {
                     if (transactionList == null){
                         transactionList = new ArrayList<>();
                     }
-                    else{
-                        transactionList = new ArrayList<>();
-                    }
+                }
+                else{
+                    transactionList = new ArrayList<>();
                 }
             }
 
@@ -205,9 +163,51 @@ public class DepositToBank extends AppCompatActivity {
 
             }
         });
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Transaction transaction = new Transaction();
+                EditText amount = findViewById(R.id.payment_input);
+                double inputAmount = Double.parseDouble(amount.getText().toString());
+                inputAmount = inputAmount * 100;
+                inputAmount = Math.round(inputAmount);
+                inputAmount = inputAmount / 100;
+                if(inputAmount <= userObj.getBalance()) {
+                    transaction.setAmount(inputAmount);
+                    transaction.setSender(userObj.getDisplayName());
+                    transaction.setReceiver(userObj.getDisplayName());
+                    transaction.setTimestamp(new Date());
+                    transaction.setLat(37.7232346);
+                    transaction.setLon(-122.4771284);
+                    transaction.setId("Deposit to account");
+                    DecimalFormat format = new DecimalFormat("0.00");
+                    String formattedAmount = format.format(inputAmount);
+                    Toast.makeText(DepositToBank.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
+
+                    userObj.setBalance(userObj.getBalance() - inputAmount);
+                    mUserRef.setValue(userObj);
+
+                   sendTransaction(transaction);
+
+                }
+                else{
+                    Toast.makeText(DepositToBank.this, "Amount exceeds balance.", Toast.LENGTH_SHORT).show();
+                }
+
+                Intent accountBalance = new Intent(DepositToBank.this, AccountBalance.class);
+                startActivity(accountBalance);
+
+            }
+        });
 
     }
 
+    private void sendTransaction(Transaction transaction) {
+        transactionList.add(transaction);
+        DatabaseReference reference1 = mUserRef.child("transactions");
+        reference1.setValue(transactionList);
+
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
