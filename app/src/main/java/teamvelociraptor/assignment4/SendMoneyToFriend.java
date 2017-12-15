@@ -141,32 +141,38 @@ public class SendMoneyToFriend extends AppCompatActivity {
                 Transaction userTransaction = new Transaction();
                 Transaction recipientTransaction = new Transaction();
                 EditText amount = findViewById(R.id.payment_input);
-                double inputAmount = Double.parseDouble(amount.getText().toString());
-                inputAmount = inputAmount * 100;
-                inputAmount = Math.round(inputAmount);
-                inputAmount = inputAmount / 100;
+                try {
+                    double inputAmount = Double.parseDouble(amount.getText().toString());
+                    inputAmount = inputAmount * 100;
+                    inputAmount = Math.round(inputAmount);
+                    inputAmount = inputAmount / 100;
 
-                if(inputAmount <= userObj.getBalance()) {
-                    DecimalFormat format = new DecimalFormat("0.00");
-                    String formattedAmount = format.format(inputAmount);
-                    Toast.makeText(SendMoneyToFriend.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
+                    if(inputAmount <= userObj.getBalance()) {
+                        DecimalFormat format = new DecimalFormat("0.00");
+                        String formattedAmount = format.format(inputAmount);
+                        Toast.makeText(SendMoneyToFriend.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
 
-                    userObj.setBalance(userObj.getBalance() - inputAmount);
-                    mUserRef.setValue(userObj);
-                    recipientObj.setBalance((recipientObj.getBalance()) + inputAmount);
-                    mRecipientRef.setValue(recipientObj);
+                        userObj.setBalance(userObj.getBalance() - inputAmount);
+                        mUserRef.setValue(userObj);
+                        recipientObj.setBalance((recipientObj.getBalance()) + inputAmount);
+                        mRecipientRef.setValue(recipientObj);
 
-                    buildUserTransaction(userTransaction, inputAmount);
-                    buildFriendTransaction(recipientTransaction, inputAmount);
+                        buildUserTransaction(userTransaction, inputAmount);
+                        buildFriendTransaction(recipientTransaction, inputAmount);
 
-                    sendTransactions(userTransaction, recipientTransaction);
+                        sendTransactions(userTransaction, recipientTransaction);
+                    }
+                    else{
+                        Toast.makeText(SendMoneyToFriend.this, "Amount exceeds balance.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    Intent accountBalance = new Intent(SendMoneyToFriend.this, AccountBalance.class);
+                    startActivity(accountBalance);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(SendMoneyToFriend.this, "You must enter an amount", Toast.LENGTH_LONG);
                 }
-                else{
-                    Toast.makeText(SendMoneyToFriend.this, "Amount exceeds balance.", Toast.LENGTH_SHORT).show();
-                }
 
-                Intent accountBalance = new Intent(SendMoneyToFriend.this, AccountBalance.class);
-                startActivity(accountBalance);
+
 
             }
         });
