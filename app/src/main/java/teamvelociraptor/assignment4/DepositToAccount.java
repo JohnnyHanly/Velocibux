@@ -113,7 +113,7 @@ public class DepositToAccount extends AppCompatActivity {
                     Intent accountBalance = new Intent(DepositToAccount.this, AccountBalance.class);
                     startActivity(accountBalance);
                 } catch (NumberFormatException e) {
-                    Toast.makeText(DepositToAccount.this, "You must enter an amount", Toast.LENGTH_LONG);
+                    Toast.makeText(DepositToAccount.this, "You must enter an amount", Toast.LENGTH_LONG).show();
                 }
 
             }

@@ -63,7 +63,7 @@ public class DepositToBank extends AppCompatActivity {
         int currentapiVersion = Build.VERSION.SDK_INT;
         if (currentapiVersion >= Build.VERSION_CODES.M){
             if (checkPermission()){
-                Toast.makeText(getApplicationContext(), "Permission already granted", Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "Permission already granted", Toast.LENGTH_SHORT).show();
             }
             else{
                 requestPermission();
@@ -167,34 +167,37 @@ public class DepositToBank extends AppCompatActivity {
             public void onClick(View v) {
                 Transaction transaction = new Transaction();
                 EditText amount = findViewById(R.id.payment_input);
-                double inputAmount = Double.parseDouble(amount.getText().toString());
-                inputAmount = inputAmount * 100;
-                inputAmount = Math.round(inputAmount);
-                inputAmount = inputAmount / 100;
-                if(inputAmount <= userObj.getBalance()) {
-                    transaction.setAmount(inputAmount);
-                    transaction.setSender(userObj.getDisplayName());
-                    transaction.setReceiver(userObj.getDisplayName());
-                    transaction.setTimestamp(new Date());
-                    transaction.setLat(37.7232346);
-                    transaction.setLon(-122.4771284);
-                    transaction.setId("Deposit to bank");
-                    DecimalFormat format = new DecimalFormat("0.00");
-                    String formattedAmount = format.format(inputAmount);
-                    Toast.makeText(DepositToBank.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
+                try {
+                    double inputAmount = Double.parseDouble(amount.getText().toString());
+                    inputAmount = inputAmount * 100;
+                    inputAmount = Math.round(inputAmount);
+                    inputAmount = inputAmount / 100;
+                    if (inputAmount <= userObj.getBalance()) {
+                        transaction.setAmount(inputAmount);
+                        transaction.setSender(userObj.getDisplayName());
+                        transaction.setReceiver(userObj.getDisplayName());
+                        transaction.setTimestamp(new Date());
+                        transaction.setLat(37.7232346);
+                        transaction.setLon(-122.4771284);
+                        transaction.setId("Deposit to bank");
+                        DecimalFormat format = new DecimalFormat("0.00");
+                        String formattedAmount = format.format(inputAmount);
+                        Toast.makeText(DepositToBank.this, "You've sent : $" + formattedAmount, Toast.LENGTH_SHORT).show();
 
-                    userObj.setBalance(userObj.getBalance() - inputAmount);
-                    mUserRef.setValue(userObj);
+                        userObj.setBalance(userObj.getBalance() - inputAmount);
+                        mUserRef.setValue(userObj);
 
-                   sendTransaction(transaction);
+                        sendTransaction(transaction);
 
+                    } else {
+                        Toast.makeText(DepositToBank.this, "Amount exceeds balance.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    Intent accountBalance = new Intent(DepositToBank.this, AccountBalance.class);
+                    startActivity(accountBalance);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(DepositToBank.this, "You must enter an amount", Toast.LENGTH_LONG).show();
                 }
-                else{
-                    Toast.makeText(DepositToBank.this, "Amount exceeds balance.", Toast.LENGTH_SHORT).show();
-                }
-
-                Intent accountBalance = new Intent(DepositToBank.this, AccountBalance.class);
-                startActivity(accountBalance);
 
             }
         });

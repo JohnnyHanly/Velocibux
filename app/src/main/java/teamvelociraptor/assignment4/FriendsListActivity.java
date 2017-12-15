@@ -73,7 +73,6 @@ public class FriendsListActivity extends AppCompatActivity {
             }
         });
         friendsList = findViewById(R.id.friends_list);
-        // addFriends();
         displayFriends();
     }
 
@@ -111,7 +110,6 @@ public class FriendsListActivity extends AppCompatActivity {
 
 
                 new GetUserProfileImage(model, profileImage).execute();
-//                profileImage.setImageBitmap(image.execute(params));
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -141,7 +139,6 @@ public class FriendsListActivity extends AppCompatActivity {
         if (requestCode == 1) {
                 if (resultCode == QRCameraActivity.RESULT_OK) {
                     String uuid = data.getStringExtra("result");
-                    Toast.makeText(FriendsListActivity.this, uuid, Toast.LENGTH_LONG);
                     final DatabaseReference friendRef = mRootRef.child("users").child(uuid);
                     friendRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -158,12 +155,12 @@ public class FriendsListActivity extends AppCompatActivity {
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-                            Toast.makeText(FriendsListActivity.this, "Error adding user", Toast.LENGTH_LONG);
+                            Toast.makeText(FriendsListActivity.this, "Error adding user", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
                 if (resultCode == QRCameraActivity.RESULT_CANCELED) {
-                    Toast.makeText(FriendsListActivity.this, "QR Code Scanner Error", Toast.LENGTH_LONG);
+                    Toast.makeText(FriendsListActivity.this, "QR Code Scanner Error", Toast.LENGTH_LONG).show();
                 }
             }
     }
