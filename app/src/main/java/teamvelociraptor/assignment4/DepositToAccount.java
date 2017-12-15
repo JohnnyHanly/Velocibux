@@ -90,11 +90,11 @@ public class DepositToAccount extends AppCompatActivity {
             public void onClick(View v) {
                 Transaction transaction = new Transaction();
                 EditText amount = findViewById(R.id.payment_input);
-                double inputAmount = Double.parseDouble(amount.getText().toString());
-                inputAmount = inputAmount * 100;
-                inputAmount = Math.round(inputAmount);
-                inputAmount = inputAmount / 100;
-                if(inputAmount <= userObj.getBalance()) {
+                try {
+                    double inputAmount = Double.parseDouble(amount.getText().toString());
+                    inputAmount = inputAmount * 100;
+                    inputAmount = Math.round(inputAmount);
+                    inputAmount = inputAmount / 100;
                     transaction.setAmount(inputAmount);
                     transaction.setSender(userObj.getDisplayName());
                     transaction.setReceiver(userObj.getDisplayName());
@@ -110,14 +110,11 @@ public class DepositToAccount extends AppCompatActivity {
                     mUserRef.setValue(userObj);
 
                     sendTransaction(transaction);
-
+                    Intent accountBalance = new Intent(DepositToAccount.this, AccountBalance.class);
+                    startActivity(accountBalance);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(DepositToAccount.this, "You must enter an amount", Toast.LENGTH_LONG);
                 }
-                else{
-                    Toast.makeText(DepositToAccount.this, "Amount exceeds balance.", Toast.LENGTH_SHORT).show();
-                }
-
-                Intent accountBalance = new Intent(DepositToAccount.this, AccountBalance.class);
-                startActivity(accountBalance);
 
             }
         });
