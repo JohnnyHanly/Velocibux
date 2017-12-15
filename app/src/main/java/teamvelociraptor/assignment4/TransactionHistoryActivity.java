@@ -3,6 +3,7 @@ package teamvelociraptor.assignment4;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -71,10 +72,10 @@ public class TransactionHistoryActivity extends AppCompatActivity {
                 TextView transactionId = v.findViewById(R.id.transaction_id);
                 DecimalFormat format = new DecimalFormat("0.00");
 
-                timeStamp.setText(model.getTimestamp().toString());
+                timeStamp.setText(DateFormat.format("E MM/dd/yy K:mm aa", model.getTimestamp()));
                 sender.setText("Sender: " + model.getSender());
                 receiver.setText("Receiver: " + model.getReceiver());
-                amount.setText("Amount: " + format.format(model.getAmount()));
+                amount.setText("$" + format.format(model.getAmount()));
                 transactionId.setText("Transaction Type: " + model.getId());
 
                 v.setOnClickListener(new View.OnClickListener() {
