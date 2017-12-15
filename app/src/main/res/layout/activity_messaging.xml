@@ -19,7 +19,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/sendButton"
         android:layout_toStartOf="@+id/sendButton"/>
-         />
+
 
     <EditText
         android:id="@+id/message_input"

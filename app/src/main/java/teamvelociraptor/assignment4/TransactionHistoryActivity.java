@@ -88,6 +88,7 @@ public class TransactionHistoryActivity extends AppCompatActivity {
             }
         };
         transactionHistory.setAdapter(adapter);
+
         adapter.startListening();
     }
     public boolean onCreateOptionsMenu(Menu menu){

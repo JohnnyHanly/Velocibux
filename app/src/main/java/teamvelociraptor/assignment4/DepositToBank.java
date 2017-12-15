@@ -188,6 +188,7 @@ public class DepositToBank extends AppCompatActivity {
                         mUserRef.setValue(userObj);
 
                         sendTransaction(transaction);
+                        amount.setText("");
 
                     } else {
                         Toast.makeText(DepositToBank.this, "Amount exceeds balance.", Toast.LENGTH_SHORT).show();

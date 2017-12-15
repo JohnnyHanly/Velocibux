@@ -86,6 +86,7 @@ public class SendMoneyToFriend extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userObj = dataSnapshot.getValue(User.class);
+
             }
 
             @Override

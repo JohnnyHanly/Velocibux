@@ -110,6 +110,7 @@ public class DepositToAccount extends AppCompatActivity {
                     mUserRef.setValue(userObj);
 
                     sendTransaction(transaction);
+                    amount.setText("");
                     Intent accountBalance = new Intent(DepositToAccount.this, AccountBalance.class);
                     startActivity(accountBalance);
                 } catch (NumberFormatException e) {
