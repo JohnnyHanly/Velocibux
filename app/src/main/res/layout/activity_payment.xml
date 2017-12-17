@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_messaging"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="teamvelociraptor.assignment4.MessagingActivity">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+
+    <EditText
+        android:id="@+id/payment_input"
+        android:inputType="numberDecimal"
+        android:layout_width="400dp"
+        android:layout_height="87dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:hint="Enter the amount to send" />
+
+
+    <Button
+        android:id="@+id/paybutton"
+        android:layout_width="261dp"
+        android:layout_height="92dp"
+        android:layout_below="@+id/payment_input"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/green"
+        android:gravity="center"
+        android:text="Send Money" />
+
+
+</RelativeLayout>

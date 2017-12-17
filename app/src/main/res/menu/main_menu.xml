@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/activity_friends_item"
+        android:title="Friends" />
+    <item
+        android:id="@+id/activity_transaction_history_item"
+        android:title="Transaction History" />
+    <item
+        android:id="@+id/activity_account_item"
+        android:title="Account"/>
+</menu>
