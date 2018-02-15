@@ -8,17 +8,17 @@ a physical device.
 
 ## Built With
 
-* [Adnroid Studio](https://developer.android.com/studio/index.html) - The IDE used
+* [Android Studio](https://developer.android.com/studio/index.html) - The IDE used
 
 
 ## Authors
 
 * **Johnny Hanly** - *Payment/Messaging* - [Johnny Hanly](https://github.com/JohnnyHanly)
 
-**Ryan Stillwagon**- *Location/Ledger*
+* **Ryan Stillwagon**- *Location/Ledger*
 
-**Preston Huber**- *Account/Banking*
+* **Preston Huber**- *Account/Banking*
 
-**Eric Groom**- *Friends List*
+* **Eric Groom**- *Friends List*
 
-**Mehi Lewdon**- *QR Code feature*
+* **Mehi Lewdon**- *QR Code feature*
