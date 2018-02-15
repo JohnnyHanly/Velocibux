@@ -14,7 +14,11 @@ a physical device.
 ## Authors
 
 * **Johnny Hanly** - *Payment/Messaging* - [Johnny Hanly](https://github.com/JohnnyHanly)
+
 **Ryan Stillwagon**- *Location/Ledger*
+
 **Preston Huber**- *Account/Banking*
+
 **Eric Groom**- *Friends List*
+
 **Mehi Lewdon**- *QR Code feature*
