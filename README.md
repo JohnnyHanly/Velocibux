@@ -1,6 +1,9 @@
 # Velocibux
 An Android messaging/payment app with a friends list, QR scan feature to add friends, and a transaction log that shows the location of each transaction on Google Maps. 
 
+![alt text](https://i.imgur.com/d1QrnZT.jpg "Logo Title Text 1") ![alt text](https://i.imgur.com/rQWVNDw.jpg "Logo Title Text 1")
+
+
 ### Prerequisites
 
 Requires Android Studio 3.0 to and a friend to get the best experince. Highly recommended that users run the app on
