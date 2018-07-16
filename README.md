@@ -3,9 +3,9 @@ An Android messaging/payment app with a friends list, QR scan feature to add fri
 
 ![alt text](https://i.imgur.com/d1QrnZT.jpg "Logo Title Text 1")
  ![alt text](https://i.imgur.com/rQWVNDw.jpg "Logo Title Text 1")
-![alt text](https://i.imgur.com/rPqH4Ge.jpg"Logo Title Text 1")
-![alt text](https://i.imgur.com/Zx9S9ly.jpg"Logo Title Text 1")
-![alt text](https://i.imgur.com/rPqH4Ge.jpg"Logo Title Text 1")
+![alt text](https://i.imgur.com/rPqH4Ge.jpg" Logo Title Text 1")
+![alt text](https://i.imgur.com/Zx9S9ly.jpg" Logo Title Text 1")
+![alt text](https://i.imgur.com/rPqH4Ge.jpg" Logo Title Text 1")
 
 ### Prerequisites
 
